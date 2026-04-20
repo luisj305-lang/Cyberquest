@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberQuest · Investigación Digital Profesional · OSINT · Forense Digital</title>
+  <meta name="description" content="CyberQuest — Agencia profesional de investigación digital y OSINT. Forense digital, rastreo de personas, verificación de antecedentes y análisis de redes sociales. EE.UU. y Colombia, alcance mundial.">
+  <meta name="keywords" content="OSINT, investigación digital, forense digital, background check, person tracing, ciberseguridad, Colombia, EE.UU., CyberQuest">
+  <meta name="author" content="CyberQuest">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CyberQuest — Investigación Digital Profesional">
+  <meta property="og:description" content="Descubrimos lo que otros no pueden ver. Agencia de OSINT y forense digital.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/brand-card.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CyberQuest — Investigación Digital Profesional">
+  <meta name="twitter:description" content="OSINT, forense digital, rastreo de personas. Absoluta confidencialidad.">
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0A' rx='6'/%3E%3Ccircle cx='14' cy='14' r='7' stroke='%2300D4FF' stroke-width='2' fill='none'/%3E%3Cline x1='19' y1='19' x2='25' y2='25' stroke='%2300D4FF' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <style>
+/* ============================================================
+   CyberQuest Website — styles.css
+   Sistema de Diseño: Dark · Cyan · Noir-Tech
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --cq-bg-base:        #0A0A0A;
+  --cq-bg-deep:        #0D1B2A;
+  --cq-bg-surface:     #111C2D;
+  --cq-bg-elevated:    #162438;
+
+  /* Accents */
+  --cq-cyan:           #00D4FF;
+  --cq-cyan-bright:    #00EEFF;
+  --cq-cyan-dim:       rgba(0, 212, 255, 0.6);
+  --cq-cyan-ghost:     rgba(0, 212, 255, 0.08);
+  --cq-blue:           #0066CC;
+  --cq-neon-green:     #00FF88;
+
+  /* Foregrounds */
+  --cq-fg-primary:     #FFFFFF;
+  --cq-fg-secondary:   #C0C0C0;
+  --cq-fg-muted:       #6B7B8D;
+
+  /* Borders */
+  --cq-border:         rgba(0, 212, 255, 0.18);
+  --cq-border-mid:     rgba(0, 212, 255, 0.35);
+  --cq-border-strong:  rgba(0, 212, 255, 0.6);
+
+  /* Glows */
+  --cq-glow-sm:        0 0 10px rgba(0, 212, 255, 0.15);
+  --cq-glow-md:        0 0 20px rgba(0, 212, 255, 0.25);
+  --cq-glow-lg:        0 0 40px rgba(0, 212, 255, 0.35);
+  --cq-glow-text:      0 0 12px rgba(0, 212, 255, 0.7);
+
+  /* Status */
+  --cq-error:          #FF3B5C;
+
+  /* Typography */
+  --cq-font-display:   'Orbitron', 'Courier New', monospace;
+  --cq-font-heading:   'Rajdhani', 'Arial Narrow', sans-serif;
+  --cq-font-body:      'Inter', system-ui, sans-serif;
+  --cq-font-mono:      'JetBrains Mono', 'Courier New', monospace;
+
+  /* Layout */
+  --cq-max-width:      1200px;
+  --cq-header-h:       72px;
+}
+
+/* ── Resets ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--cq-header-h); }
+
+body {
+  background: var(--cq-bg-base);
+  color: var(--cq-fg-primary);
+  font-family: var(--cq-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cq-bg-base); }
+::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cq-cyan); }
+
+/* ── Utility Classes ───────────────────────────────────────── */
+.container {
+  max-width: var(--cq-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-family: var(--cq-font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cq-cyan);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before, .eyebrow::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--cq-cyan);
+}
+.eyebrow.eyebrow-left::after { display: none; }
+
+.accent { color: var(--cq-cyan); text-shadow: 0 0 20px rgba(0,212,255,0.4); }
+
+/* ── Header ────────────────────────────────────────────────── */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--cq-header-h);
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--cq-border);
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.site-header.scrolled {
+  box-shadow: var(--cq-glow-sm);
+  border-bottom-color: var(--cq-border-mid);
+}
+
+.header-inner {
+  max-width: var(--cq-max-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.brand-mark {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--cq-bg-deep);
+  border: 1.5px solid var(--cq-border-strong);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 14px rgba(0,212,255,0.25);
+  flex-shrink: 0;
+}
+.brand-text-wrap { line-height: 1; }
+.brand-name {
+  font-family: var(--cq-font-display);
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  color: var(--cq-fg-primary);
+  text-shadow: 0 0 10px rgba(0,212,255,0.3);
+}
+.brand-tagline {
+  font-family: var(--cq-font-heading);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--cq-cyan);
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.nav-main {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.nav-link {
+  background: none; border: none;
+  font-family: var(--cq-font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cq-fg-secondary);
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: color .2s ease, border-color .2s ease, text-shadow .2s ease;
+}
+.nav-link:hover {
+  color: var(--cq-cyan);
+  border-bottom-color: var(--cq-cyan);
+  text-shadow: 0 0 8px rgba(0,212,255,0.5);
+}
+
+.btn-mobile-menu {
+  display: none;
+  background: none;
+  border: 1px solid var(--cq-border);
+  border-radius: 4px;
+  width: 40px; height: 40px;
+  color: var(--cq-cyan);
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--cq-font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .25s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn svg { width: 14px; height: 14px; }
+
+.btn-primary {
+  background: var(--cq-cyan);
+  color: var(--cq-bg-base);
+  box-shadow: var(--cq-glow-sm);
+}
+.btn-primary:hover {
+  background: var(--cq-cyan-bright);
+  box-shadow: var(--cq-glow-md);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cq-cyan);
+  border-color: var(--cq-border-strong);
+}
+.btn-outline:hover {
+  background: var(--cq-cyan-ghost);
+  border-color: var(--cq-cyan);
+  box-shadow: var(--cq-glow-sm);
+}
+
+.btn-whatsapp {
+  background: var(--cq-neon-green);
+  color: var(--cq-bg-base);
+}
+.btn-whatsapp:hover {
+  background: #00ffa0;
+  box-shadow: 0 0 20px rgba(0,255,136,0.4);
+}
+
+.btn-sm { padding: 9px 16px; font-size: 10px; }
+
+/* ── Hero ──────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--cq-bg-deep);
+  padding: calc(var(--cq-header-h) + 80px) 0 100px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  right: -120px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-scanline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.6), transparent);
+  animation: scanline 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes scanline {
+  0%   { top: 0;   opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+}
+
+.hero-content { max-width: 640px; }
+
+.hero-eyebrow { margin-bottom: 20px; }
+
+.hero-title {
+  font-family: var(--cq-font-heading);
+  font-weight: 700;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.03;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: var(--cq-fg-primary);
+}
+
+.hero-subtitle {
+  font-family: var(--cq-font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--cq-fg-secondary);
+  max-width: 540px;
+  margin-bottom: 32px;
+}
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.chip {
+  font-family: var(--cq-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(0,212,255,0.08);
+  color: var(--cq-cyan);
+  border: 1px solid rgba(0,212,255,0.25);
+  padding: 6px 12px;
+  border-radius: 3px;
+}
+
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-portrait {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  max-width: 100%;
+}
+.hero-portrait-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--cq-bg-base);
+  border: 2px solid var(--cq-border-strong);
+  overflow: hidden;
+  box-shadow: var(--cq-glow-lg);
+  position: relative;
+}
+.hero-portrait-circle img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.88;
+}
+.hero-portrait-circle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(13,27,42,0.65) 100%);
+  pointer-events: none;
+}
+
+.hero-portrait-ring {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 1px solid var(--cq-border);
+  animation: ringPulse 4s ease-in-out infinite;
+}
+.hero-portrait-ring.ring-2 {
+  inset: -40px;
+  border-color: rgba(0,212,255,0.08);
+  animation-delay: -2s;
+}
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.03); opacity: 0.5; }
+}
+
+.hero-data-tag {
+  position: absolute;
+  font-family: var(--cq-font-mono);
+  font-size: 10px;
+  color: var(--cq-cyan);
+  letter-spacing: 0.1em;
+  background: rgba(13,27,42,0.85);
+  border: 1px solid var(--cq-border);
+  padding: 6px 10px;
+  border-radius: 3px;
+  backdrop-filter: blur(6px);
+}
+.hero-data-tag.tag-top-right { top: 10%; right: -20px; }
+.hero-data-tag.tag-bottom-left { bottom: 14%; left: -30px; }
+
+/* ── Sections ──────────────────────────────────────────────── */
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+.section-dark { background: var(--cq-bg-base); }
+.section-deep { background: var(--cq-bg-deep); }
+
+.section-header {
+  max-width: 680px;
+  margin-bottom: 60px;
+}
+.section-header.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.section-header .eyebrow { margin-bottom: 16px; }
+.section-header.center .eyebrow { justify-content: center; }
+
+.section-title {
+  font-family: var(--cq-font-heading);
+  font-weight: 700;
+  font-size: clamp(30px, 4.5vw, 46px);
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--cq-fg-primary);
+  margin-bottom: 16px;
+}
+.section-subtitle {
+  font-family: var(--cq-font-body);
+  font-size: 15px;
+  color: var(--cq-fg-secondary);
+  line-height: 1.75;
+}
+
+/* ── Stats Bar ─────────────────────────────────────────────── */
+.stats-bar {
+  background: var(--cq-bg-surface);
+  border-top: 1px solid var(--cq-border);
+  border-bottom: 1px solid var(--cq-border);
+  padding: 48px 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: var(--cq-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.stat { text-align: center; }
+.stat-value {
+  font-family: var(--cq-font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--cq-cyan);
+  letter-spacing: 0.08em;
+  text-shadow: var(--cq-glow-text);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-family: var(--cq-font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cq-fg-muted);
+}
+
+/* ── Services Grid ─────────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.service-card {
+  background: var(--cq-bg-surface);
+  border: 1px solid var(--cq-border);
+  border-radius: 8px;
+  padding: 32px 28px;
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease, background .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cq-cyan), transparent);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.service-card:hover {
+  border-color: var(--cq-border-mid);
+  background: var(--cq-bg-elevated);
+  box-shadow: var(--cq-glow-md);
+  transform: translateY(-3px);
+}
+.service-card:hover::before { opacity: 1; }
+
+.service-icon {
+  width: 48px; height: 48px;
+  border-radius: 6px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.22);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  transition: background .25s ease, border-color .25s ease;
+}
+.service-card:hover .service-icon {
+  background: rgba(0,212,255,0.14);
+  border-color: var(--cq-cyan);
+}
+.service-icon svg { width: 24px; height: 24px; stroke: var(--cq-cyan); }
+
+.service-title {
+  font-family: var(--cq-font-heading);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cq-fg-primary);
+  margin-bottom: 4px;
+  transition: color .25s ease;
+}
+.service-card:hover .service-title { color: var(--cq-cyan); }
+
+.service-subtitle {
+  font-family: var(--cq-font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cq-fg-muted);
+  margin-bottom: 14px;
+}
+.service-description {
+  font-family: var(--cq-font-body);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--cq-fg-secondary);
+}
+
+/* ── About / Why ───────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.about-features {
+  display: grid;
+  gap: 20px;
+  margin-top: 32px;
+}
+.feature {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.feature-icon {
+  width: 40px; height: 40px;
+  border-radius: 6px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid var(--cq-border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.feature-icon svg { width: 20px; height: 20px; stroke: var(--cq-cyan); }
+.feature-title {
+  font-family: var(--cq-font-heading);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cq-fg-primary);
+  margin-bottom: 4px;
+}
+.feature-desc {
+  font-family: var(--cq-font-body);
+  font-size: 13px;
+  color: var(--cq-fg-secondary);
+  line-height: 1.6;
+}
+
+.about-visual {
+  position: relative;
+  border: 1px solid var(--cq-border);
+  border-radius: 8px;
+  background: var(--cq-bg-surface);
+  padding: 32px;
+  box-shadow: var(--cq-glow-sm);
+}
+.about-visual-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cq-border);
+  margin-bottom: 20px;
+}
+.about-visual-title {
+  font-family: var(--cq-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--cq-cyan);
+  text-transform: uppercase;
+}
+.status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--cq-font-mono);
+  font-size: 10px;
+  color: var(--cq-neon-green);
+  letter-spacing: 0.1em;
+}
+.status-dot::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cq-neon-green);
+  box-shadow: 0 0 8px var(--cq-neon-green);
+  animation: blink 1.5s ease-in-out infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(0,212,255,0.1);
+  font-family: var(--cq-font-mono);
+  font-size: 12px;
+}
+.data-row:last-child { border-bottom: none; }
+.data-label { color: var(--cq-fg-muted); letter-spacing: 0.1em; text-transform: uppercase; font-size: 10px; }
+.data-value { color: var(--cq-fg-primary); }
+
+/* ── Process ───────────────────────────────────────────────── */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cq-border-mid) 20%, var(--cq-border-mid) 80%, transparent);
+}
+.process-step { text-align: center; position: relative; z-index: 1; }
+.step-number {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--cq-bg-base);
+  border: 2px solid var(--cq-border-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--cq-font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--cq-cyan);
+  margin-bottom: 20px;
+  box-shadow: 0 0 0 6px var(--cq-bg-base), var(--cq-glow-sm);
+  transition: box-shadow .3s ease;
+}
+.process-step:hover .step-number {
+  box-shadow: 0 0 0 6px var(--cq-bg-base), var(--cq-glow-md);
+}
+.step-title {
+  font-family: var(--cq-font-heading);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cq-fg-primary);
+  margin-bottom: 8px;
+}
+.step-desc {
+  font-family: var(--cq-font-body);
+  font-size: 13px;
+  color: var(--cq-fg-secondary);
+  line-height: 1.6;
+}
+
+/* ── CTA Banner ────────────────────────────────────────────── */
+.cta-banner {
+  background: var(--cq-bg-deep);
+  border: 1px solid var(--cq-border-mid);
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  box-shadow: var(--cq-glow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--cq-cyan);
+  box-shadow: var(--cq-glow-md);
+}
+.cta-content h3 {
+  font-family: var(--cq-font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cq-fg-primary);
+  margin-bottom: 8px;
+}
+.cta-content p {
+  font-family: var(--cq-font-body);
+  font-size: 13px;
+  color: var(--cq-fg-secondary);
+}
+.cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ── Contact ───────────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.contact-info h3 {
+  font-family: var(--cq-font-heading);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: var(--cq-fg-primary);
+}
+.contact-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--cq-border);
+}
+.contact-item:last-child { border-bottom: none; }
+.contact-item-icon {
+  width: 36px; height: 36px;
+  border-radius: 6px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid var(--cq-border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact-item-icon svg { width: 16px; height: 16px; stroke: var(--cq-cyan); }
+.contact-item-label {
+  font-family: var(--cq-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cq-fg-muted);
+  margin-bottom: 4px;
+}
+.contact-item-value {
+  font-family: var(--cq-font-body);
+  font-size: 14px;
+  color: var(--cq-fg-primary);
+  font-weight: 500;
+}
+.contact-item-value a { transition: color .2s; }
+.contact-item-value a:hover { color: var(--cq-cyan); }
+
+/* Form */
+.contact-form {
+  background: var(--cq-bg-surface);
+  border: 1px solid var(--cq-border);
+  border-radius: 8px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-field { display: flex; flex-direction: column; }
+.form-label {
+  font-family: var(--cq-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cq-fg-muted);
+  margin-bottom: 8px;
+}
+.form-input, .form-select, .form-textarea {
+  background: var(--cq-bg-deep);
+  border: 1px solid var(--cq-border);
+  border-radius: 4px;
+  padding: 12px 14px;
+  color: var(--cq-fg-primary);
+  font-family: var(--cq-font-body);
+  font-size: 14px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+  outline: none;
+  width: 100%;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--cq-fg-muted); }
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--cq-cyan);
+  box-shadow: var(--cq-glow-sm);
+}
+.form-select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2300D4FF' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+.form-textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+
+.form-error { color: var(--cq-error); font-size: 11px; margin-top: 6px; letter-spacing: 0.05em; }
+.form-input.error, .form-select.error, .form-textarea.error { border-color: var(--cq-error); }
+
+.form-privacy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(0,212,255,0.05);
+  border: 1px solid rgba(0,212,255,0.12);
+  border-radius: 4px;
+}
+.form-privacy svg { width: 16px; height: 16px; stroke: var(--cq-cyan); flex-shrink: 0; }
+.form-privacy span {
+  font-family: var(--cq-font-body);
+  font-size: 11px;
+  color: var(--cq-fg-muted);
+  letter-spacing: 0.03em;
+}
+
+.form-success {
+  text-align: center;
+  padding: 40px 20px;
+}
+.form-success-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(0,255,136,0.1);
+  border: 1.5px solid rgba(0,255,136,0.4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.form-success-icon svg { width: 28px; height: 28px; stroke: var(--cq-neon-green); }
+.form-success h3 {
+  font-family: var(--cq-font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cq-fg-primary);
+  margin-bottom: 12px;
+}
+.form-success p {
+  font-family: var(--cq-font-body);
+  font-size: 14px;
+  color: var(--cq-fg-secondary);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.form-success-ref {
+  font-family: var(--cq-font-mono);
+  font-size: 11px;
+  color: var(--cq-cyan);
+  letter-spacing: 0.1em;
+}
+
+/* ── Footer ────────────────────────────────────────────────── */
+.site-footer {
+  background: var(--cq-bg-deep);
+  border-top: 1px solid var(--cq-border);
+  padding: 60px 0 28px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+.footer-brand .brand-name-lg {
+  font-family: var(--cq-font-display);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.2em;
+  color: var(--cq-fg-primary);
+  text-shadow: 0 0 12px rgba(0,212,255,0.3);
+  margin-bottom: 8px;
+}
+.footer-brand .brand-tagline-lg {
+  font-family: var(--cq-font-heading);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cq-cyan);
+  margin-bottom: 16px;
+}
+.footer-brand p {
+  font-family: var(--cq-font-body);
+  font-size: 13px;
+  color: var(--cq-fg-muted);
+  line-height: 1.75;
+  max-width: 320px;
+}
+
+.footer-col-title {
+  font-family: var(--cq-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cq-fg-muted);
+  margin-bottom: 16px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-link {
+  background: none; border: none;
+  font-family: var(--cq-font-body);
+  font-size: 13px;
+  color: var(--cq-fg-secondary);
+  padding: 0;
+  text-align: left;
+  transition: color .2s ease;
+}
+.footer-link:hover { color: var(--cq-cyan); }
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+}
+.footer-contact-item svg { width: 14px; height: 14px; stroke: var(--cq-cyan); flex-shrink: 0; }
+.footer-contact-item span {
+  font-family: var(--cq-font-body);
+  font-size: 13px;
+  color: var(--cq-fg-secondary);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(0,212,255,0.08);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-copyright {
+  font-family: var(--cq-font-mono);
+  font-size: 11px;
+  color: var(--cq-fg-muted);
+  letter-spacing: 0.08em;
+}
+.footer-values {
+  font-family: var(--cq-font-body);
+  font-size: 10px;
+  color: var(--cq-fg-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── Floating WhatsApp ─────────────────────────────────────── */
+.fab-whatsapp {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  z-index: 90;
+  animation: fabPulse 2.5s ease-in-out infinite;
+  transition: transform .2s ease;
+}
+.fab-whatsapp:hover { transform: scale(1.08); }
+.fab-whatsapp svg { width: 28px; height: 28px; fill: white; }
+@keyframes fabPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+  50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
+}
+
+/* ── Reveal Animation ──────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease-out, transform .6s ease-out;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { order: -1; }
+  .hero-portrait { width: 220px; height: 220px; }
+  .hero-data-tag.tag-bottom-left { left: -10px; }
+  .hero-data-tag.tag-top-right { right: -10px; }
+
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .process-steps { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
+  .process-steps::before { display: none; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 640px) {
+  .nav-main { display: none; }
+  .nav-main.open {
+    display: flex;
+    position: absolute;
+    top: var(--cq-header-h);
+    left: 0; right: 0;
+    flex-direction: column;
+    background: rgba(10,10,10,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cq-border);
+    padding: 24px;
+    gap: 16px;
+  }
+  .btn-mobile-menu { display: inline-flex; }
+
+  .brand-tagline { display: none; }
+  .section { padding: 64px 0; }
+  .hero { padding-top: calc(var(--cq-header-h) + 48px); padding-bottom: 60px; min-height: auto; }
+  .services-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; gap: 32px; }
+  .cta-banner { flex-direction: column; align-items: flex-start; padding: 28px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-form { padding: 24px; }
+  .fab-whatsapp { bottom: 18px; right: 18px; width: 52px; height: 52px; }
+  .fab-whatsapp svg { width: 24px; height: 24px; }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- ═══════════════════ HEADER ═══════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#home" class="brand" aria-label="CyberQuest inicio">
+        <div class="brand-mark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="5.5" stroke="#00D4FF" stroke-width="1.6"/>
+            <line x1="14.2" y1="14.2" x2="20" y2="20" stroke="#00D4FF" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text-wrap">
+          <div class="brand-name">CYBERQUEST</div>
+          <div class="brand-tagline">Investigación Digital</div>
+        </div>
+      </a>
+
+      <nav class="nav-main" aria-label="Navegación principal">
+        <a href="#services" class="nav-link">Servicios</a>
+        <a href="#about" class="nav-link">Nosotros</a>
+        <a href="#process" class="nav-link">Proceso</a>
+        <a href="#contact" class="nav-link">Contacto</a>
+        <a href="#contact" class="btn btn-primary btn-sm">Consulta Gratis</a>
+      </nav>
+
+      <button class="btn-mobile-menu" aria-label="Abrir menú">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-grid-bg" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-scanline" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content reveal">
+          <div class="eyebrow hero-eyebrow">Investigación Digital Profesional</div>
+          <h1 class="hero-title">
+            Descubrimos lo que<br>
+            <span class="accent">otros no pueden ver</span>
+          </h1>
+          <p class="hero-subtitle">
+            Agencia profesional de investigación digital y OSINT. Forense digital, rastreo de personas, verificación de identidad y análisis de redes sociales. Operamos en EE.UU. y Colombia con alcance mundial.
+          </p>
+          <div class="hero-chips">
+            <span class="chip">OSINT</span>
+            <span class="chip">Forense Digital</span>
+            <span class="chip">Background Check</span>
+            <span class="chip">Person Tracing</span>
+            <span class="chip">Info Gathering</span>
+          </div>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary">
+              Iniciar Consulta
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="#services" class="btn btn-outline">Ver Servicios</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="hero-portrait">
+            <div class="hero-portrait-ring ring-2" aria-hidden="true"></div>
+            <div class="hero-portrait-ring" aria-hidden="true"></div>
+            <div class="hero-portrait-circle">
+              <img src="data:image/jpeg;base64,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" alt="Investigador profesional CyberQuest">
+            </div>
+            <div class="hero-data-tag tag-top-right">ID: CQ-001</div>
+            <div class="hero-data-tag tag-bottom-left">STATUS: ACTIVE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ STATS BAR ═══════════════════ -->
+  <section class="stats-bar" aria-label="Estadísticas CyberQuest">
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="stat-value" data-target="500" data-suffix="+">0</div>
+        <div class="stat-label">Casos Resueltos</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-value" data-target="24" data-suffix="h">0</div>
+        <div class="stat-label">Respuesta Promedio</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-value" data-target="100" data-suffix="%">0</div>
+        <div class="stat-label">Confidencialidad</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-value" data-target="338">0</div>
+        <div class="stat-label">Videos Publicados</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SERVICES ═══════════════════ -->
+  <section class="section section-dark" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow eyebrow-left">Nuestros Servicios</div>
+        <h2 class="section-title">
+          Investigación Digital<br>
+          <span class="accent">de Alto Nivel</span>
+        </h2>
+        <p class="section-subtitle">
+          Operamos en EE.UU. y Colombia con alcance mundial. Todos los casos son tratados con absoluta confidencialidad y rigor profesional.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          </div>
+          <h3 class="service-title">OSINT</h3>
+          <div class="service-subtitle">Open Source Intelligence</div>
+          <p class="service-description">
+            Recopilación y análisis de inteligencia de fuentes abiertas. Investigación en redes sociales, foros, registros públicos y deep web.
+          </p>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4"/><circle cx="19" cy="17" r="3"/><line x1="21.5" y1="19.5" x2="23" y2="21"/></svg>
+          </div>
+          <h3 class="service-title">Person Tracing</h3>
+          <div class="service-subtitle">Rastreo de Personas</div>
+          <p class="service-description">
+            Localización de personas desaparecidas, deudores o sujetos de investigación mediante técnicas digitales avanzadas.
+          </p>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M12 2l8 4v6c0 5-8 10-8 10S4 17 4 12V6l8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <h3 class="service-title">Background Check</h3>
+          <div class="service-subtitle">Verificación de Antecedentes</div>
+          <p class="service-description">
+            Verificación exhaustiva de identidad, antecedentes penales, historial laboral y reputación digital.
+          </p>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M1 6s5-5 11-5 11 5 11 5"/><path d="M5 10s3-3 7-3 7 3 7 3"/><path d="M9 14s1-1 3-1 3 1 3 1"/><circle cx="12" cy="18" r="1" fill="#00D4FF"/></svg>
+          </div>
+          <h3 class="service-title">Online Harassment</h3>
+          <div class="service-subtitle">Acoso en Línea</div>
+          <p class="service-description">
+            Investigación y documentación de casos de acoso digital, suplantación de identidad y amenazas en línea.
+          </p>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <h3 class="service-title">Digital Forensics</h3>
+          <div class="service-subtitle">Forense Digital</div>
+          <p class="service-description">
+            Extracción, preservación y análisis de evidencia digital para procesos legales y corporativos.
+          </p>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3 class="service-title">Info Gathering</h3>
+          <div class="service-subtitle">Recopilación de Información</div>
+          <p class="service-description">
+            Investigación de activos, propiedades, empresas y perfiles financieros para due diligence.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <section class="section section-deep" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="eyebrow eyebrow-left" style="margin-bottom: 16px;">Por qué CyberQuest</div>
+          <h2 class="section-title">
+            Expertos en la<br>
+            <span class="accent">Verdad Digital</span>
+          </h2>
+          <p class="section-subtitle">
+            Un equipo de investigadores profesionales con experiencia en ciberseguridad, OSINT y forense digital. Trabajamos con corporaciones, firmas legales y clientes privados a nivel mundial.
+          </p>
+
+          <div class="about-features">
+            <div class="feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div>
+                <div class="feature-title">Confidencialidad Absoluta</div>
+                <div class="feature-desc">Tu información nunca se comparte con terceros. Protocolos de seguridad estrictos.</div>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="feature-title">Respuesta Rápida</div>
+                <div class="feature-desc">Contacto inicial y diagnóstico en menos de 24 horas. Casos urgentes prioritarios.</div>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div>
+                <div class="feature-title">Alcance Mundial</div>
+                <div class="feature-desc">Operaciones activas en EE.UU. y Colombia, con capacidad de investigar en cualquier país.</div>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <div class="feature-title">Reportes Profesionales</div>
+                <div class="feature-desc">Informes detallados y documentados, válidos como evidencia para procesos legales.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual reveal">
+          <div class="about-visual-header">
+            <span class="about-visual-title">// CASE_FILE</span>
+            <span class="status-dot">ACTIVE</span>
+          </div>
+          <div class="data-row"><span class="data-label">Organización</span><span class="data-value">CyberQuest</span></div>
+          <div class="data-row"><span class="data-label">Unidad</span><span class="data-value">Investigative Team</span></div>
+          <div class="data-row"><span class="data-label">Cobertura</span><span class="data-value">EE.UU. · CO · Mundial</span></div>
+          <div class="data-row"><span class="data-label">Especialidad</span><span class="data-value">OSINT · Forense</span></div>
+          <div class="data-row"><span class="data-label">Canal YouTube</span><span class="data-value">@cyberquest-u4j</span></div>
+          <div class="data-row"><span class="data-label">Contacto</span><span class="data-value">+57 300 577 3095</span></div>
+          <div class="data-row"><span class="data-label">Lenguaje</span><span class="data-value">ES · EN</span></div>
+          <div class="data-row"><span class="data-label">Clasificación</span><span class="data-value">CONFIDENCIAL</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROCESS ═══════════════════ -->
+  <section class="section section-dark" id="process">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="eyebrow">Proceso de Trabajo</div>
+        <h2 class="section-title">De la Consulta<br>al <span class="accent">Resultado</span></h2>
+        <p class="section-subtitle">
+          Un proceso claro, estructurado y confidencial en cuatro etapas.
+        </p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-number">01</div>
+          <div class="step-title">Consulta</div>
+          <div class="step-desc">Nos contactas por formulario o WhatsApp. Evaluación inicial gratuita.</div>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">02</div>
+          <div class="step-title">Análisis</div>
+          <div class="step-desc">Definimos alcance, objetivos y metodología. Acuerdo de confidencialidad.</div>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">03</div>
+          <div class="step-title">Investigación</div>
+          <div class="step-desc">Ejecutamos la investigación con herramientas profesionales y OSINT.</div>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-number">04</div>
+          <div class="step-title">Entrega</div>
+          <div class="step-desc">Reporte detallado con hallazgos, evidencia y recomendaciones.</div>
+        </div>
+      </div>
+
+      <div class="cta-banner reveal" style="margin-top: 72px;">
+        <div class="cta-content">
+          <h3>¿Necesita una investigación confidencial?</h3>
+          <p>Primera consulta sin costo · Absoluta discreción · Resultados profesionales</p>
+        </div>
+        <div class="cta-actions">
+          <a href="#contact" class="btn btn-primary">Iniciar Consulta</a>
+          <a href="https://wa.me/573005773095?text=Hola%20CyberQuest%2C%20necesito%20informaci%C3%B3n" target="_blank" rel="noopener" class="btn btn-outline">WhatsApp Directo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT ═══════════════════ -->
+  <section class="section section-deep" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow eyebrow-left">Contacto Confidencial</div>
+        <h2 class="section-title">Inicie Su<br><span class="accent">Investigación</span></h2>
+        <p class="section-subtitle">
+          Primera consulta sin costo. Toda la información es tratada con absoluta discreción y confidencialidad.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Canales Directos</h3>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Teléfono / WhatsApp</div>
+              <div class="contact-item-value"><a href="tel:+573005773095">+57 300 577 3095</a></div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Cobertura</div>
+              <div class="contact-item-value">EE.UU. · Colombia · Mundial</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#00D4FF" stroke="none"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">YouTube</div>
+              <div class="contact-item-value"><a href="https://www.youtube.com/@cyberquest-u4j" target="_blank" rel="noopener">@cyberquest-u4j</a></div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8 0-4.41 3.59-8 8-8s8 3.59 8 8c0 4.41-3.59 8-8 8z"/><path d="M13 7h-2v6l5 3 1-1.73-4-2.38z"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Horario</div>
+              <div class="contact-item-value">Lunes a Sábado · 24/7 casos urgentes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="f-name">Nombre completo</label>
+                <input class="form-input" type="text" id="f-name" name="name" placeholder="Su nombre..." autocomplete="name">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="f-email">Correo electrónico</label>
+                <input class="form-input" type="email" id="f-email" name="email" placeholder="correo@ejemplo.com" autocomplete="email">
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="f-phone">Teléfono (opcional)</label>
+              <input class="form-input" type="tel" id="f-phone" name="phone" placeholder="+57 300 000 0000" autocomplete="tel">
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="f-service">Tipo de servicio</label>
+              <select class="form-select" id="f-service" name="service">
+                <option value="">Seleccione un servicio...</option>
+                <option>OSINT</option>
+                <option>Background Check</option>
+                <option>Person Tracing</option>
+                <option>Digital Forensics</option>
+                <option>Online Harassment</option>
+                <option>Info Gathering</option>
+                <option>Otro / Consulta general</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="f-message">Describa su caso</label>
+              <textarea class="form-textarea" id="f-message" name="message" placeholder="Describa brevemente lo que necesita investigar..."></textarea>
+            </div>
+
+            <div class="form-privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>Su información es confidencial y nunca será compartida con terceros.</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="padding: 15px; width: 100%; font-size: 12px;">
+              Enviar Consulta Confidencial
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+
+          <div id="form-success" class="contact-form form-success" style="display: none;">
+            <div class="form-success-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Consulta Recibida</h3>
+            <p>Hemos registrado su solicitud. Se abrirá WhatsApp para continuar de forma directa y confidencial. Un investigador le responderá en menos de 24 horas.</p>
+            <div class="form-success-ref" id="case-ref">CASE_REF: XXXXXX</div>
+            <button id="form-reset" class="btn btn-outline" style="margin-top: 24px;">Enviar otra consulta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-name-lg">CYBERQUEST</div>
+          <div class="brand-tagline-lg">Investigación Digital Profesional</div>
+          <p>"Descubrimos lo que otros no pueden ver." Agencia profesional de OSINT y forense digital. Operamos en EE.UU. y Colombia con alcance mundial.</p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navegación</div>
+          <div class="footer-links">
+            <a href="#home" class="footer-link">Inicio</a>
+            <a href="#services" class="footer-link">Servicios</a>
+            <a href="#about" class="footer-link">Nosotros</a>
+            <a href="#process" class="footer-link">Proceso</a>
+            <a href="#contact" class="footer-link">Contacto</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Servicios</div>
+          <div class="footer-links">
+            <a href="#services" class="footer-link">OSINT</a>
+            <a href="#services" class="footer-link">Background Check</a>
+            <a href="#services" class="footer-link">Person Tracing</a>
+            <a href="#services" class="footer-link">Digital Forensics</a>
+            <a href="#services" class="footer-link">Info Gathering</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contacto</div>
+          <div class="footer-links">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+57 300 577 3095</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span>EE.UU. · Colombia · Mundial</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#00D4FF" stroke="none"/></svg>
+              <a href="https://www.youtube.com/@cyberquest-u4j" target="_blank" rel="noopener"><span>@cyberquest-u4j</span></a>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M18 2h3v3h-3V2zM6 9v6h12V9H6zM2 22l4-4h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v14z"/></svg>
+              <span>Facebook</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">© <span id="current-year">2026</span> CYBERQUEST · ALL RIGHTS RESERVED</div>
+        <div class="footer-values">Confidencialidad · Discreción · Profesionalismo</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/573005773095?text=Hola%20CyberQuest%2C%20necesito%20informaci%C3%B3n" target="_blank" rel="noopener" class="fab-whatsapp" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+/* ============================================================
+   CyberQuest Website — main.js
+   Interacciones, formulario, scroll effects
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  // ── Header scroll state ─────────────────────────────────
+  const header = document.querySelector('.site-header');
+  function onScroll() {
+    if (window.scrollY > 20) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Mobile menu toggle ──────────────────────────────────
+  const menuBtn = document.querySelector('.btn-mobile-menu');
+  const navMain = document.querySelector('.nav-main');
+  if (menuBtn && navMain) {
+    menuBtn.addEventListener('click', () => {
+      navMain.classList.toggle('open');
+    });
+    navMain.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => navMain.classList.remove('open'));
+    });
+  }
+
+  // ── Scroll reveal animations ────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && revealEls.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+
+  // ── Contact form ────────────────────────────────────────
+  const form = document.getElementById('contact-form');
+  const formSuccess = document.getElementById('form-success');
+  const caseRef = document.getElementById('case-ref');
+
+  if (form) {
+    const fields = {
+      name: form.querySelector('[name="name"]'),
+      email: form.querySelector('[name="email"]'),
+      phone: form.querySelector('[name="phone"]'),
+      service: form.querySelector('[name="service"]'),
+      message: form.querySelector('[name="message"]'),
+    };
+
+    function showError(field, msg) {
+      field.classList.add('error');
+      let errEl = field.parentElement.querySelector('.form-error');
+      if (!errEl) {
+        errEl = document.createElement('div');
+        errEl.className = 'form-error';
+        field.parentElement.appendChild(errEl);
+      }
+      errEl.textContent = msg;
+    }
+
+    function clearError(field) {
+      field.classList.remove('error');
+      const errEl = field.parentElement.querySelector('.form-error');
+      if (errEl) errEl.remove();
+    }
+
+    Object.values(fields).forEach(f => {
+      if (f) f.addEventListener('input', () => clearError(f));
+      if (f && f.tagName === 'SELECT') f.addEventListener('change', () => clearError(f));
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let hasError = false;
+      if (!fields.name.value.trim()) { showError(fields.name, 'Nombre requerido'); hasError = true; }
+      if (!fields.email.value.includes('@') || !fields.email.value.includes('.')) { showError(fields.email, 'Correo inválido'); hasError = true; }
+      if (!fields.service.value) { showError(fields.service, 'Seleccione un servicio'); hasError = true; }
+      if (fields.message.value.trim().length < 10) { showError(fields.message, 'Describa su caso (mín. 10 caracteres)'); hasError = true; }
+
+      if (hasError) return;
+
+      // Generate pseudo case reference
+      const ref = Math.random().toString(36).slice(2, 8).toUpperCase();
+      if (caseRef) caseRef.textContent = 'CASE_REF: ' + ref;
+
+      // Build WhatsApp message
+      const waMessage = encodeURIComponent(
+        `Hola CyberQuest, solicito consulta confidencial.\n\n` +
+        `Nombre: ${fields.name.value}\n` +
+        `Correo: ${fields.email.value}\n` +
+        (fields.phone.value ? `Teléfono: ${fields.phone.value}\n` : '') +
+        `Servicio: ${fields.service.value}\n\n` +
+        `Caso: ${fields.message.value}\n\n` +
+        `Ref: ${ref}`
+      );
+
+      // Hide form, show success
+      form.style.display = 'none';
+      formSuccess.style.display = 'block';
+
+      // Open WhatsApp in a new tab after 600ms so user sees the success state
+      setTimeout(() => {
+        window.open(`https://wa.me/573005773095?text=${waMessage}`, '_blank');
+      }, 600);
+    });
+
+    // Reset form button in success view
+    const resetBtn = document.getElementById('form-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        form.reset();
+        form.style.display = 'flex';
+        formSuccess.style.display = 'none';
+        Object.values(fields).forEach(f => f && clearError(f));
+      });
+    }
+  }
+
+  // ── Stats counter animation ─────────────────────────────
+  const statValues = document.querySelectorAll('.stat-value[data-target]');
+  if ('IntersectionObserver' in window && statValues.length) {
+    const statIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseFloat(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1400;
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const val = target * eased;
+          el.textContent = (Number.isInteger(target) ? Math.round(val) : val.toFixed(1)) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = (Number.isInteger(target) ? target : target.toFixed(1)) + suffix;
+        }
+        requestAnimationFrame(tick);
+        statIO.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    statValues.forEach(el => statIO.observe(el));
+  }
+
+  // ── Current year in footer ──────────────────────────────
+  const yearEl = document.getElementById('current-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+})();
+
+</script>
+</body>
+</html>
