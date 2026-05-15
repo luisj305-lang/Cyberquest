@@ -167,14 +167,20 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
         var btn = document.getElementById('submit-btn');
         btn.disabled = true;
         btn.textContent = 'Enviando…';
+        var data = {};
+        new FormData(form).forEach(function(v, k){ data[k] = v; });
         try {
           var res = await fetch(form.action, {
             method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: new FormData(form)
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
           });
           if (res.ok) {
             form.style.display = 'none';
+            document.getElementById('error').style.display = 'none';
             document.getElementById('success').style.display = 'block';
             if (window.gtag) gtag('event', 'generate_lead', { event_category: 'form', event_label: 'caso_abierto' });
             if (window.fbq) fbq('track', 'Lead');
