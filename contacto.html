@@ -115,39 +115,79 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
       <p class="success__desc">Te contactamos en menos de 24 horas con tu código de caso.</p>
     </div>
 
-    <form id="form" class="form" onsubmit="event.preventDefault(); document.getElementById('form').style.display='none'; document.getElementById('success').style.display='block';">
+    <div id="error" class="success" style="display:none; background:#3d0000;">
+      <div class="success__label" style="color:#ff6b6b;">● ERROR</div>
+      <div class="success__title">No se pudo enviar</div>
+      <p class="success__desc">Por favor escríbenos directo a <a href="mailto:luisj305@gmail.com" style="color:#fff;">luisj305@gmail.com</a></p>
+    </div>
+
+    <form id="form" class="form" action="https://formsubmit.co/ajax/luisj305@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Nuevo caso · Cyber Quest"/>
+      <input type="hidden" name="_template" value="table"/>
+      <input type="hidden" name="_captcha" value="false"/>
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"/>
+
       <div class="field">
         <label class="field__label" for="nombre">Nombre completo</label>
-        <input id="nombre" class="field__input" type="text" required/>
+        <input id="nombre" name="Nombre completo" class="field__input" type="text" required/>
         <span class="field__hint">Como aparece en tu identificación.</span>
       </div>
       <div class="field">
         <label class="field__label" for="contacto">Correo o teléfono</label>
-        <input id="contacto" class="field__input" type="text" required/>
+        <input id="contacto" name="Correo o telefono" class="field__input" type="text" required/>
         <span class="field__hint">Por dónde podemos contactarte.</span>
       </div>
       <div class="field">
         <label class="field__label" for="tipo">Tipo de caso</label>
-        <input id="tipo" class="field__input" type="text" placeholder="OSINT corporativo · Verificación · Civil · Whistleblower IRS · Otro" required/>
+        <input id="tipo" name="Tipo de caso" class="field__input" type="text" placeholder="OSINT corporativo · Verificación · Civil · Whistleblower IRS · Otro" required/>
       </div>
       <div class="field">
         <label class="field__label" for="resumen">Resumen del caso</label>
-        <textarea id="resumen" class="field__textarea" rows="6" required></textarea>
+        <textarea id="resumen" name="Resumen del caso" class="field__textarea" rows="6" required></textarea>
         <span class="field__hint">Sin nombres si no son necesarios. Recogemos el detalle en la llamada.</span>
       </div>
       <div class="field">
         <label class="field__label" for="urgencia">Urgencia</label>
-        <select id="urgencia" class="field__input">
+        <select id="urgencia" name="Urgencia" class="field__input">
           <option>Estándar — respuesta en 24 h</option>
           <option>Alta — necesito hablar hoy</option>
           <option>Crítica — hay un riesgo activo</option>
         </select>
       </div>
-      <button type="submit" class="btn btn--primary btn--block">Abrir un caso →</button>
+      <button type="submit" id="submit-btn" class="btn btn--primary btn--block">Abrir un caso →</button>
       <p style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; color: var(--cq-gray-500); margin-top: 8px;">
         Al enviar este formulario aceptas el tratamiento confidencial de la información proporcionada.
       </p>
     </form>
+
+    <script>
+      document.getElementById('form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var form = e.target;
+        var btn = document.getElementById('submit-btn');
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+        try {
+          var res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+          });
+          if (res.ok) {
+            form.style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+            if (window.gtag) gtag('event', 'generate_lead', { event_category: 'form', event_label: 'caso_abierto' });
+            if (window.fbq) fbq('track', 'Lead');
+          } else {
+            throw new Error('Network');
+          }
+        } catch (err) {
+          document.getElementById('error').style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Reintentar →';
+        }
+      });
+    </script>
   </div>
 </section>
 
