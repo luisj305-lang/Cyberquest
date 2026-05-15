@@ -121,10 +121,11 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
       <p class="success__desc">Por favor escríbenos directo a <a href="mailto:luisj305@gmail.com" style="color:#fff;">luisj305@gmail.com</a></p>
     </div>
 
-    <form id="form" class="form" action="https://formsubmit.co/ajax/luisj305@gmail.com" method="POST">
+    <form id="form" class="form" action="https://formsubmit.co/luisj305@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="Nuevo caso · Cyber Quest"/>
       <input type="hidden" name="_template" value="table"/>
       <input type="hidden" name="_captcha" value="false"/>
+      <input type="hidden" name="_next" value="https://luisj305-lang.github.io/Cyberquest/contacto.html?ok=1"/>
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"/>
 
       <div class="field">
@@ -161,37 +162,18 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
     </form>
 
     <script>
-      document.getElementById('form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        var form = e.target;
+      // Si el usuario regresó después de un envío exitoso, mostrar mensaje de éxito
+      if (new URLSearchParams(window.location.search).get('ok') === '1') {
+        document.getElementById('form').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+        if (window.gtag) gtag('event', 'generate_lead', { event_category: 'form', event_label: 'caso_abierto' });
+        if (window.fbq) fbq('track', 'Lead');
+      }
+      // Indicador visual al enviar (el formulario navega a FormSubmit y vuelve)
+      document.getElementById('form').addEventListener('submit', function(){
         var btn = document.getElementById('submit-btn');
         btn.disabled = true;
         btn.textContent = 'Enviando…';
-        var data = {};
-        new FormData(form).forEach(function(v, k){ data[k] = v; });
-        try {
-          var res = await fetch(form.action, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(data)
-          });
-          if (res.ok) {
-            form.style.display = 'none';
-            document.getElementById('error').style.display = 'none';
-            document.getElementById('success').style.display = 'block';
-            if (window.gtag) gtag('event', 'generate_lead', { event_category: 'form', event_label: 'caso_abierto' });
-            if (window.fbq) fbq('track', 'Lead');
-          } else {
-            throw new Error('Network');
-          }
-        } catch (err) {
-          document.getElementById('error').style.display = 'block';
-          btn.disabled = false;
-          btn.textContent = 'Reintentar →';
-        }
       });
     </script>
   </div>
