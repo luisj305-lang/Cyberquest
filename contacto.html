@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Abrir un caso · Cyber Quest</title>
+<meta name="description" content="Cuéntanos qué pasó. Te contactamos en menos de 24 horas. Toda la información es tratada como confidencial."/>
+<link rel="icon" type="image/svg+xml" href="assets/logo-symbol.svg"/>
+<link rel="stylesheet" href="assets/styles.css"/>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="brand" aria-label="Cyber Quest — inicio">
+      <svg class="brand__symbol" viewBox="0 0 200 200" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="84" cy="84" r="56" stroke="#fff" stroke-width="6"/>
+        <circle cx="84" cy="84" r="22" stroke="#fff" stroke-width="3"/>
+        <circle cx="84" cy="84" r="8" fill="#0066FF"/>
+        <path d="M84 36 V52 M84 116 V132 M36 84 H52 M116 84 H132" stroke="#fff" stroke-width="3"/>
+        <path d="M124 124 L168 168" stroke="#fff" stroke-width="9"/>
+        <path d="M156 156 L180 180" stroke="#0066FF" stroke-width="9"/>
+      </svg>
+      <span>
+        <span class="brand__name">CYBER QUEST</span>
+        <span class="brand__tag">INVESTIGADORES PRIVADOS</span>
+      </span>
+    </a>
+    <button class="nav__toggle" type="button" aria-label="Abrir menú" onclick="document.getElementById('site-nav').classList.toggle('is-open');">MENÚ</button>
+    <nav class="nav" id="site-nav" aria-label="Principal">
+      <a class="nav__link" href="index.html">Inicio</a>
+      <a class="nav__link" href="servicios.html">Servicios</a>
+      <a class="nav__link" href="academy.html">Academy</a>
+      <a class="nav__link" href="manifiesto.html">Manifiesto</a>
+      <a class="nav__link is-active" href="contacto.html">Contacto</a>
+      <a class="btn btn--primary" href="contacto.html">Abrir un caso</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== INTRO ===== -->
+<section class="section section--dark" style="padding: 96px 0 56px;">
+  <div class="container" style="max-width: 920px;">
+    <p class="eyebrow">ABRIR UN CASO</p>
+    <h1 class="section__title" style="font-size: clamp(48px, 7vw, 80px); margin-bottom: 24px;">Cuéntanos qué pasó.</h1>
+    <p class="section__lead" style="font-size: 18px;">Recibido. Te contactamos en menos de 24 horas.
+    Toda la información es tratada como confidencial. No prometemos resultados garantizados —
+    sí garantizamos método, evidencia y discreción.</p>
+  </div>
+</section>
+
+<!-- ===== INFO ===== -->
+<section class="section section--dark" style="padding-top: 0;">
+  <div class="container" style="max-width: 920px;">
+    <dl class="contact-info">
+      <div>
+        <dt>CORREO</dt>
+        <dd><a href="mailto:luisj305@gmail.com" style="color:#fff; text-decoration:none;">luisj305@gmail.com</a></dd>
+      </div>
+      <div>
+        <dt>BASE</dt>
+        <dd>Clewiston, FL · USA</dd>
+      </div>
+      <div>
+        <dt>RESPUESTA</dt>
+        <dd>&lt; 24 horas hábiles</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ===== FORM ===== -->
+<section class="section section--panel">
+  <div class="container" style="max-width: 720px;">
+    <p class="eyebrow">FORMULARIO · CONFIDENCIAL</p>
+    <h2 class="section__title" style="margin-bottom: 16px;">Resumen del caso</h2>
+    <p class="section__lead" style="margin-bottom: 40px;">Completa los datos básicos.
+    En la primera llamada recogemos el detalle.</p>
+
+    <div id="success" class="success" style="display:none;">
+      <div class="success__label">● RECIBIDO</div>
+      <div class="success__title">Expediente abierto</div>
+      <p class="success__desc">Te contactamos en menos de 24 horas con tu código de caso.</p>
+    </div>
+
+    <form id="form" class="form" onsubmit="event.preventDefault(); document.getElementById('form').style.display='none'; document.getElementById('success').style.display='block';">
+      <div class="field">
+        <label class="field__label" for="nombre">Nombre completo</label>
+        <input id="nombre" class="field__input" type="text" required/>
+        <span class="field__hint">Como aparece en tu identificación.</span>
+      </div>
+      <div class="field">
+        <label class="field__label" for="contacto">Correo o teléfono</label>
+        <input id="contacto" class="field__input" type="text" required/>
+        <span class="field__hint">Por dónde podemos contactarte.</span>
+      </div>
+      <div class="field">
+        <label class="field__label" for="tipo">Tipo de caso</label>
+        <input id="tipo" class="field__input" type="text" placeholder="OSINT corporativo · Verificación · Civil · Whistleblower IRS · Otro" required/>
+      </div>
+      <div class="field">
+        <label class="field__label" for="resumen">Resumen del caso</label>
+        <textarea id="resumen" class="field__textarea" rows="6" required></textarea>
+        <span class="field__hint">Sin nombres si no son necesarios. Recogemos el detalle en la llamada.</span>
+      </div>
+      <div class="field">
+        <label class="field__label" for="urgencia">Urgencia</label>
+        <select id="urgencia" class="field__input">
+          <option>Estándar — respuesta en 24 h</option>
+          <option>Alta — necesito hablar hoy</option>
+          <option>Crítica — hay un riesgo activo</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn--primary btn--block">Abrir un caso →</button>
+      <p style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; color: var(--cq-gray-500); margin-top: 8px;">
+        Al enviar este formulario aceptas el tratamiento confidencial de la información proporcionada.
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== AVISO LEGAL ===== -->
+<section class="section section--dark">
+  <div class="container" style="max-width: 920px;">
+    <div class="callout">
+      <h3>AVISO IMPORTANTE</h3>
+      <p>Cyber Quest opera bajo las leyes del estado de Florida y de los países donde se realice
+      cualquier observación. No realizamos intrusión a sistemas, no instalamos dispositivos sin
+      autorización, no obtenemos información protegida por privilegio legal. Si estás en una
+      situación de violencia activa, contacta primero a las autoridades locales.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__intro">
+        <h4>CYBER QUEST</h4>
+        <div class="site-footer__rule"></div>
+        <p>Investigación privada y OSINT con base en Clewiston, Florida. Evidencia legalmente obtenida.</p>
+      </div>
+      <div class="site-footer__col">
+        <h5>AGENCIA</h5>
+        <ul>
+          <li><a href="servicios.html#osint">OSINT corporativo</a></li>
+          <li><a href="servicios.html#identidad">Verificación de identidad</a></li>
+          <li><a href="servicios.html#civil">Investigación civil</a></li>
+          <li><a href="servicios.html#whistleblower">Whistleblower IRS</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h5>ACADEMY</h5>
+        <ul>
+          <li><a href="academy.html">Curso Investigador Privado</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h5>MEDIA</h5>
+        <ul>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">Podcast</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h5>CONTACTO</h5>
+        <ul>
+          <li><a href="mailto:luisj305@gmail.com">luisj305@gmail.com</a></li>
+          <li>Clewiston, FL · USA</li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__rail">
+      <span>© 2026 CYBER QUEST INVESTIGADORES PRIVADOS · CLEWISTON, FL</span>
+      <span>LA VERDAD NO SE ADIVINA. SE INVESTIGA.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+/* ============================================================
+   CYBER QUEST — Design Tokens
+   "La verdad no se adivina. Se investiga."
+   ============================================================ */
+
+/* ---------- Fonts (Google Fonts) -----------------------------
+   Substitutions in use:
+   - Oswald        → display / titulares
+   - Montserrat    → UI / subtítulos (ExtraBold 800)
+   - Inter         → cuerpo de texto
+   - JetBrains Mono→ expediente / terminal (substituto de Courier New
+                     para mayor legibilidad en UI; Courier New still
+                     acceptable for printed reports)
+   ------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* ---------- COLOR — Base ---------- */
+  --cq-black:          #0B0B0B;   /* Fondo dominante — negro carbón */
+  --cq-panel:          #1A1A1A;   /* Paneles / segundo plano */
+  --cq-panel-2:        #242424;   /* Elevated surface (cards sobre panel) */
+  --cq-line:           #2E2E2E;   /* Bordes, divisores */
+  --cq-gray-700:       #3A3A3A;   /* Hairlines más visibles */
+  --cq-gray-500:       #6B6B6B;   /* Texto secundario */
+  --cq-gray-300:       #9A9A9A;   /* Texto terciario / captions */
+  --cq-gray-100:       #D8D8D8;   /* Texto sobre fondo oscuro, variante */
+  --cq-white:          #FFFFFF;   /* Texto principal */
+  --cq-paper:          #F4F1EC;   /* Documento "expediente" sobre blanco */
+
+  /* ---------- COLOR — Acentos ----------
+     Decisión: el AZUL eléctrico es el acento de marca.
+     El rojo se reserva para sellos/flags muy pequeños (≤2%).
+     El segundo acento ya no es rojo — es BONE (papel de expediente). */
+  --cq-red:            #0066FF;   /* Azul eléctrico — acento principal */
+  --cq-red-hot:        #3A85FF;   /* Hover */
+  --cq-red-deep:       #0047B3;   /* Presionado */
+  --cq-red-glow:       rgba(0, 102, 255, 0.35);
+
+  /* Segundo acento — BONE / hueso de expediente (sustituye al oxblood) */
+  --cq-blue:           #C9B89A;   /* Bone — datos/dossier, cálido sobre negro */
+  --cq-blue-soft:      #E2D5B8;
+  --cq-blue-glow:      rgba(201, 184, 154, 0.30);
+
+  /* Sello rojo — uso mínimo, solo timbres CONFIDENCIAL / dot vivo */
+  --cq-flag:           #C41E3A;
+  --cq-flag-deep:      #730A1B;
+
+  --cq-green:          #00C853;   /* Terminal / éxito */
+  --cq-green-glow:     rgba(0, 200, 83, 0.30);
+
+  --cq-amber:          #FFB400;   /* Warning / pista sin confirmar */
+
+  /* ---------- COLOR — Semántico (foreground / background) ---------- */
+  --bg:                var(--cq-black);
+  --bg-elevated:       var(--cq-panel);
+  --bg-elevated-2:     var(--cq-panel-2);
+  --fg:                var(--cq-white);
+  --fg-muted:          var(--cq-gray-300);
+  --fg-subtle:         var(--cq-gray-500);
+  --border:            var(--cq-line);
+  --border-strong:     var(--cq-gray-700);
+  --accent:            var(--cq-red);
+  --accent-fg:         var(--cq-white);
+  --link:              var(--cq-red);
+  --info:              var(--cq-blue);
+  --success:           var(--cq-green);
+  --warning:           var(--cq-amber);
+
+  /* ---------- TYPE — Families ---------- */
+  --font-display:      'Oswald', 'Bebas Neue', 'Impact', sans-serif;
+  --font-ui:           'Montserrat', 'Inter', system-ui, sans-serif;
+  --font-body:         'Inter', 'Roboto', system-ui, sans-serif;
+  --font-mono:         'JetBrains Mono', 'Courier New', ui-monospace, monospace;
+
+  /* ---------- TYPE — Scale (rem, base 16) ---------- */
+  --fs-caption:        12px;
+  --fs-body-sm:        14px;
+  --fs-body:           16px;
+  --fs-body-lg:        18px;
+  --fs-h4:             22px;
+  --fs-h3:             28px;
+  --fs-h2:             40px;
+  --fs-h1:             56px;
+  --fs-display:        88px;   /* Hero headline */
+  --fs-display-xl:     128px;  /* Wordmark-like hero */
+
+  /* ---------- TYPE — Weights ---------- */
+  --fw-light:          300;
+  --fw-regular:        400;
+  --fw-medium:         500;
+  --fw-semibold:       600;
+  --fw-bold:           700;
+  --fw-black:          900;
+
+  /* ---------- TYPE — Tracking ---------- */
+  --tracking-tight:    -0.02em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.04em;
+  --tracking-wider:    0.12em;
+  --tracking-widest:   0.24em;   /* Labels "EVIDENCIA / OSINT" */
+
+  /* ---------- TYPE — Line height ---------- */
+  --lh-tight:          1.05;
+  --lh-snug:           1.2;
+  --lh-normal:         1.5;
+  --lh-relaxed:        1.65;
+
+  /* ---------- SPACING — 4pt scale ---------- */
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+  --space-10:  128px;
+
+  /* ---------- RADII ---------- */
+  --radius-0:  0;              /* Default: sharp corners, documental */
+  --radius-1:  2px;            /* Inputs, pills */
+  --radius-2:  4px;            /* Botones, cards */
+  --radius-3:  8px;            /* Cards grandes */
+  --radius-pill: 999px;
+
+  /* ---------- BORDERS ---------- */
+  --border-w-hair:  1px;
+  --border-w:       1px;
+  --border-w-strong:2px;
+  --border-w-xl:    4px;       /* Franja roja de acento */
+
+  /* ---------- SHADOW / ELEVATION ---------- */
+  --shadow-sm:   0 1px 2px rgba(0,0,0,0.6);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.6);
+  --shadow-lg:   0 20px 48px rgba(0,0,0,0.65), 0 4px 10px rgba(0,0,0,0.5);
+  --shadow-red-glow: 0 0 0 1px var(--cq-red), 0 10px 30px var(--cq-red-glow);
+
+  /* ---------- MOTION ---------- */
+  --ease-out:    cubic-bezier(.16,.84,.24,1);
+  --ease-in-out: cubic-bezier(.65,.05,.36,1);
+  --dur-fast:    120ms;
+  --dur-med:     220ms;
+  --dur-slow:    420ms;
+
+  /* ---------- GRID ---------- */
+  --max-w-prose:     68ch;
+  --max-w-container: 1200px;
+  --max-w-wide:      1440px;
+}
+
+/* ============================================================
+   SEMANTIC ELEMENTS
+   ============================================================ */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--fg);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-normal);
+  margin: 0;
+}
+h4, .h4 {
+  font-family: var(--font-ui);
+  font-weight: var(--fw-black);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-normal);
+  margin: 0;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-display);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-muted);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.eyebrow, .label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--cq-red);
+}
+
+code, pre, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+a, .link {
+  color: var(--cq-red);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--cq-red-hot); }
+
+/* Utility: the signature tagline */
+.tagline {
+  font-family: var(--font-display);
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+.tagline .accent { color: var(--cq-red); }

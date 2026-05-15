@@ -1,159 +1,92 @@
-# 🔎 CyberQuest — Sitio Web Oficial
+# Cyber Quest — Sitio Web
 
-Sitio web profesional de **CyberQuest**, agencia de investigación digital y OSINT.
+> **"La verdad no se adivina. Se investiga."**
 
-> **Tagline:** *"Descubrimos lo que otros no pueden ver."*
-> **Cobertura:** EE.UU. · Colombia · Mundial
-> **Contacto:** +1 862 812 098
-
----
-
-## 📁 Estructura del proyecto
-
-```
-cyberquest-website/
-├── index.html              ← Página principal (single-page)
-├── css/
-│   └── styles.css          ← Sistema de diseño completo
-├── js/
-│   └── main.js             ← Formulario, animaciones, scroll
-├── assets/
-│   ├── investigator-profile.jpg
-│   └── brand-card.jpg
-├── .nojekyll               ← Evita que GitHub procese con Jekyll
-└── README.md               ← Este archivo
-```
+Sitio web estático para **Cyber Quest Investigadores Privados**. Construido sobre el
+Design System v1 de la marca (carpeta `12_Design_System/`).
 
 ---
 
-## 🚀 Cómo subir a GitHub y publicar (paso a paso)
+## Estructura
 
-### ✅ Opción A — Método fácil (sin instalar nada, desde el navegador)
-
-Esta es la forma más rápida si no tienes Git instalado.
-
-**1. Crear el repositorio**
-- Entra a https://github.com/ e inicia sesión (o crea cuenta gratis)
-- Arriba a la derecha haz click en **"+" → "New repository"**
-- Nombre sugerido: `cyberquest-website`
-- Marca **Public** (obligatorio para usar GitHub Pages gratis)
-- **NO marques** "Add a README file" (ya tienes uno)
-- Click en **"Create repository"**
-
-**2. Subir los archivos**
-- En la página del repositorio recién creado verás un enlace que dice **"uploading an existing file"** — haz click ahí
-- Arrastra TODOS los archivos y carpetas del proyecto (`index.html`, `css/`, `js/`, `assets/`, `.nojekyll`, `README.md`)
-- Abajo escribe un mensaje como *"Sitio inicial CyberQuest"*
-- Click en **"Commit changes"**
-
-**3. Activar GitHub Pages**
-- En tu repositorio, ve a **Settings** (arriba a la derecha)
-- En el menú izquierdo, click en **Pages**
-- En **"Source"** selecciona: `Deploy from a branch`
-- En **"Branch"** selecciona: `main` → carpeta `/ (root)` → **Save**
-- Espera 1–2 minutos
-
-**4. ¡Listo!** Tu sitio estará en:
 ```
-https://TU-USUARIO.github.io/cyberquest-website/
+13_Web_Site/
+├── index.html         · Home — hero, sub-marcas, áreas, manifiesto, testimonios, CTA
+├── servicios.html     · Áreas de investigación + paquetes Agencia + Whistleblower IRS
+├── academy.html       · Curso "Cómo ser investigador privado" — temario, beneficios, FAQ
+├── manifiesto.html    · Manifiesto completo + valores + lo que NO somos
+├── contacto.html      · Formulario "abrir un caso" + aviso legal
+└── assets/
+    ├── tokens.css                    · Tokens de marca (color, type, spacing, motion)
+    ├── styles.css                    · CSS consolidado del sitio
+    ├── logo-*.svg                    · Sistema de logo (6 versiones)
+    ├── icons.svg                     · Set de iconos propio
+    ├── texture-grid.svg              · Trama blueprint
+    ├── stamp-confidencial.svg
+    ├── founder-luis-jimenez.jpg      · Retrato del fundador (página Academy)
+    └── investigator-silhouette.jpg   · Key visual del hero
 ```
 
 ---
 
-### ⚡ Opción B — Con Git (terminal)
+## Cómo desplegar en GitHub Pages
 
-Si ya tienes Git instalado:
+El repositorio actual es `luisj305-lang/Cyberquest` (https://luisj305-lang.github.io/Cyberquest/).
+Para reemplazar la versión actual por esta:
 
-```bash
-cd cyberquest-website
-git init
-git add .
-git commit -m "Sitio inicial CyberQuest"
-git branch -M main
-git remote add origin https://github.com/TU-USUARIO/cyberquest-website.git
-git push -u origin main
+1. Copia todo el contenido de la carpeta `13_Web_Site/` a la raíz del repositorio
+   (los archivos `.html` deben estar en la raíz y la carpeta `assets/` al lado).
+2. Commit + push a la rama configurada para Pages (normalmente `main` o `gh-pages`).
+3. En *Settings → Pages* del repositorio verifica que la rama y carpeta apunten a la raíz (`/`).
+4. La URL pública seguirá siendo `https://luisj305-lang.github.io/Cyberquest/`.
+
+> Si prefieres subdominio propio (ej. `cyberquest.com`), añade un archivo `CNAME` con el dominio
+> y configura los DNS de tu proveedor.
+
+---
+
+## Cómo probar localmente
+
+Cualquier servidor estático sirve. La vía más simple:
+
+```
+# Python
+python3 -m http.server 8080
+
+# Node
+npx http-server . -p 8080
 ```
 
-Luego activa Pages como en el paso 3 de la Opción A.
+Luego abre `http://localhost:8080`.
+
+> Abrir los `.html` con doble clic también funciona, aunque algunos navegadores bloquean
+> recursos cargados con `file://`.
 
 ---
 
-## 🌐 Dominio personalizado (opcional)
+## Identidad y reglas
 
-Si quieres usar un dominio propio tipo `cyberquest.com` en vez de `github.io`:
-
-1. Compra el dominio en Namecheap, GoDaddy, etc.
-2. En GitHub Pages → **Custom domain** → escribe tu dominio
-3. En tu proveedor de dominio, agrega estos registros DNS:
-   - `A` → `185.199.108.153`
-   - `A` → `185.199.109.153`
-   - `A` → `185.199.110.153`
-   - `A` → `185.199.111.153`
-   - `CNAME` → `TU-USUARIO.github.io`
-4. Espera unas horas a que propague
+- **Tipografía:** Oswald (display), Montserrat (UI), Inter (body), JetBrains Mono (mono).
+  Cargadas vía Google Fonts en `tokens.css`.
+- **Color acento:** `#0066FF` (azul eléctrico) según el Design System v1. La variable
+  `--cq-red` se mantiene por compatibilidad con los mockups, pero su valor actual es azul.
+  Si quieres volver al rojo `#A8112A` (versión brief), edita `assets/tokens.css` y
+  reemplaza el valor de `--cq-red`.
+- **Voz:** seria pero no solemne. Vocabulario propio: caso, expediente, pista, evidencia,
+  observación, OSINT, cronología, sala de operaciones. Sin emojis. Sin signos de exclamación.
 
 ---
 
-## ✏️ Cómo editar el contenido
+## Pendientes / siguientes mejoras
 
-### Cambiar el número de WhatsApp
-Reemplaza `1862812098` por el tuyo (formato internacional sin `+`, sin espacios) en:
-- `index.html` → buscar `wa.me/1862812098` (aparece 3 veces)
-- `js/main.js` → buscar `wa.me/1862812098` (1 vez)
-
-### Cambiar los servicios, textos, colores
-- **Textos y servicios:** Edita `index.html`
-- **Colores, tipografías, espaciado:** Edita las variables al inicio de `css/styles.css`
-- **Lógica del formulario:** Edita `js/main.js`
-
-### Cambiar las imágenes
-Reemplaza los archivos en `assets/` manteniendo los mismos nombres, o actualiza las referencias en `index.html`.
+- [ ] Conectar el formulario de contacto a un backend real
+      (Formspree, Netlify Forms o función serverless).
+- [ ] Añadir página de blog y conectar artículos del directorio `05_Blog/`.
+- [ ] Crear página de gracias + entrega del lead magnet `06_Lead_Magnet/Guia_OSINT_10_Pasos.pdf`.
+- [ ] Añadir Open Graph images (1200×630) específicas para cada página.
+- [ ] Sitemap.xml + robots.txt cuando se mueva a dominio propio.
+- [ ] Integrar Plausible o GA4 para analítica básica.
 
 ---
 
-## 🎨 Sistema de diseño
-
-Colores principales:
-- **Fondo:** `#0A0A0A` (negro profundo)
-- **Acento:** `#00D4FF` (cyan eléctrico)
-- **Texto:** `#FFFFFF` / `#C0C0C0`
-
-Tipografías (desde Google Fonts):
-- **Display:** Orbitron (marca)
-- **Títulos:** Rajdhani
-- **Cuerpo:** Inter
-- **Mono/Datos:** JetBrains Mono
-
----
-
-## 📱 Secciones del sitio
-
-1. **Hero** — Título, eslogan, CTAs principales, foto del investigador
-2. **Stats** — Contadores animados (casos, respuesta, confidencialidad)
-3. **Servicios** — 6 servicios con iconos (OSINT, Person Tracing, etc.)
-4. **Nosotros** — Features + ficha de datos estilo "case file"
-5. **Proceso** — 4 pasos de trabajo
-6. **Contacto** — Formulario que abre WhatsApp con el mensaje armado
-7. **Footer** — Navegación + contacto + redes
-
----
-
-## 💬 Cómo funciona el formulario
-
-Cuando un visitante llena el formulario:
-1. Se valida que los campos estén correctos
-2. Se genera una referencia única del caso
-3. Se abre WhatsApp automáticamente con un mensaje pre-armado con todos sus datos
-4. Tú recibes el mensaje directamente en tu WhatsApp
-
-**Ventaja:** No necesitas backend, base de datos ni servicio de correo. 100% gratis.
-
----
-
-## 📄 Licencia
-
-© 2026 CyberQuest. Todos los derechos reservados.
-
----
-
-**¿Dudas o problemas?** Revisa la consola del navegador (F12) para ver errores, o abre un issue en el repositorio.
+*La verdad no se adivina. Se investiga.*

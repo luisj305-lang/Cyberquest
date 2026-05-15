@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  
+  <g>
+    <text x="100" y="120" text-anchor="middle" font-family="Oswald, Impact, sans-serif" font-weight="700" font-size="120" letter-spacing="-4" fill="currentColor">CQ</text>
+    <line x1="20" y1="148" x2="180" y2="148" stroke="currentColor" stroke-width="2"></line>
+    <text x="100" y="166" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="6" fill="#9A9A9A">CYBER QUEST</text>
+    <circle cx="148" cy="60" r="5" fill="#0066FF"></circle>
+  </g>
+</svg>

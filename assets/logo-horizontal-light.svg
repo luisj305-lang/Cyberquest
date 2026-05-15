@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" fill="none">
+  <g stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(20,20)">
+    <circle cx="70" cy="70" r="48" stroke="#0B0B0B" stroke-width="6"></circle>
+    <circle cx="70" cy="70" r="18" stroke="#0B0B0B" stroke-width="3"></circle>
+    <circle cx="70" cy="70" r="6.5" fill="#0066FF"></circle>
+    <path d="M70 28 V42 M70 98 V112 M28 70 H42 M98 70 H112" stroke="#0B0B0B" stroke-width="3"></path>
+    <path d="M118 70 H132 V90 H146" stroke="#0066FF" stroke-width="3"></path>
+    <circle cx="146" cy="90" r="2.5" fill="#0066FF"></circle>
+    <path d="M104 104 L140 140" stroke="#0B0B0B" stroke-width="8"></path>
+    <path d="M132 132 L150 150" stroke="#0066FF" stroke-width="8"></path>
+  </g>
+  <text x="200" y="92" fill="#0B0B0B" font-family="Oswald, &#39;Bebas Neue&#39;, Impact, sans-serif" font-size="68" font-weight="700" letter-spacing="3">CYBER QUEST</text>
+  <text x="201" y="128" fill="#6B6B6B" font-family="&#39;JetBrains Mono&#39;, &#39;Courier New&#39;, monospace" font-size="14" font-weight="500" letter-spacing="6">INVESTIGADORES PRIVADOS · OSINT</text>
+  <rect x="201" y="138" width="56" height="3" fill="#0066FF"></rect>
+</svg>
