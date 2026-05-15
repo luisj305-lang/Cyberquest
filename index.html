@@ -219,19 +219,19 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
         <svg class="area__icon" viewBox="0 0 32 32" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="13" r="9"/><path d="M20 20 L29 29"/><path d="M13 8 V13 H17" stroke="#0066FF"/></svg>
         <h3 class="area__title">OSINT corporativo</h3>
         <p class="area__desc">Inteligencia de fuentes abiertas para due diligence y verificación de proveedores.</p>
-        <a class="area__link" href="servicios.html#osint">VER EXPEDIENTE →</a>
+        <a class="area__link" href="osint-corporativo.html">VER EXPEDIENTE →</a>
       </article>
       <article class="area">
         <svg class="area__icon" viewBox="0 0 32 32" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22 C4 12 10 4 16 4 C22 4 28 10 28 18"/><path d="M8 24 C8 16 12 10 16 10 C20 10 24 14 24 20"/><path d="M12 26 C12 20 14 16 16 16 C18 16 20 18 20 22"/><path d="M16 22 V28" stroke="#0066FF"/></svg>
         <h3 class="area__title">Verificación de identidad</h3>
         <p class="area__desc">Validación cruzada para procesos de contratación, alianzas y socios.</p>
-        <a class="area__link" href="servicios.html#identidad">VER EXPEDIENTE →</a>
+        <a class="area__link" href="verificacion-identidad.html">VER EXPEDIENTE →</a>
       </article>
       <article class="area">
         <svg class="area__icon" viewBox="0 0 32 32" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8 H12 L15 12 H30 V28 H2 Z"/><path d="M2 16 H30" stroke="#0066FF"/></svg>
         <h3 class="area__title">Investigación civil</h3>
         <p class="area__desc">Casos personales con evidencia legal: paternidad, custodia, infidelidad.</p>
-        <a class="area__link" href="servicios.html#civil">VER EXPEDIENTE →</a>
+        <a class="area__link" href="investigacion-civil.html">VER EXPEDIENTE →</a>
       </article>
       <article class="area">
         <svg class="area__icon" viewBox="0 0 32 32" stroke="currentColor" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4 C22 4 28 9 28 16 C28 24 16 32 16 32 C16 32 4 24 4 16 C4 9 10 4 16 4 Z"/><circle cx="16" cy="16" r="3" fill="#0066FF" stroke="#0066FF"/></svg>
@@ -318,32 +318,31 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
         <h4>CYBER QUEST</h4>
         <div class="site-footer__rule"></div>
         <p>Investigación privada y OSINT con base en Clewiston, Florida. Evidencia legalmente obtenida.</p>
+        <p style="margin-top:12px; font-family: var(--font-mono); font-size: 12px;">📞 +1 (863) 281-2098<br/>✉️ luisj305@gmail.com</p>
       </div>
       <div class="site-footer__col">
-        <h5>AGENCIA</h5>
+        <h5>SERVICIOS</h5>
         <ul>
-          <li><a href="servicios.html#osint">OSINT corporativo</a></li>
-          <li><a href="servicios.html#identidad">Verificación de identidad</a></li>
-          <li><a href="servicios.html#civil">Investigación civil</a></li>
-          <li><a href="servicios.html#whistleblower">Whistleblower IRS</a></li>
+          <li><a href="osint-corporativo.html">OSINT corporativo</a></li>
+          <li><a href="verificacion-identidad.html">Verificación de identidad</a></li>
+          <li><a href="investigacion-civil.html">Investigación civil</a></li>
+          <li><a href="whistleblower-irs.html">Whistleblower IRS</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
-        <h5>ACADEMY</h5>
+        <h5>RECURSOS</h5>
         <ul>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="assets/Guia_OSINT_10_Pasos.pdf" target="_blank" rel="noopener">Guía OSINT (PDF gratis)</a></li>
           <li><a href="academy.html">Curso Investigador Privado</a></li>
-          <li><a href="academy.html#mentoria">Mentorías 1-a-1</a></li>
-          <li><a href="academy.html#talleres">Talleres</a></li>
-          <li><a href="academy.html#comunidad">Comunidad</a></li>
+          <li><a href="manifiesto.html">Manifiesto</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
         <h5>MEDIA</h5>
         <ul>
-          <li><a href="#">YouTube</a></li>
-          <li><a href="#">TikTok</a></li>
-          <li><a href="#">Podcast</a></li>
-          <li><a href="#">Newsletter</a></li>
+          <li><a href="https://www.youtube.com/@cyberquestoficial" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.facebook.com/ciberquestoficial" target="_blank" rel="noopener">Facebook</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
@@ -362,5 +361,41 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
   </div>
 </footer>
 
+
+<script>
+// GA4 custom event tracking
+document.addEventListener('DOMContentLoaded', function(){
+  // Track mailto clicks
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','contact_email_click',{event_category:'engagement'});
+    });
+  });
+  // Track tel clicks
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','contact_phone_click',{event_category:'engagement'});
+    });
+  });
+  // Track "Abrir un caso" CTA clicks
+  document.querySelectorAll('a[href*="contacto.html"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','cta_abrir_caso',{event_category:'engagement', event_label: location.pathname});
+    });
+  });
+  // Track PDF download
+  document.querySelectorAll('a[href$=".pdf"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','download_pdf',{event_category:'engagement', event_label: a.href});
+    });
+  });
+  // Track outbound to social
+  document.querySelectorAll('a[href*="youtube.com"],a[href*="facebook.com"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','social_click',{event_category:'outbound', event_label: a.hostname});
+    });
+  });
+});
+</script>
 </body>
 </html>

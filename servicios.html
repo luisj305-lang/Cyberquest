@@ -272,31 +272,31 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
         <h4>CYBER QUEST</h4>
         <div class="site-footer__rule"></div>
         <p>Investigación privada y OSINT con base en Clewiston, Florida. Evidencia legalmente obtenida.</p>
+        <p style="margin-top:12px; font-family: var(--font-mono); font-size: 12px;">📞 +1 (863) 281-2098<br/>✉️ luisj305@gmail.com</p>
       </div>
       <div class="site-footer__col">
-        <h5>AGENCIA</h5>
+        <h5>SERVICIOS</h5>
         <ul>
-          <li><a href="servicios.html#osint">OSINT corporativo</a></li>
-          <li><a href="servicios.html#identidad">Verificación de identidad</a></li>
-          <li><a href="servicios.html#civil">Investigación civil</a></li>
-          <li><a href="servicios.html#whistleblower">Whistleblower IRS</a></li>
+          <li><a href="osint-corporativo.html">OSINT corporativo</a></li>
+          <li><a href="verificacion-identidad.html">Verificación de identidad</a></li>
+          <li><a href="investigacion-civil.html">Investigación civil</a></li>
+          <li><a href="whistleblower-irs.html">Whistleblower IRS</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
-        <h5>ACADEMY</h5>
+        <h5>RECURSOS</h5>
         <ul>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="assets/Guia_OSINT_10_Pasos.pdf" target="_blank" rel="noopener">Guía OSINT (PDF gratis)</a></li>
           <li><a href="academy.html">Curso Investigador Privado</a></li>
-          <li><a href="academy.html#mentoria">Mentorías 1-a-1</a></li>
-          <li><a href="academy.html#talleres">Talleres</a></li>
+          <li><a href="manifiesto.html">Manifiesto</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
         <h5>MEDIA</h5>
         <ul>
-          <li><a href="#">YouTube</a></li>
-          <li><a href="#">TikTok</a></li>
-          <li><a href="#">Podcast</a></li>
-          <li><a href="#">Newsletter</a></li>
+          <li><a href="https://www.youtube.com/@cyberquestoficial" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.facebook.com/ciberquestoficial" target="_blank" rel="noopener">Facebook</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
@@ -314,6 +314,92 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
     </div>
   </div>
 </footer>
+
+
+<script>
+// GA4 custom event tracking
+document.addEventListener('DOMContentLoaded', function(){
+  // Track mailto clicks
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','contact_email_click',{event_category:'engagement'});
+    });
+  });
+  // Track tel clicks
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','contact_phone_click',{event_category:'engagement'});
+    });
+  });
+  // Track "Abrir un caso" CTA clicks
+  document.querySelectorAll('a[href*="contacto.html"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','cta_abrir_caso',{event_category:'engagement', event_label: location.pathname});
+    });
+  });
+  // Track PDF download
+  document.querySelectorAll('a[href$=".pdf"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','download_pdf',{event_category:'engagement', event_label: a.href});
+    });
+  });
+  // Track outbound to social
+  document.querySelectorAll('a[href*="youtube.com"],a[href*="facebook.com"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','social_click',{event_category:'outbound', event_label: a.hostname});
+    });
+  });
+});
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tarda una investigación OSINT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una investigación OSINT estándar entrega un primer reporte en 5 a 7 días hábiles. Casos urgentes pueden cerrar en 48-72 horas con prioridad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es legal una investigación OSINT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. OSINT (Open Source Intelligence) usa exclusivamente información legalmente disponible: registros públicos, redes sociales abiertas, archivos web, sanciones oficiales. No incluye hacking, suplantación ni acceso a sistemas privados."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Mi caso queda confidencial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutamente. Toda comunicación, evidencia y resultado se manejan bajo confidencialidad estricta. La identidad del cliente y los detalles del caso no se comparten con terceros sin autorización explícita."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Pueden testificar en juzgado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Las investigaciones civiles y corporativas se entregan con cadena de custodia documentada. El investigador puede acompañar como testigo si el caso lo requiere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta una investigación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depende del alcance, la urgencia y las fuentes requeridas. Una verificación básica empieza desde USD $300. Investigaciones corporativas complejas pueden superar los USD $5,000. La primera evaluación es gratuita y nos lleva 30 minutos."
+      }
+    }
+  ]
+}
+</script>
 
 </body>
 </html>

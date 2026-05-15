@@ -225,33 +225,38 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
         <h4>CYBER QUEST</h4>
         <div class="site-footer__rule"></div>
         <p>Investigación privada y OSINT con base en Clewiston, Florida. Evidencia legalmente obtenida.</p>
+        <p style="margin-top:12px; font-family: var(--font-mono); font-size: 12px;">📞 +1 (863) 281-2098<br/>✉️ luisj305@gmail.com</p>
       </div>
       <div class="site-footer__col">
-        <h5>AGENCIA</h5>
+        <h5>SERVICIOS</h5>
         <ul>
-          <li><a href="servicios.html#osint">OSINT corporativo</a></li>
-          <li><a href="servicios.html#identidad">Verificación de identidad</a></li>
-          <li><a href="servicios.html#civil">Investigación civil</a></li>
-          <li><a href="servicios.html#whistleblower">Whistleblower IRS</a></li>
+          <li><a href="osint-corporativo.html">OSINT corporativo</a></li>
+          <li><a href="verificacion-identidad.html">Verificación de identidad</a></li>
+          <li><a href="investigacion-civil.html">Investigación civil</a></li>
+          <li><a href="whistleblower-irs.html">Whistleblower IRS</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
-        <h5>ACADEMY</h5>
+        <h5>RECURSOS</h5>
         <ul>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="assets/Guia_OSINT_10_Pasos.pdf" target="_blank" rel="noopener">Guía OSINT (PDF gratis)</a></li>
           <li><a href="academy.html">Curso Investigador Privado</a></li>
+          <li><a href="manifiesto.html">Manifiesto</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
         <h5>MEDIA</h5>
         <ul>
-          <li><a href="#">YouTube</a></li>
-          <li><a href="#">Podcast</a></li>
+          <li><a href="https://www.youtube.com/@cyberquestoficial" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.facebook.com/ciberquestoficial" target="_blank" rel="noopener">Facebook</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
         <h5>CONTACTO</h5>
         <ul>
           <li><a href="mailto:luisj305@gmail.com">luisj305@gmail.com</a></li>
+          <li><a href="contacto.html">Abrir un caso</a></li>
           <li>Clewiston, FL · USA</li>
         </ul>
       </div>
@@ -263,5 +268,41 @@ src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=PageView&noscript=1"/></nos
   </div>
 </footer>
 
+
+<script>
+// GA4 custom event tracking
+document.addEventListener('DOMContentLoaded', function(){
+  // Track mailto clicks
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','contact_email_click',{event_category:'engagement'});
+    });
+  });
+  // Track tel clicks
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','contact_phone_click',{event_category:'engagement'});
+    });
+  });
+  // Track "Abrir un caso" CTA clicks
+  document.querySelectorAll('a[href*="contacto.html"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','cta_abrir_caso',{event_category:'engagement', event_label: location.pathname});
+    });
+  });
+  // Track PDF download
+  document.querySelectorAll('a[href$=".pdf"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','download_pdf',{event_category:'engagement', event_label: a.href});
+    });
+  });
+  // Track outbound to social
+  document.querySelectorAll('a[href*="youtube.com"],a[href*="facebook.com"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.gtag) gtag('event','social_click',{event_category:'outbound', event_label: a.hostname});
+    });
+  });
+});
+</script>
 </body>
 </html>
