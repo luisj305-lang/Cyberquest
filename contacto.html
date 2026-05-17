@@ -34,6 +34,7 @@
       <a class="nav__link" href="index.html">Inicio</a>
       <a class="nav__link" href="servicios.html">Servicios</a>
       <a class="nav__link" href="academy.html">Academy</a>
+      <a class="nav__link" href="libro.html">Libro</a>
       <a class="nav__link" href="manifiesto.html">Manifiesto</a>
       <a class="nav__link is-active" href="contacto.html">Contacto</a>
       <a class="btn btn--primary" href="contacto.html">Abrir un caso</a>
@@ -86,34 +87,36 @@
       <p class="success__desc">Te contactamos en menos de 24 horas con tu código de caso.</p>
     </div>
 
-    <form id="form" class="form" onsubmit="event.preventDefault(); document.getElementById('form').style.display='none'; document.getElementById('success').style.display='block';">
+    <form id="form" class="form" action="https://formspree.io/f/mwvzkejb" method="POST" onsubmit="setTimeout(function(){document.getElementById('form').style.display='none';document.getElementById('success').style.display='block';}, 250); return true;">
       <div class="field">
         <label class="field__label" for="nombre">Nombre completo</label>
-        <input id="nombre" class="field__input" type="text" required/>
+        <input id="nombre" name="nombre" class="field__input" type="text" required/>
         <span class="field__hint">Como aparece en tu identificación.</span>
       </div>
       <div class="field">
         <label class="field__label" for="contacto">Correo o teléfono</label>
-        <input id="contacto" class="field__input" type="text" required/>
+        <input id="contacto" name="contacto" class="field__input" type="text" required/>
         <span class="field__hint">Por dónde podemos contactarte.</span>
       </div>
       <div class="field">
         <label class="field__label" for="tipo">Tipo de caso</label>
-        <input id="tipo" class="field__input" type="text" placeholder="OSINT corporativo · Verificación · Civil · Whistleblower IRS · Otro" required/>
+        <input id="tipo" name="tipo_caso" class="field__input" type="text" placeholder="OSINT corporativo · Verificación · Civil · Whistleblower IRS · Otro" required/>
       </div>
       <div class="field">
         <label class="field__label" for="resumen">Resumen del caso</label>
-        <textarea id="resumen" class="field__textarea" rows="6" required></textarea>
+        <textarea id="resumen" name="resumen" class="field__textarea" rows="6" required></textarea>
         <span class="field__hint">Sin nombres si no son necesarios. Recogemos el detalle en la llamada.</span>
       </div>
       <div class="field">
         <label class="field__label" for="urgencia">Urgencia</label>
-        <select id="urgencia" class="field__input">
+        <select id="urgencia" name="urgencia" class="field__input">
           <option>Estándar — respuesta en 24 h</option>
           <option>Alta — necesito hablar hoy</option>
           <option>Crítica — hay un riesgo activo</option>
         </select>
       </div>
+      <input type="hidden" name="_subject" value="Cyber Quest · Nuevo caso desde la web"/>
+      <input type="text" name="_gotcha" style="display:none"/>
       <button type="submit" class="btn btn--primary btn--block">Abrir un caso →</button>
       <p style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; color: var(--cq-gray-500); margin-top: 8px;">
         Al enviar este formulario aceptas el tratamiento confidencial de la información proporcionada.
@@ -161,8 +164,8 @@
       <div class="site-footer__col">
         <h5>MEDIA</h5>
         <ul>
-          <li><a href="#">YouTube</a></li>
-          <li><a href="#">Podcast</a></li>
+          <li><a href="https://www.youtube.com/@cyberquestoficial" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.facebook.com/cyberquestoficial" target="_blank" rel="noopener">Facebook</a></li>
         </ul>
       </div>
       <div class="site-footer__col">

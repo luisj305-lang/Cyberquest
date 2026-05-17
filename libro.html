@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Técnicas y Secretos del Investigador Privado · Edición Aniversario 30 Años · Cyber Quest</title>
+<meta name="description" content="El libro original de Luis Jiménez Camacho (1996), reeditado y ampliado tres décadas después. Métodos OSINT modernos, casos reales anonimizados y herramientas que el público nunca tuvo a la mano."/>
+<meta property="og:title" content="Técnicas y Secretos del Investigador Privado · Edición Aniversario 30 Años"/>
+<meta property="og:description" content="Tres décadas de oficio en 360 páginas. Disponible en Amazon Kindle, Paperback y PDF directo."/>
+<meta property="og:image" content="assets/logo-horizontal-dark.svg"/>
+<meta property="og:type" content="book"/>
+<link rel="icon" type="image/svg+xml" href="assets/logo-symbol.svg"/>
+<link rel="stylesheet" href="assets/styles.css"/>
+</head>
+<body>
+
+<aside class="cookie-banner" id="cookie-banner" role="alert"><p>Usamos cookies esenciales para que el sitio funcione. No rastreamos, no vendemos datos.</p><button class="btn--accept" onclick="document.getElementById('cookie-banner').classList.add('is-hidden'); localStorage.setItem('cq-cookies','ok')">Aceptar</button></aside>
+<a class="whatsapp-fab" href="https://wa.me/19545733095" target="_blank" rel="noopener" aria-label="Hablar por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="brand" aria-label="Cyber Quest — inicio">
+      <svg class="brand__symbol" viewBox="0 0 200 200" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="84" cy="84" r="56" stroke="#fff" stroke-width="6"/>
+        <circle cx="84" cy="84" r="22" stroke="#fff" stroke-width="3"/>
+        <circle cx="84" cy="84" r="8" fill="#0066FF"/>
+        <path d="M84 36 V52 M84 116 V132 M36 84 H52 M116 84 H132" stroke="#fff" stroke-width="3"/>
+        <path d="M124 124 L168 168" stroke="#fff" stroke-width="9"/>
+        <path d="M156 156 L180 180" stroke="#0066FF" stroke-width="9"/>
+      </svg>
+      <span>
+        <span class="brand__name">CYBER QUEST</span>
+        <span class="brand__tag">INVESTIGADORES PRIVADOS</span>
+      </span>
+    </a>
+    <button class="nav__toggle" type="button" aria-label="Abrir menú" onclick="document.getElementById('site-nav').classList.toggle('is-open');">MENÚ</button>
+    <nav class="nav" id="site-nav" aria-label="Principal">
+      <a class="nav__link" href="index.html">Inicio</a>
+      <a class="nav__link" href="servicios.html">Servicios</a>
+      <a class="nav__link" href="academy.html">Academy</a>
+      <a class="nav__link is-active" href="libro.html">Libro</a>
+      <a class="nav__link" href="manifiesto.html">Manifiesto</a>
+      <a class="nav__link" href="contacto.html">Contacto</a>
+      <a class="btn btn--primary" href="contacto.html">Hablar confidencialmente</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO LIBRO ===== -->
+<section class="section section--dark libro-hero">
+  <div class="container">
+    <p class="eyebrow">EDICIÓN ANIVERSARIO · 30 AÑOS · 1996 — 2026</p>
+    <div class="libro-grid">
+      <div class="libro-cover-big">
+        <div class="libro-cover-eye">CYBER QUEST EDITORIAL</div>
+        <div class="libro-cover-author">Luis Jiménez Camacho</div>
+        <div class="libro-cover-title">Técnicas y Secretos del Investigador Privado</div>
+        <div class="libro-cover-foot">EDICIÓN ANIVERSARIO · 30 AÑOS</div>
+      </div>
+      <div>
+        <h1 class="section__title" style="font-size: clamp(40px, 5.5vw, 64px); margin-bottom: 20px;">El manual que ningún investigador publicó.</h1>
+        <p style="font-size: 18px; line-height: 1.7; color: var(--cq-gray-100); margin-bottom: 20px;">En 1996, Luis Jiménez Camacho publicó el libro que rompió la regla no escrita del gremio: contar cómo se investiga de verdad. Treinta años después, esta edición aniversario incorpora métodos OSINT modernos, casos reales anonimizados que aparecieron en Telemundo, Primer Impacto y Miami Herald, y herramientas que antes solo manejaban los profesionales.</p>
+        <p style="font-size: 18px; line-height: 1.7; color: var(--cq-gray-100); margin-bottom: 28px;">No es un libro académico. Es un manual de campo escrito por un investigador privado licenciado en Florida desde 1989, basado en treinta años resolviendo casos en Estados Unidos y América Latina.</p>
+
+        <div class="libro-price-grid">
+          <div class="libro-price">
+            <div class="libro-price__label">PDF directo</div>
+            <div class="libro-price__amount">$19.99</div>
+            <div class="libro-price__note">DESCARGA INMEDIATA</div>
+          </div>
+          <div class="libro-price">
+            <div class="libro-price__label">Kindle</div>
+            <div class="libro-price__amount">$19.99</div>
+            <div class="libro-price__note">VÍA AMAZON</div>
+          </div>
+          <div class="libro-price">
+            <div class="libro-price__label">Paperback</div>
+            <div class="libro-price__amount">$24.99</div>
+            <div class="libro-price__note">IMPRESO · ENVÍO USA</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn--primary" href="https://www.amazon.com/s?k=tecnicas+y+secretos+del+investigador+privado+luis+jimenez" target="_blank" rel="noopener">Comprar en Amazon →</a>
+          <a class="btn btn--ghost" href="contacto.html">Comprar PDF directo</a>
+        </div>
+        <p style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--cq-gray-500); margin-top: 16px;">● ENLACE AMAZON DE PRUEBA — REEMPLAZAR CON ASIN REAL CUANDO KDP PUBLIQUE</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUÉ CONTIENE ===== -->
+<section class="section section--dark">
+  <div class="container" style="max-width: 980px;">
+    <p class="eyebrow">CONTENIDO</p>
+    <h2 class="section__title" style="margin-bottom: 32px;">Qué aprenderás.</h2>
+    <ul class="libro-features">
+      <li>Cómo verificar la identidad real de una persona antes de hacer negocios con ella.</li>
+      <li>Métodos OSINT (fuentes abiertas) que un civil puede aplicar sin ser técnico ni hacker.</li>
+      <li>Cómo detectar señales de fraude en redes sociales, perfiles de citas y propuestas comerciales.</li>
+      <li>Qué hacer si crees que alguien te está investigando, suplantando o vigilando.</li>
+      <li>Casos reales anonimizados de los 30 años de oficio de Luis Jiménez: paternidad, custodia, infidelidad, fraudes a adultos mayores, secuestros parentales internacionales.</li>
+      <li>Cómo se construye una cadena de custodia legalmente válida.</li>
+      <li>La diferencia entre obtener información y obtener evidencia.</li>
+      <li>Errores típicos que destruyen un caso antes de empezar.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== SOBRE EL AUTOR ===== -->
+<section class="section section--dark">
+  <div class="container" style="max-width: 980px;">
+    <p class="eyebrow">SOBRE EL AUTOR</p>
+    <h2 class="section__title" style="margin-bottom: 24px;">Luis Jiménez Camacho.</h2>
+    <p style="font-size: 18px; line-height: 1.7; color: var(--cq-gray-100); margin-bottom: 16px;">Investigador privado licenciado por el Estado de Florida desde 1989. Fundador de C.I.S. Investigations en Miami en 1989 y autor original de <em>Técnicas y Secretos del Investigador Privado</em> en 1996.</p>
+    <p style="font-size: 18px; line-height: 1.7; color: var(--cq-gray-100); margin-bottom: 16px;">Sus casos han aparecido en Telemundo (María Laría, 1994), Primer Impacto, Sábado Gigante, Ocurrió Así, Miami Herald, La Cubanísima y Cadena Caracol. Localizó y rescató a una menor de 14 años en 24 horas y dirigió un rescate internacional de un niño secuestrado por su padre.</p>
+    <p style="font-size: 18px; line-height: 1.7; color: var(--cq-gray-100);">Hoy reside en Clewiston, Florida, donde dirige Cyber Quest Investigadores Privados y entrena a la próxima generación a través de Cyber Quest Academy.</p>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section section--dark">
+  <div class="container" style="max-width: 880px;">
+    <p class="eyebrow">PREGUNTAS FRECUENTES</p>
+    <h2 class="section__title" style="margin-bottom: 40px;">Lo que la gente quiere saber antes de comprar.</h2>
+
+    <div style="border-top:1px solid var(--cq-line); padding: 24px 0;">
+      <h3 style="font-family: var(--font-ui); font-size: 18px; font-weight: 800; margin-bottom: 8px;">¿Es el mismo libro de 1996?</h3>
+      <p style="color: var(--cq-gray-100); line-height: 1.7;">No. Es la edición aniversario: contiene el material original revisado, casos nuevos del periodo 1996-2026, y dos capítulos completamente nuevos sobre OSINT moderno y verificación digital.</p>
+    </div>
+
+    <div style="border-top:1px solid var(--cq-line); padding: 24px 0;">
+      <h3 style="font-family: var(--font-ui); font-size: 18px; font-weight: 800; margin-bottom: 8px;">¿Necesito conocimientos técnicos previos?</h3>
+      <p style="color: var(--cq-gray-100); line-height: 1.7;">No. El libro está escrito en español de calle, sin jerga técnica innecesaria. Si entiendes Google, puedes aplicar el 80% del contenido.</p>
+    </div>
+
+    <div style="border-top:1px solid var(--cq-line); padding: 24px 0;">
+      <h3 style="font-family: var(--font-ui); font-size: 18px; font-weight: 800; margin-bottom: 8px;">¿Está disponible en inglés?</h3>
+      <p style="color: var(--cq-gray-100); line-height: 1.7;">Por ahora solo español. La edición en inglés está prevista para el cuarto trimestre de 2026.</p>
+    </div>
+
+    <div style="border-top:1px solid var(--cq-line); border-bottom:1px solid var(--cq-line); padding: 24px 0;">
+      <h3 style="font-family: var(--font-ui); font-size: 18px; font-weight: 800; margin-bottom: 8px;">¿Cómo recibo el PDF si compro directo?</h3>
+      <p style="color: var(--cq-gray-100); line-height: 1.7;">En cuanto confirmes el pago, recibes un enlace de descarga y una copia al correo. Si tienes problema técnico, escribe a luisj305@gmail.com y respondemos en menos de 24 horas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="section section--panel">
+  <div class="container" style="text-align:center;">
+    <p class="eyebrow">¿LISTO PARA EMPEZAR?</p>
+    <h2 class="section__title" style="margin-bottom: 16px;">Treinta años de oficio,<br/>en tus manos.</h2>
+    <p class="section__lead" style="margin: 16px auto 40px;">Disponible en Amazon Kindle, Paperback y PDF directo.</p>
+    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn btn--primary" href="https://www.amazon.com/s?k=tecnicas+y+secretos+del+investigador+privado+luis+jimenez" target="_blank" rel="noopener">Comprar en Amazon →</a>
+      <a class="btn btn--ghost" href="contacto.html">Comprar PDF directo</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__intro">
+        <h4>CYBER QUEST</h4>
+        <div class="site-footer__rule"></div>
+        <p>Investigación privada y OSINT con base en Clewiston, Florida. Evidencia legalmente obtenida.</p>
+      </div>
+      <div class="site-footer__col">
+        <h5>AGENCIA</h5>
+        <ul>
+          <li><a href="servicios.html#osint">OSINT corporativo</a></li>
+          <li><a href="servicios.html#identidad">Verificación de identidad</a></li>
+          <li><a href="servicios.html#civil">Investigación civil</a></li>
+          <li><a href="servicios.html#whistleblower">Whistleblower IRS</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h5>ACADEMY</h5>
+        <ul>
+          <li><a href="academy.html">Curso Investigador Privado</a></li>
+          <li><a href="libro.html">Libro · Edición Aniversario</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h5>MEDIA</h5>
+        <ul>
+          <li><a href="https://www.youtube.com/@cyberquestoficial" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.facebook.com/cyberquestoficial" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h5>CONTACTO</h5>
+        <ul>
+          <li><a href="mailto:luisj305@gmail.com">luisj305@gmail.com</a></li>
+          <li><a href="contacto.html">Abrir un caso</a></li>
+          <li>Clewiston, FL · USA</li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__rail">
+      <span>© 2026 CYBER QUEST INVESTIGADORES PRIVADOS · CLEWISTON, FL</span>
+      <span>LA VERDAD NO SE ADIVINA. SE INVESTIGA.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  if(localStorage.getItem('cq-cookies')==='ok') document.getElementById('cookie-banner').classList.add('is-hidden');
+  var els=document.querySelectorAll('.area,.subbrand,.testimonial,.price,.libro-price');
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('fade-up');obs.unobserve(e.target)}})});
+  els.forEach(function(el){obs.observe(el)});
+})();
+</script>
+</body>
+</html>
