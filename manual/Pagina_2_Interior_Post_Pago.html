@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Manual Digital Vivo · Interior (miembro) — Cyber Quest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF; --bone:#F4F1EC; --bone-2:#ECE7DD; --bone-3:#E2DCCE;
+  --ink:#161412; --ink-2:#3A352E; --muted:#6E675B; --faint:#9C9486;
+  --line:#E6E0D4; --line-2:#D6CFBF; --tint:#FBFAF7;
+  --f:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#D8D1C2;color:var(--ink-2);font-family:var(--f);-webkit-font-smoothing:antialiased;line-height:1.55}
+body{display:flex;justify-content:center;min-height:100vh}
+svg{display:block}
+.phone{width:100%;max-width:468px;min-height:100vh;background:var(--paper);position:relative;overflow:hidden}
+@media(min-width:540px){.phone{min-height:928px;margin:26px 0;border-radius:26px;border:1px solid #bdb6a6;box-shadow:0 30px 90px rgba(60,48,30,.3)}}
+.topbar{height:3px;background:var(--ink)}
+h2,h3,h4{color:var(--ink);font-weight:800;letter-spacing:-0.01em}
+
+/* app bar */
+.appbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:11px;padding:12px 16px;
+  background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.cqmark{width:30px;height:30px;flex:0 0 auto}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand b{font-weight:800;font-size:15px;letter-spacing:-0.01em;color:var(--ink)}
+.brand span{font-size:8.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+.me{margin-left:auto;display:flex;align-items:center;gap:8px}
+.me .nm{font-size:11px;font-weight:600;color:var(--ink-2);text-align:right;line-height:1.2}
+.me .nm small{display:block;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.me .av{width:32px;height:32px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.back{display:none;align-items:center;gap:6px;background:none;border:none;color:var(--ink-2);cursor:pointer;font-weight:600;font-size:13px;padding:6px 2px}
+.back svg{width:16px;height:16px}
+body.inner .back{display:inline-flex}
+body.inner .appbar .brand,body.inner .appbar .cqmark{display:none}
+
+.view{display:none;padding-bottom:86px}
+.view.active{display:block;animation:f .3s cubic-bezier(.16,.84,.24,1)}
+@keyframes f{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.seclabel{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--faint);text-transform:uppercase;display:flex;align-items:center;gap:12px;padding:22px 16px 12px}
+.seclabel::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* welcome / dashboard */
+.welcome{padding:20px 16px 4px}
+.welcome .hi{font-size:23px;font-weight:800;color:var(--ink);letter-spacing:-0.02em}
+.welcome .sub{font-size:13.5px;color:var(--muted);margin-top:3px}
+.resume{margin:14px 16px 0;background:var(--ink);border-radius:12px;padding:16px;color:#fff;position:relative;overflow:hidden}
+.resume::before{content:"";position:absolute;inset:0;opacity:.06;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:20px 20px}
+.resume>*{position:relative}
+.resume .rk{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a39a8b}
+.resume b{display:block;font-size:17px;font-weight:800;margin:6px 0 12px;letter-spacing:-0.01em}
+.pbar{height:6px;background:rgba(255,255,255,.18);border-radius:3px;overflow:hidden}
+.pbar i{display:block;height:100%;width:18%;background:#fff}
+.presume{display:flex;justify-content:space-between;align-items:center;margin-top:9px}
+.presume span{font-size:11px;color:#cfc7ba}
+.resume .go{background:#fff;color:var(--ink);border:none;border-radius:6px;padding:8px 14px;font-family:var(--f);font-weight:700;font-size:12px;cursor:pointer}
+
+/* alert banner */
+.alert{display:flex;gap:11px;align-items:flex-start;margin:14px 16px 0;padding:12px 13px;background:var(--bone);
+  border:1px solid var(--line-2);border-left:4px solid var(--ink);border-radius:8px;cursor:pointer;transition:.15s}
+.alert:hover{background:var(--bone-2)}
+.alert .dot{width:8px;height:8px;border-radius:50%;background:var(--ink);margin-top:5px;flex:0 0 auto;animation:p 1.8s infinite}
+@keyframes p{0%{box-shadow:0 0 0 0 rgba(22,20,18,.4)}70%{box-shadow:0 0 0 7px rgba(22,20,18,0)}100%{box-shadow:0 0 0 0 rgba(22,20,18,0)}}
+.alert .l{font-size:9.5px;font-weight:700;letter-spacing:.14em;color:var(--ink);text-transform:uppercase}
+.alert p{font-size:12.5px;color:var(--ink-2);margin:4px 0 0;line-height:1.45}
+.alert p b{color:var(--ink)}
+
+/* module grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:2px 16px 0}
+.tile{position:relative;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:15px 14px 16px;cursor:pointer;overflow:hidden;transition:.18s;box-shadow:0 1px 2px rgba(60,48,30,.04)}
+.tile:hover{border-color:var(--line-2);transform:translateY(-2px);box-shadow:0 10px 22px rgba(60,48,30,.1)}
+.tile:hover .arr{transform:translateX(3px);color:var(--ink)}
+.tile.full{grid-column:1/-1}
+.tile .ic{width:23px;height:23px;color:var(--ink);margin-bottom:11px;stroke-width:1.7}
+.tile h3{font-size:15px;font-weight:800;color:var(--ink);line-height:1.1;letter-spacing:-0.01em}
+.tile p{font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.4}
+.tile .arr{position:absolute;right:11px;bottom:13px;width:15px;height:15px;color:var(--faint);transition:.18s}
+.tile .done{position:absolute;top:11px;right:11px;width:18px;height:18px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.tile .done svg{width:11px;height:11px;color:#fff}
+.tile.star{border:1.5px solid var(--ink)}
+.tile .tag{position:absolute;top:0;right:0;background:var(--ink);color:#fff;font-size:7.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-bottom-left-radius:8px}
+.tile.util{background:var(--bone);border-color:var(--bone-3);box-shadow:none}
+.tile.util h3{font-size:13.5px}
+
+/* module header */
+.mhead{padding:22px 16px 18px;background:var(--bone);border-bottom:1px solid var(--line-2)}
+.mhead h2{font-size:25px;line-height:1.06;margin:9px 0 8px;letter-spacing:-0.02em}
+.mhead .sub{font-size:14px;color:var(--ink-2);line-height:1.5}
+.mhead .sub strong{color:var(--ink);font-weight:700}
+.origin{display:inline-flex;align-items:center;gap:6px;margin-top:13px;font-size:9.5px;font-weight:600;
+  letter-spacing:.06em;color:var(--muted);text-transform:uppercase;border:1px solid var(--line-2);border-radius:30px;padding:5px 11px}
+.origin b{color:var(--ink)}
+
+/* lessons */
+.lessons{padding:6px 16px 0}
+.lesson{display:flex;align-items:center;gap:13px;padding:14px 2px;border-bottom:1px solid var(--line);cursor:pointer;transition:.15s}
+.lesson:hover{padding-left:6px}
+.lesson:hover .ln{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ln{width:32px;height:32px;flex:0 0 auto;border:1px solid var(--line-2);border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-size:13px;font-weight:700;color:var(--ink);transition:.18s;background:var(--paper)}
+.ln.ok{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lt b{display:block;font-size:14px;font-weight:700;color:var(--ink)}
+.lt span{font-size:11.5px;color:var(--muted)}
+.lesson .ch{margin-left:auto;color:var(--faint)}
+.hint{font-size:11px;font-weight:600;color:var(--faint);text-align:center;padding:16px}
+
+/* 7-section blocks */
+.sec{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin:15px 16px;overflow:hidden;box-shadow:0 1px 2px rgba(60,48,30,.04)}
+.sec-h{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--bone)}
+.sec-n{font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--ink)}
+.sec-h .bi{width:17px;height:17px;color:var(--ink);stroke-width:1.8;flex:0 0 auto}
+.sec-h h4{font-size:13px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:var(--ink)}
+.sec-b{padding:14px}
+.sec-b p{font-size:13.5px;color:var(--ink-2);line-height:1.62;margin-bottom:10px}
+.sec-b p:last-child{margin-bottom:0}
+.sec-b strong{color:var(--ink);font-weight:700}
+.sec-b code{background:var(--bone-2);padding:1px 5px;border-radius:3px;font-size:.9em;color:var(--ink)}
+/* danger = inverted dark header, monochrome */
+.sec.danger{border-color:var(--line-2);border-left:4px solid var(--ink)}
+.sec.danger .sec-h{background:var(--ink);border-bottom-color:var(--ink)}
+.sec.danger .sec-n,.sec.danger .sec-h .bi,.sec.danger .sec-h h4{color:#fff}
+.sec.danger .sec-b{background:var(--tint)}
+/* paper = bone */
+.sec.paper{background:var(--bone)}
+.sec.paper .sec-h{background:var(--bone-2);border-bottom-color:var(--line-2)}
+
+ul.flags{list-style:none;display:flex;flex-direction:column;gap:9px}
+ul.flags li{display:flex;gap:10px;font-size:13px;color:var(--ink-2);line-height:1.45}
+ul.flags li::before{content:"▲";color:var(--ink);font-size:9px;margin-top:4px;flex:0 0 auto}
+ul.flags li strong{color:var(--ink)}
+ul.flags.x li::before{content:"✕";color:var(--ink);font-weight:800;font-size:11px;margin-top:2px}
+
+ol.steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:11px}
+ol.steps li{display:flex;gap:11px;font-size:13px;color:var(--ink-2);line-height:1.45;counter-increment:s}
+ol.steps li::before{content:counter(s);flex:0 0 auto;width:22px;height:22px;border-radius:6px;background:var(--ink);
+  color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+ol.steps li b{color:var(--ink)}
+
+.case{background:var(--bone);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:6px;padding:13px}
+.case+.case{margin-top:10px}
+.case .ct{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--ink);text-transform:uppercase;margin-bottom:8px}
+.case p{font-style:italic;font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips span{font-size:11px;font-weight:500;color:var(--ink-2);background:var(--paper);border:1px solid var(--line-2);border-radius:30px;padding:6px 11px}
+
+.cl .check{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer;user-select:none}
+.cl .check:last-child{border-bottom:none}
+.box{width:20px;height:20px;flex:0 0 auto;border:1.5px solid var(--line-2);border-radius:5px;margin-top:1px;background:var(--paper);display:flex;align-items:center;justify-content:center;transition:.15s}
+.box svg{width:13px;height:13px;color:#fff;opacity:0;transform:scale(.5);transition:.15s}
+.check .tx{font-size:13px;color:var(--ink-2);line-height:1.45}
+.check.on .box{background:var(--ink);border-color:var(--ink)}
+.check.on .box svg{opacity:1;transform:scale(1)}
+.check.on .tx{color:var(--faint);text-decoration:line-through}
+.progress{margin-top:13px;height:6px;background:var(--bone-2);border-radius:3px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--ink);transition:width .3s}
+.plab{font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-top:8px}
+
+.row{display:flex;align-items:center;gap:13px;padding:14px;margin:11px 16px;background:var(--paper);border:1px solid var(--line);border-radius:10px;cursor:pointer;transition:.16s;box-shadow:0 1px 2px rgba(60,48,30,.04)}
+.row:hover{border-color:var(--line-2);transform:translateY(-1px);box-shadow:0 8px 18px rgba(60,48,30,.08)}
+.ri{width:36px;height:36px;flex:0 0 auto;border-radius:8px;background:var(--bone);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.rt b{display:block;font-size:13.5px;font-weight:700;color:var(--ink)}
+.rt span{font-size:11px;color:var(--muted)}
+.badge{margin-left:auto;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);padding:4px 8px;border-radius:20px}
+.badge.soon{color:var(--muted);background:var(--bone);border:1px solid var(--line-2)}
+
+.vthumb{position:relative;width:98px;height:62px;flex:0 0 auto;border-radius:8px;overflow:hidden;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.vthumb .play{width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+.vthumb .play svg{width:11px;height:11px;color:var(--ink);margin-left:2px}
+.vthumb .who{position:absolute;bottom:3px;left:5px;font-size:7.5px;font-weight:700;letter-spacing:.1em;color:#cfc7ba}
+
+.upd{margin:11px 16px;padding:14px;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--line-2);border-radius:8px}
+.upd.flag{border-left-color:var(--ink);background:var(--bone)}
+.upd .when{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.upd.flag .when{color:var(--ink)}
+.upd b{display:block;font-size:16px;font-weight:800;color:var(--ink);margin:5px 0 5px;letter-spacing:-0.01em}
+.upd p{font-size:12.5px;color:var(--ink-2);line-height:1.55;margin:0}
+
+.cta{margin:24px 16px;padding:22px 18px;border-radius:12px;background:var(--ink);position:relative;overflow:hidden;text-align:center}
+.cta::before{content:"";position:absolute;inset:0;opacity:.05;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:22px 22px}
+.cta>*{position:relative}
+.cta .e{font-size:9.5px;font-weight:700;letter-spacing:.16em;color:#a39a8b;text-transform:uppercase}
+.cta h4{font-size:20px;font-weight:800;color:#fff;margin:9px 0;letter-spacing:-0.01em}
+.cta p{font-size:12.5px;color:#cfc7bb;margin-bottom:15px;line-height:1.5}
+.btn{display:inline-block;font-family:var(--f);font-weight:700;font-size:13px;background:#fff;color:var(--ink);border:none;border-radius:7px;padding:13px 24px;cursor:pointer;text-decoration:none;transition:.16s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ink{background:var(--ink);color:#fff;border:1px solid var(--ink)}
+.btn.ghost{background:transparent;border:1.5px solid var(--line-2);color:var(--ink)}
+
+.ccard{margin:16px;padding:22px;background:var(--bone);border:1px solid var(--line-2);border-radius:14px;text-align:center}
+.av-lg{width:74px;height:74px;border-radius:50%;margin:0 auto 13px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:800}
+.ccard b{font-size:19px;font-weight:800;color:var(--ink)}
+.ccard .role{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin:5px 0 16px}
+.ccard .links{display:flex;flex-direction:column;gap:9px}
+
+.legal{margin:24px 16px 0;padding:14px;border:1px dashed var(--line-2);border-radius:8px;background:var(--bone)}
+.legal .lh{font-size:9.5px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:7px}
+.legal p{font-size:11px;color:var(--muted);line-height:1.55;margin:0}
+.legal b{color:var(--ink-2)}
+.foot{padding:22px 16px 10px;text-align:center}
+.foot .tag{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--faint);text-transform:uppercase}
+.foot .tag b{color:var(--ink)}
+
+.bnav{position:sticky;bottom:0;z-index:40;display:flex;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-top:1px solid var(--line)}
+.bnav button{flex:1;background:none;border:none;color:var(--faint);padding:9px 0 11px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:8.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.bnav button svg{width:19px;height:19px;stroke-width:1.7}
+.bnav button.act{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="phone" id="top">
+  <div class="topbar"></div>
+  <div class="appbar">
+    <button class="back" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> Volver</button>
+    <svg class="cqmark" viewBox="0 0 40 40" fill="none"><rect x="1.5" y="1.5" width="37" height="37" rx="3" stroke="#161412" stroke-width="2"/><circle cx="17" cy="17" r="8.5" stroke="#161412" stroke-width="2.6"/><line x1="23.4" y1="23.4" x2="31" y2="31" stroke="#161412" stroke-width="3" stroke-linecap="round"/></svg>
+    <div class="brand"><b>Cyber Quest</b><span>Manual Vivo</span></div>
+    <div class="me"><div class="nm">Luis<small>Miembro</small></div><div class="av">L</div></div>
+  </div>
+
+  <!-- ===== HOME (dashboard de miembro) ===== -->
+  <section class="view active" id="home">
+    <div class="welcome">
+      <div class="hi">Hola, Luis 👋</div>
+      <div class="sub">Tu acceso está activo. Continúa donde quedaste.</div>
+    </div>
+    <div class="resume">
+      <div class="rk">Continuar aprendiendo</div>
+      <b>Estafas modernas · Anatomía de una estafa</b>
+      <div class="pbar"><i></i></div>
+      <div class="presume"><span>2 de 17 módulos completados</span><button class="go" onclick="show('m_anatomia')">Reanudar →</button></div>
+    </div>
+
+    <div class="alert" onclick="show('updates')">
+      <div class="dot"></div>
+      <div><div class="l">● Alerta nueva · Junio 2026</div><p>Estafa del “código de Zelle”: te piden leer un número que llega por SMS. <b>Ver alerta →</b></p></div>
+    </div>
+
+    <div class="seclabel">El Manual · Módulos</div>
+    <div class="grid">
+      <button class="tile star" onclick="show('estafas')"><span class="tag">Más consultado</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4m0 4h.01"/></svg><h3>Estafas modernas</h3><p>Teléfono, WhatsApp, romance, cripto.</p><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button class="tile" onclick="show('confiar')"><span class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><h3>Investigar antes de confiar</h3><p>Parejas, niñeras, socios.</p><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button class="tile" onclick="show('ia')"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg><h3>Investigación con IA</h3><p>OSINT para el ciudadano.</p><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button class="tile" onclick="show('corte')"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 7h18M6 7l-3 6h6l-3-6zM18 7l-3 6h6l-3-6z"/></svg><h3>Evidencia para corte</h3><p>Documentar, Small Claims.</p><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button class="tile full" onclick="show('empezar')"><span class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4V8z" fill="currentColor" stroke="none"/></svg><h3>Empezar aquí</h3><p>Bienvenida de Luis Jiménez y cómo usar el manual.</p><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+
+    <div class="seclabel">Recursos y herramientas</div>
+    <div class="grid">
+      <button class="tile util" onclick="show('plantillas')"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-5z"/></svg><h3>Plantillas</h3><p>Checklists y formatos.</p></button>
+      <button class="tile util" onclick="show('videos')"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="m16 9 6-3v12l-6-3"/></svg><h3>Videos</h3><p>Luis y Valeria.</p></button>
+      <button class="tile util" onclick="show('updates')"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 8v4l3 2M3.05 11a9 9 0 1 1 .5 4"/><path d="M3 4v4h4"/></svg><h3>Actualizaciones</h3><p>Nuevas estafas.</p></button>
+      <button class="tile util" onclick="show('contacto')"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><h3>Contacto</h3><p>Luis Jiménez.</p></button>
+    </div>
+
+    <div class="legal"><div class="lh">Aviso</div><p>Manual educativo y preventivo. <b>No es asesoría legal</b> ni promueve hackeo, acoso o suplantación. Enseña a investigar con fuentes legales: registros públicos, observación y sentido común.</p></div>
+    <div class="foot"><div class="tag">La verdad no se adivina. <b>Se investiga.</b></div></div>
+  </section>
+
+  <!-- ===== ESTAFAS ===== -->
+  <section class="view" id="estafas">
+    <div class="mhead"><div class="eyebrow">Bloque 2 · Sección estrella</div><h2>Estafas Modernas</h2><div class="sub">En 1996 un estafador engañaba a uno por vez; hoy engaña a <strong>cinco mil al día</strong> sin levantarse de la silla.</div><span class="origin">Origen: <b>Cap. XVI · Mezcla</b></span></div>
+    <div class="lessons">
+      <div class="lesson" onclick="show('m_anatomia')"><div class="ln">1</div><div class="lt"><b>Anatomía de una estafa</b><span>Las 5 etapas + las 7 reglas para no caer</span></div><svg class="ch" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></div>
+      <div class="lesson" onclick="show('m_anatomia')"><div class="ln">2</div><div class="lt"><b>Teléfono, WhatsApp y SMS</b><span>Códigos robados, enlaces, “tu hijo tuvo un accidente”</span></div><svg class="ch" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></div>
+      <div class="lesson" onclick="show('m_anatomia')"><div class="ln">3</div><div class="lt"><b>Estafa romántica internacional</b><span>El “catfish”, perfiles falsos y el primer envío</span></div><svg class="ch" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></div>
+      <div class="lesson" onclick="show('m_anatomia')"><div class="ln">4</div><div class="lt"><b>Robo de identidad y cripto</b><span>Phishing, sextorsión, inversiones falsas</span></div><svg class="ch" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></div>
+    </div>
+    <div class="hint">↑ Toca la lección 1 para ver un módulo completo</div>
+  </section>
+
+  <!-- ===== MÓDULO MUESTRA ===== -->
+  <section class="view" id="m_anatomia">
+    <div class="mhead"><div class="eyebrow">Estafas modernas · Lección 1</div><h2>Anatomía de una Estafa</h2><div class="sub">Cambian las herramientas, pero el esquema del estafador es <strong>siempre el mismo</strong>.</div><span class="origin">Plantilla de módulo · <b>7 secciones</b></span></div>
+
+    <div class="sec"><div class="sec-h"><span class="sec-n">01</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 16v-4m0-4h.01M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z"/></svg><h4>Explicación clara</h4></div><div class="sec-b">
+      <p>Usted es el blanco principal no porque sea ingenuo, sino porque la cantidad de mensajes que recibe cada día hace imposible evaluar cada uno con cuidado. <strong>Los estafadores cuentan con eso.</strong></p>
+      <p>Toda estafa recorre las mismas <strong>cinco etapas</strong>:</p>
+      <ol class="steps" style="margin-top:4px"><li><b>Contacto.</b> Llegan con un mensaje, llamada o correo.</li><li><b>Confianza.</b> Construyen una historia creíble.</li><li><b>Anzuelo.</b> Algo que usted puede ganar… o perder.</li><li><b>Urgencia.</b> Tiempos cortos para que no piense.</li><li><b>Pago.</b> Por un medio difícil de revertir.</li></ol>
+    </div></div>
+
+    <div class="sec"><div class="sec-h"><span class="sec-n">02</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 7h12M8 12h12M8 17h8M3 7h.01M3 12h.01M3 17h.01"/></svg><h4>Ejemplos reales</h4></div><div class="sec-b">
+      <div class="case"><div class="ct">▌ Caso · Suplantación de familiar</div><p>“Le llaman llorando diciendo ser su hijo en un accidente, pidiendo dinero urgente. Con IA moderna, hasta imitan la voz del familiar real.”</p></div>
+      <div class="case"><div class="ct">▌ Caso · Estafa romántica</div><p>“Inventa una vida envidiable; cuando la víctima está comprometida, llega la emergencia y la solicitud de dinero. He visto perder casa, ahorros y dignidad.”</p></div>
+    </div></div>
+
+    <div class="sec danger"><div class="sec-h"><span class="sec-n">03</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4m0 4h.01"/></svg><h4>Señales de alerta</h4></div><div class="sec-b">
+      <ul class="flags"><li>Le meten <strong>prisa</strong>: ningún trámite legítimo se cae por darle 24 horas.</li><li>Algo <strong>demasiado bueno</strong>: premios, herencias, inversiones milagrosas.</li><li>Le piden <strong>datos de tarjeta o clave</strong> por mensaje o teléfono.</li><li>El pago debe ser por <strong>Zelle, cripto o gift cards</strong> (irreversibles).</li><li>Le piden <strong>acceso remoto</strong> a su computadora.</li></ul>
+    </div></div>
+
+    <div class="sec"><div class="sec-h"><span class="sec-n">04</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><h4>Pasos de investigación legal</h4></div><div class="sec-b">
+      <ol class="steps"><li><b>Frene.</b> Urgencia + pago irreversible = deténgase.</li><li><b>Verifique por otro canal.</b> Llame al teléfono que YA tenía guardado.</li><li><b>Confirme la fuente.</b> Su banco no pide clave por mensaje.</li><li><b>Hable con alguien</b> antes de pagar. Rompe el hechizo.</li></ol>
+    </div></div>
+
+    <div class="sec paper"><div class="sec-h"><span class="sec-n">05</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v4H4zM4 8v12h16V8M9 13h6"/></svg><h4>Qué evidencia guardar</h4></div><div class="sec-b">
+      <p style="margin-bottom:11px">Si huele a estafa, no borre nada. Guarde y feche todo esto:</p>
+      <div class="chips"><span>Capturas del chat</span><span>Número / correo del remitente</span><span>Enlace recibido (sin abrir)</span><span>Comprobante de pago</span><span>Nombre y foto del perfil</span><span>Fecha y hora</span></div>
+    </div></div>
+
+    <div class="sec danger"><div class="sec-h"><span class="sec-n">06</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg><h4>Errores que evitar</h4></div><div class="sec-b">
+      <ul class="flags x"><li>Actuar <strong>solo</strong> y en secreto.</li><li>Pagar “para recuperar” lo perdido: <strong>la segunda estafa</strong>.</li><li>Callar por <strong>vergüenza</strong>: el mejor aliado del estafador.</li><li>Confiar en el número desde el que le escribieron.</li></ul>
+    </div></div>
+
+    <div class="sec"><div class="sec-h"><span class="sec-n">07</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><h4>Checklist · Si ya cayó</h4></div><div class="sec-b">
+      <div class="cl" data-cl>
+        <label class="check" onclick="tick(this)"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx">Llamar al banco para reportar y bloquear el pago.</span></label>
+        <label class="check" onclick="tick(this)"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx">Cambiar todas las contraseñas afectadas.</span></label>
+        <label class="check" onclick="tick(this)"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx">Reportar a la policía y, en EE.UU., al FBI (IC3.gov).</span></label>
+        <label class="check" onclick="tick(this)"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx">Congelar el crédito (Equifax, Experian, TransUnion).</span></label>
+        <label class="check" onclick="tick(this)"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx">Avisar a familiares para que no sean el siguiente blanco.</span></label>
+      </div>
+      <div class="progress"><i></i></div><div class="plab">0 / 5 completado</div>
+    </div></div>
+
+    <div class="cta"><div class="e">¿Quieres hacer esto para otros?</div><h4>Conviértete en investigador</h4><p>El curso completo Cyber Quest Academy te enseña el oficio y el negocio.</p><a class="btn" href="#" onclick="return false">Ver el curso · $397</a></div>
+  </section>
+
+  <!-- ===== CONFIAR ===== -->
+  <section class="view" id="confiar">
+    <div class="mhead"><div class="eyebrow">Bloque 1 · Verificación</div><h2>Investigar Antes de Confiar</h2><div class="sub"><strong>¿Esta persona es quien dice ser?</strong> Antes de una niñera, un socio, una pareja de internet o un inquilino.</div><span class="origin">Origen: <b>Cap. XV</b></span></div>
+    <div class="sec"><div class="sec-h"><span class="sec-n">01</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 16v-4m0-4h.01M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z"/></svg><h4>Empiece por los datos correctos</h4></div><div class="sec-b"><p>Si pone objeciones a entregar lo básico, <strong>ya tiene su primer dato.</strong></p><div class="chips"><span>Nombre completo</span><span>Fecha de nacimiento</span><span>ID vigente</span><span>Dirección + 2 anteriores</span><span>Empleos con teléfono</span><span>3 referencias</span></div></div></div>
+    <div class="sec"><div class="sec-h"><span class="sec-n">02</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><h4>Verificación paso a paso</h4></div><div class="sec-b"><ol class="steps"><li><b>Documento en persona</b>, no por foto.</li><li><b>Búsqueda</b> del nombre entre comillas + ciudad.</li><li><b>Redes:</b> ¿coherentes con lo que le contó?</li><li><b>Llame</b> a empleadores anteriores usted mismo.</li><li><b>Foto inversa</b>: si aparece con otro nombre, es “catfish”.</li></ol></div></div>
+    <div class="sec danger"><div class="sec-h"><span class="sec-n">03</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4m0 4h.01"/></svg><h4>Señales rojas que casi nunca fallan</h4></div><div class="sec-b"><ul class="flags"><li>Resiste entregar documentos básicos.</li><li>Las historias <strong>cambian</strong>.</li><li>Redes recientes o casi vacías.</li><li>Pide dinero demasiado pronto.</li><li>Urgencia injustificada.</li></ul><p style="margin-top:11px;color:var(--ink);font-weight:700">Una señal puede tener explicación. Dos o más, casi nunca.</p></div></div>
+    <div class="sec"><div class="sec-h"><span class="sec-n">04</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><h4>Checklist de verificación</h4></div><div class="sec-b"><div class="cl" data-cl>
+      <label class="check" onclick="tick(this)"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx">Vi el documento original, vigente y sin alterar.</span></label>
+      <label class="check" onclick="tick(this)"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx">Busqué su nombre + ciudad y revisé redes.</span></label>
+      <label class="check" onclick="tick(this)"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx">Llamé a 2 referencias y a un empleador.</span></label>
+      <label class="check" onclick="tick(this)"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tx">Hice búsqueda inversa de su foto.</span></label>
+    </div><div class="progress"><i></i></div><div class="plab">0 / 4 completado</div></div></div>
+  </section>
+
+  <!-- ===== IA ===== -->
+  <section class="view" id="ia">
+    <div class="mhead"><div class="eyebrow">Bloque 3 · Herramientas modernas</div><h2>Investigación con IA y OSINT</h2><div class="sub">El 80% de lo que se encuentra hoy es público y legal. La diferencia es <strong>el método</strong>, no el acceso.</div><span class="origin">Origen: <b>Cap. XIII–XIV</b></span></div>
+    <div class="sec"><div class="sec-h"><span class="sec-n">01</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 16v-4m0-4h.01M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z"/></svg><h4>Las 5 preguntas antes de buscar</h4></div><div class="sec-b"><ol class="steps"><li>¿Qué sé exactamente de esta persona?</li><li>¿Qué necesito saber al terminar?</li><li>¿Qué fuentes son las más probables?</li><li>¿Cómo verifico que el dato es correcto?</li><li>¿Qué hago si no aparece?</li></ol></div></div>
+    <div class="sec"><div class="sec-h"><span class="sec-n">02</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><h4>Herramientas que puede usar hoy</h4></div><div class="sec-b"><p><strong>Buscadores avanzados:</strong> comillas, <code>site:</code>, <code>filetype:pdf</code>. Pruebe Bing, DuckDuckGo, Yandex.</p><p><strong>Búsqueda inversa de imágenes</strong> (Google, TinEye): saber si alguien es quien dice ser.</p><p><strong>Registros públicos</strong> y <strong>mapas satelitales</strong> para conocer una dirección sin pisarla.</p></div></div>
+    <div class="sec paper"><div class="sec-h"><span class="sec-n">03</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5l-8-3z"/></svg><h4>Las 3 reglas de oro</h4></div><div class="sec-b"><p><strong>1 · Si es gratis y fácil, su objetivo también lo sabe.</strong></p><p><strong>2 · Una fuente sola es rumor.</strong> Confirme con dos.</p><p><strong>3 · La información cambia.</strong> Anote la fecha de cada dato.</p></div></div>
+    <div class="sec danger"><div class="sec-h"><span class="sec-n">04</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg><h4>La frontera legal</h4></div><div class="sec-b"><p>Investigar con fuentes abiertas es legal. <strong>Hackear, suplantar o acceder a datos privados sin autorización es delito.</strong> No cruce esa línea.</p></div></div>
+  </section>
+
+  <!-- ===== CORTE ===== -->
+  <section class="view" id="corte">
+    <div class="mhead"><div class="eyebrow">Bloque 4 · Evidencia y casos legales</div><h2>Evidencia para Corte</h2><div class="sub">Un juez no premia al que tiene razón, sino al que la <strong>prueba</strong>.</div><span class="origin">Origen: <b>Nuevo + Cap. VIII–X</b></span></div>
+    <div class="sec paper"><div class="sec-h"><span class="sec-n">01</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v4H4zM4 8v12h16V8"/></svg><h4>Qué guardar (y cómo)</h4></div><div class="sec-b"><div class="chips"><span>Contratos y mensajes fechados</span><span>Comprobantes de pago</span><span>Fotos/video con fecha</span><span>Nombres y testigos</span><span>Cadena de custodia</span><span>Respaldo en 2 lugares</span></div></div></div>
+    <div class="sec" style="opacity:.78"><div class="sec-h"><span class="sec-n">02</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><h4>Cómo funciona Small Claims</h4></div><div class="sec-b"><p style="font-style:italic;color:var(--muted)">— Contenido en redacción para el lanzamiento: límites por estado, cómo presentar la demanda, qué llevar y cómo cobrar si gana. —</p></div></div>
+    <div class="hint">Módulo parcial · así se ven los temas “en construcción”</div>
+  </section>
+
+  <!-- ===== EMPEZAR ===== -->
+  <section class="view" id="empezar">
+    <div class="mhead"><div class="eyebrow">Empezar aquí</div><h2>Bienvenido, Futuro Investigador</h2><div class="sub">Una palabra de Luis antes de empezar.</div></div>
+    <div class="sec paper"><div class="sec-h"><span class="sec-n">—</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><h4>Carta del autor</h4></div><div class="sec-b"><p style="font-style:italic;font-size:14.5px;color:var(--ink-2);line-height:1.6">“Cuando escribí este libro en 1996, un investigador tenía que patear calles y esperar tres días por un récord. Hoy cualquier ciudadano lleva en el bolsillo herramientas que antes solo teníamos los profesionales. Mi trabajo cambió en herramientas, pero no en esencia: sigue siendo buscar la verdad.”</p><p style="text-align:right;font-weight:800;color:var(--ink);margin-top:8px">— Luis Jiménez P.I.</p></div></div>
+    <div class="sec"><div class="sec-h"><span class="sec-n">01</span><svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18"/></svg><h4>Cómo usar este manual</h4></div><div class="sec-b"><ol class="steps"><li>Entra por el <b>botón que necesitas hoy</b>, no de principio a fin.</li><li>Cada módulo trae <b>checklist descargable</b>.</li><li>Revisa <b>Actualizaciones</b> cada mes: está vivo.</li></ol></div></div>
+  </section>
+
+  <!-- ===== PLANTILLAS ===== -->
+  <section class="view" id="plantillas">
+    <div class="mhead"><div class="eyebrow">Recursos</div><h2>Plantillas y Descargables</h2><div class="sub">Listas para imprimir o llenar en el teléfono.</div></div>
+    <div class="row"><div class="ri"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="rt"><b>Checklist “Antes de confiar”</b><span>PDF · 1 página</span></div><span class="badge">Descargar</span></div>
+    <div class="row"><div class="ri"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/></svg></div><div class="rt"><b>Guion para documentar una llamada fraudulenta</b><span>PDF</span></div><span class="badge">Descargar</span></div>
+    <div class="row"><div class="ri"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div class="rt"><b>Ficha para revisar un perfil sospechoso</b><span>PDF editable</span></div><span class="badge">Descargar</span></div>
+    <div class="row"><div class="ri"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div><div class="rt"><b>Formato de organización de evidencia</b><span>Hoja de cálculo</span></div><span class="badge soon">Pronto</span></div>
+  </section>
+
+  <!-- ===== VIDEOS ===== -->
+  <section class="view" id="videos">
+    <div class="mhead"><div class="eyebrow">Video</div><h2>Videos del Manual</h2><div class="sub">Luis Jiménez y Valeria explican los módulos clave.</div></div>
+    <div class="row"><div class="vthumb"><div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div><div class="who">LUIS</div></div><div class="rt"><b>Las 5 etapas de toda estafa</b><span>4:20 · Estafas modernas</span></div><span class="badge soon">Pronto</span></div>
+    <div class="row"><div class="vthumb"><div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div><div class="who">VALERIA</div></div><div class="rt"><b>Cómo verificar a alguien antes de confiar</b><span>6:10 · Verificación</span></div><span class="badge soon">Pronto</span></div>
+    <div class="row"><div class="vthumb"><div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div><div class="who">LUIS</div></div><div class="rt"><b>Búsqueda inversa de imágenes en 3 minutos</b><span>3:05 · IA / OSINT</span></div><span class="badge soon">Pronto</span></div>
+  </section>
+
+  <!-- ===== UPDATES ===== -->
+  <section class="view" id="updates">
+    <div class="mhead"><div class="eyebrow">Lo que hace este manual “vivo”</div><h2>Actualizaciones</h2><div class="sub">Cada mes: nuevas estafas, herramientas de IA y técnicas. Tu acceso <strong>sigue creciendo</strong>.</div></div>
+    <div class="upd flag"><div class="when">● Alerta · 2 jun 2026</div><b>Estafa del “código de Zelle”</b><p>Te llaman fingiendo ser tu banco y te piden leer el código que llegó por SMS para “cancelar un cargo”. Ese código autoriza la transferencia que te vacía la cuenta. Tu banco nunca pide ese número.</p></div>
+    <div class="upd"><div class="when">Nuevo módulo · 28 may 2026</div><b>Deepfakes de voz familiar</b><p>Cómo reconocer cuando la “voz de tu hijo” pidiendo dinero fue generada con IA, y la palabra clave familiar que te protege.</p></div>
+    <div class="upd"><div class="when">Herramienta · 15 may 2026</div><b>Verificar una foto con IA</b><p>Las 3 mejores herramientas gratis para detectar imágenes generadas por inteligencia artificial.</p></div>
+    <div class="foot"><div class="tag">Próxima actualización: <b>1 de julio</b></div></div>
+  </section>
+
+  <!-- ===== CONTACTO ===== -->
+  <section class="view" id="contacto">
+    <div class="mhead"><div class="eyebrow">Soporte</div><h2>Contacto con Luis</h2></div>
+    <div class="ccard"><div class="av-lg">LJ</div><b>Luis Jiménez P.I.</b><div class="role">Investigador Privado Internacional</div><div class="links"><a class="btn ink" href="#" onclick="return false">Escribir por WhatsApp</a><a class="btn ghost" href="#" onclick="return false">luisj305@gmail.com</a><a class="btn ghost" href="#" onclick="return false">Comunidad de lectores</a></div></div>
+    <div class="legal" style="margin-top:8px"><div class="lh">Aviso legal</div><p>Producto educativo y preventivo. <b>No constituye asesoría legal</b>. Para casos con menores, violencia o sumas importantes, contrate a un investigador licenciado.</p></div>
+  </section>
+
+  <nav class="bnav">
+    <button id="nav-home" class="act" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Inicio</button>
+    <button id="nav-estafas" onclick="show('estafas')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4m0 4h.01"/></svg>Estafas</button>
+    <button id="nav-plantillas" onclick="show('plantillas')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Plantillas</button>
+    <button id="nav-updates" onclick="show('updates')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 8v4l3 2M3.05 11a9 9 0 1 1 .5 4"/></svg>Updates</button>
+    <button id="nav-contacto" onclick="show('contacto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Luis</button>
+  </nav>
+</div>
+<script>
+  var navMap={home:'nav-home',estafas:'nav-estafas',m_anatomia:'nav-estafas',plantillas:'nav-plantillas',updates:'nav-updates',contacto:'nav-contacto'};
+  function setNav(id){document.querySelectorAll('.bnav button').forEach(function(b){b.classList.remove('act')});var n=navMap[id];if(n){var el=document.getElementById(n);if(el)el.classList.add('act');}}
+  function show(id){document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active')});var t=document.getElementById(id);if(t)t.classList.add('active');document.body.classList.toggle('inner',id!=='home');setNav(id);window.scrollTo(0,0);}
+  function goHome(){show('home');}
+  function tick(el){el.classList.toggle('on');var wrap=el.closest('[data-cl]');if(!wrap)return;var items=wrap.querySelectorAll('.check');var done=wrap.querySelectorAll('.check.on').length;var bar=wrap.parentElement.querySelector('.progress > i');var lab=wrap.parentElement.querySelector('.plab');if(bar)bar.style.width=(done/items.length*100)+'%';if(lab)lab.textContent=done+' / '+items.length+' completado';}
+</script>
+</body>
+</html>
