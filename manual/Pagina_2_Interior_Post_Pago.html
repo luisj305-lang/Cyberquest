@@ -320,7 +320,7 @@ ol.steps li b{color:var(--ink)}
       <div class="progress"><i></i></div><div class="plab">0 / 5 completado</div>
     </div></div>
 
-    <div class="cta"><div class="e">¿Quieres hacer esto para otros?</div><h4>Conviértete en investigador</h4><p>El curso completo Cyber Quest Academy te enseña el oficio y el negocio.</p><a class="btn" href="../academy.html">Ver el curso · $397</a></div>
+    <div class="cta"><div class="e">¿Quieres hacer esto para otros?</div><h4>Conviértete en investigador</h4><p>El curso completo Cyber Quest Academy te enseña el oficio y el negocio.</p><a class="btn" data-checkout="curso" href="../academy.html">Ver el curso · $397</a></div>
   </section>
 
   <!-- ===== CONFIAR ===== -->
@@ -409,5 +409,6 @@ ol.steps li b{color:var(--ink)}
   function goHome(){show('home');}
   function tick(el){el.classList.toggle('on');var wrap=el.closest('[data-cl]');if(!wrap)return;var items=wrap.querySelectorAll('.check');var done=wrap.querySelectorAll('.check.on').length;var bar=wrap.parentElement.querySelector('.progress > i');var lab=wrap.parentElement.querySelector('.plab');if(bar)bar.style.width=(done/items.length*100)+'%';if(lab)lab.textContent=done+' / '+items.length+' completado';}
 </script>
+<script defer src="../assets/checkout.js"></script>
 </body>
 </html>

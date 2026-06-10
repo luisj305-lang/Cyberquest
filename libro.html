@@ -85,7 +85,7 @@
 
         <div style="display:flex; gap:14px; flex-wrap:wrap;">
           <a class="btn btn--primary" href="https://www.amazon.com/s?k=tecnicas+y+secretos+del+investigador+privado+luis+jimenez" target="_blank" rel="noopener">Comprar en Amazon →</a>
-          <a class="btn btn--ghost" href="contacto.html">Comprar PDF directo</a>
+          <a class="btn btn--ghost" data-checkout="libro" href="contacto.html">Comprar PDF directo</a>
         </div>
         <p style="font-size: 14px; color: var(--cq-gray-400, #999); margin-top: 16px;">¿Prefieres la versión interactiva? El <a href="manual/" style="color: #0066FF;">Manual Digital Vivo</a> incluye este contenido modernizado, checklists interactivos y actualizaciones mensuales por $49.</p>
       </div>
@@ -158,7 +158,7 @@
     <p class="section__lead" style="margin: 16px auto 40px;">Disponible en Amazon Kindle, Paperback y PDF directo.</p>
     <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
       <a class="btn btn--primary" href="https://www.amazon.com/s?k=tecnicas+y+secretos+del+investigador+privado+luis+jimenez" target="_blank" rel="noopener">Comprar en Amazon →</a>
-      <a class="btn btn--ghost" href="contacto.html">Comprar PDF directo</a>
+      <a class="btn btn--ghost" data-checkout="libro" href="contacto.html">Comprar PDF directo</a>
     </div>
   </div>
 </section>
@@ -218,5 +218,6 @@
   els.forEach(function(el){obs.observe(el)});
 })();
 </script>
+<script defer src="assets/checkout.js"></script>
 </body>
 </html>
