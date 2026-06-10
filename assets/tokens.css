@@ -15,31 +15,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 :root {
-  /* ---------- COLOR — Base ---------- */
-  --cq-black:          #0B0B0B;   /* Fondo dominante — negro carbón */
-  --cq-panel:          #1A1A1A;   /* Paneles / segundo plano */
-  --cq-panel-2:        #242424;   /* Elevated surface (cards sobre panel) */
-  --cq-line:           #2E2E2E;   /* Bordes, divisores */
-  --cq-gray-700:       #3A3A3A;   /* Hairlines más visibles */
-  --cq-gray-500:       #6B6B6B;   /* Texto secundario */
-  --cq-gray-300:       #9A9A9A;   /* Texto terciario / captions */
-  --cq-gray-100:       #D8D8D8;   /* Texto sobre fondo oscuro, variante */
-  --cq-white:          #FFFFFF;   /* Texto principal */
-  --cq-paper:          #F4F1EC;   /* Documento "expediente" sobre blanco */
+  /* ---------- COLOR — Base (TEMA CLARO, jun 2026) ----------
+     Los nombres se conservan por compatibilidad: --cq-black es ahora
+     el FONDO (blanco) y --cq-white es la TINTA (texto principal). */
+  --cq-black:          #FFFFFF;   /* Fondo dominante — blanco */
+  --cq-panel:          #F6F4EF;   /* Paneles / segundo plano (hueso claro) */
+  --cq-panel-2:        #EFECE4;   /* Elevated surface (cards sobre panel) */
+  --cq-line:           #E4E0D5;   /* Bordes, divisores */
+  --cq-gray-700:       #CFC9BC;   /* Hairlines más visibles */
+  --cq-gray-500:       #6E675B;   /* Texto secundario */
+  --cq-gray-300:       #5C564B;   /* Texto terciario / captions */
+  --cq-gray-100:       #3A352E;   /* Texto de cuerpo */
+  --cq-white:          #161412;   /* Texto principal (tinta) */
+  --cq-paper:          #F4F1EC;   /* Documento "expediente" */
 
   /* ---------- COLOR — Acentos ----------
      Decisión: el AZUL eléctrico es el acento de marca.
      El rojo se reserva para sellos/flags muy pequeños (≤2%).
      El segundo acento ya no es rojo — es BONE (papel de expediente). */
-  --cq-red:            #0066FF;   /* Azul eléctrico — acento principal */
-  --cq-red-hot:        #3A85FF;   /* Hover */
-  --cq-red-deep:       #0047B3;   /* Presionado */
-  --cq-red-glow:       rgba(0, 102, 255, 0.35);
+  --cq-red:            #0052CC;   /* Azul eléctrico (oscurecido para contraste AA sobre blanco) */
+  --cq-red-hot:        #0066FF;   /* Hover */
+  --cq-red-deep:       #003D99;   /* Presionado */
+  --cq-red-glow:       rgba(0, 82, 204, 0.22);
 
-  /* Segundo acento — BONE / hueso de expediente (sustituye al oxblood) */
-  --cq-blue:           #C9B89A;   /* Bone — datos/dossier, cálido sobre negro */
-  --cq-blue-soft:      #E2D5B8;
-  --cq-blue-glow:      rgba(201, 184, 154, 0.30);
+  /* Segundo acento — BONE / hueso de expediente (oscurecido para tema claro) */
+  --cq-blue:           #8A7048;   /* Bone oscuro — datos/dossier sobre claro */
+  --cq-blue-soft:      #A98F63;
+  --cq-blue-glow:      rgba(138, 112, 72, 0.22);
 
   /* Sello rojo — uso mínimo, solo timbres CONFIDENCIAL / dot vivo */
   --cq-flag:           #C41E3A;
@@ -60,7 +62,7 @@
   --border:            var(--cq-line);
   --border-strong:     var(--cq-gray-700);
   --accent:            var(--cq-red);
-  --accent-fg:         var(--cq-white);
+  --accent-fg:         #FFFFFF;   /* texto sobre botones de acento: siempre blanco */
   --link:              var(--cq-red);
   --info:              var(--cq-blue);
   --success:           var(--cq-green);
@@ -132,9 +134,9 @@
   --border-w-xl:    4px;       /* Franja roja de acento */
 
   /* ---------- SHADOW / ELEVATION ---------- */
-  --shadow-sm:   0 1px 2px rgba(0,0,0,0.6);
-  --shadow-md:   0 4px 12px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.6);
-  --shadow-lg:   0 20px 48px rgba(0,0,0,0.65), 0 4px 10px rgba(0,0,0,0.5);
+  --shadow-sm:   0 1px 2px rgba(60,48,30,0.08);
+  --shadow-md:   0 4px 12px rgba(60,48,30,0.10), 0 1px 2px rgba(60,48,30,0.08);
+  --shadow-lg:   0 20px 48px rgba(60,48,30,0.16), 0 4px 10px rgba(60,48,30,0.10);
   --shadow-red-glow: 0 0 0 1px var(--cq-red), 0 10px 30px var(--cq-red-glow);
 
   /* ---------- MOTION ---------- */
