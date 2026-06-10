@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual Digital Vivo · Cyber Quest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF; --bone:#F4F1EC; --bone-2:#ECE7DD; --bone-3:#E2DCCE;
+  --ink:#161412; --ink-2:#3A352E; --muted:#6E675B; --faint:#9C9486;
+  --line:#E6E0D4; --line-2:#D6CFBF; --tint:#FBFAF7; --red:#C40021;
+  --f:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#D8D1C2;color:var(--ink-2);font-family:var(--f);-webkit-font-smoothing:antialiased;line-height:1.55}
+body{display:flex;justify-content:center;min-height:100vh}
+.phone{width:100%;max-width:468px;min-height:100vh;background:var(--paper);position:relative}
+@media(min-width:540px){.phone{min-height:928px;margin:26px 0;border-radius:26px;border:1px solid #bdb6a6;box-shadow:0 30px 90px rgba(60,48,30,.3);overflow:hidden}}
+.topbar{height:3px;background:var(--ink)}
+h2,h3,h4,h5{color:var(--ink);font-weight:800;letter-spacing:-0.01em}
+
+.appbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:11px;padding:12px 16px;
+  background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand b{font-weight:800;font-size:15px;color:var(--ink)}
+.brand span{font-size:8.5px;font-weight:700;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+.back{display:none;align-items:center;gap:6px;background:none;border:none;color:var(--ink-2);cursor:pointer;font-weight:700;font-size:13px;padding:6px 2px;font-family:var(--f)}
+body.inner .back{display:inline-flex}
+.mark{width:28px;height:28px;border-radius:7px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex:0 0 auto}
+.live{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--red);animation:p 1.8s infinite}
+@keyframes p{0%{box-shadow:0 0 0 0 rgba(196,0,33,.45)}70%{box-shadow:0 0 0 7px rgba(196,0,33,0)}100%{box-shadow:0 0 0 0 rgba(196,0,33,0)}}
+
+.view{display:none;padding-bottom:60px}
+.view.active{display:block;animation:f .3s cubic-bezier(.16,.84,.24,1)}
+@keyframes f{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.seclabel{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--faint);text-transform:uppercase;display:flex;align-items:center;gap:12px;padding:22px 16px 12px}
+.seclabel::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.welcome{padding:20px 16px 4px}
+.welcome .hi{font-size:23px;font-weight:800;color:var(--ink);letter-spacing:-0.02em}
+.welcome .sub{font-size:13.5px;color:var(--muted);margin-top:3px}
+.resume{margin:14px 16px 0;background:var(--ink);border-radius:12px;padding:16px;color:#fff;position:relative;overflow:hidden}
+.resume::before{content:"";position:absolute;inset:0;opacity:.06;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:20px 20px}
+.resume>*{position:relative}
+.resume .rk{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a39a8b}
+.resume b{display:block;font-size:17px;font-weight:800;margin:6px 0 12px}
+.pbar{height:6px;background:rgba(255,255,255,.18);border-radius:3px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:#fff;transition:width .5s}
+.presume{display:flex;justify-content:space-between;align-items:center;margin-top:9px}
+.presume span{font-size:11px;color:#cfc7ba}
+
+.alert{display:flex;gap:11px;align-items:flex-start;margin:14px 16px 0;padding:12px 13px;background:var(--bone);
+  border:1px solid var(--line-2);border-left:4px solid var(--red);border-radius:8px}
+.alert .dot{width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:5px;flex:0 0 auto;animation:p 1.8s infinite}
+.alert .l{font-size:9.5px;font-weight:700;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
+.alert p{font-size:12.5px;color:var(--ink-2);margin:4px 0 0;line-height:1.45}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:2px 16px 0}
+.tile{position:relative;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:15px 14px 16px;cursor:pointer;overflow:hidden;transition:.18s;box-shadow:0 1px 2px rgba(60,48,30,.04);font-family:var(--f)}
+.tile:hover{border-color:var(--line-2);transform:translateY(-2px);box-shadow:0 10px 22px rgba(60,48,30,.1)}
+.grid.star .tile{border:1.5px solid var(--ink)}
+.tile .tnum{font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--faint)}
+.tile h3{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.15;margin-top:6px}
+.tile p{font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.4}
+.tile .tmeta{display:block;font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-top:9px}
+.tile .tdone{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;background:var(--ink);color:#fff;
+  font-size:10px;display:none;align-items:center;justify-content:center}
+.tile .tdone.on{display:flex}
+
+.mhead{padding:22px 16px 18px;background:var(--bone);border-bottom:1px solid var(--line-2)}
+.mhead h2{font-size:24px;line-height:1.08;margin:9px 0 8px;letter-spacing:-0.02em}
+.mhead .sub{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+
+.sec{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin:15px 16px;overflow:hidden;box-shadow:0 1px 2px rgba(60,48,30,.04)}
+.sec-h{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--bone)}
+.sec-ic{font-size:14px}
+.sec-h h4{font-size:12.5px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:var(--ink)}
+.sec-b{padding:14px 15px;font-size:13.5px;color:var(--ink-2)}
+.sec-b p{margin:0 0 11px}
+.sec-b p:last-child{margin-bottom:0}
+.sec-b ul,.sec-b ol{margin:0 0 11px;padding-left:20px}
+.sec-b li{margin-bottom:6px}
+.sec-b strong{color:var(--ink)}
+.sec-b h5{font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin:14px 0 7px}
+.sec-b blockquote{border-left:3px solid var(--line-2);background:var(--tint);padding:9px 12px;margin:0 0 11px;border-radius:0 7px 7px 0}
+.sec-b blockquote p{font-size:12.5px;color:var(--muted)}
+.sec-b code{background:var(--bone);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12px}
+.sec-b hr{border:none;height:1px;background:var(--line);margin:13px 0}
+.twrap{overflow-x:auto;margin:0 0 11px}
+.sec-b table{width:100%;border-collapse:collapse;font-size:12px}
+.sec-b th{background:var(--ink);color:#fff;text-align:left;padding:7px 9px;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+.sec-b td{padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+
+.cklist{list-style:none;padding-left:0!important}
+.ck label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:7px 8px;border-radius:7px;transition:.13s}
+.ck label:hover{background:var(--tint)}
+.ck input{display:none}
+.ck .box{width:19px;height:19px;flex:0 0 auto;border:1.6px solid var(--line-2);border-radius:5px;margin-top:1px;position:relative;transition:.15s;background:var(--paper)}
+.ck input:checked+.box{background:var(--ink);border-color:var(--ink)}
+.ck input:checked+.box::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800}
+.ck input:checked~.cktxt{color:var(--faint);text-decoration:line-through}
+.cktxt{font-size:13px}
+
+.mfoot{padding:8px 16px 30px;display:flex;flex-direction:column;gap:9px}
+.donebtn,.nextbtn,.homebtn{font-family:var(--f);font-weight:700;font-size:13px;border-radius:9px;padding:13px;cursor:pointer;transition:.15s}
+.donebtn{background:var(--ink);color:#fff;border:none}
+.donebtn.on{background:#2e6b33}
+.nextbtn{background:var(--paper);color:var(--ink);border:1.5px solid var(--ink);text-align:left}
+.nextbtn:hover{background:var(--bone)}
+.homebtn{background:none;border:none;color:var(--muted)}
+
+.foot{padding:26px 16px 34px;text-align:center}
+.foot .lg{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.foot p{font-size:10.5px;color:var(--faint);margin-top:7px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="phone">
+<div class="topbar"></div>
+<div class="appbar">
+  <button class="back" data-go="home">← Inicio</button>
+  <div class="mark">CQ</div>
+  <div class="brand"><b>Manual Digital Vivo</b><span>Cyber Quest · Investigadores Privados</span></div>
+  <div class="live"><i></i>Vivo</div>
+</div>
+
+<div class="view active" id="view-home">
+  <div class="welcome">
+    <div class="hi">Investiga y protégete<br>antes de ser víctima.</div>
+    <div class="sub">Por Luis Jiménez · Investigador Privado Internacional</div>
+  </div>
+  <div class="resume">
+    <span class="rk">Tu progreso</span>
+    <b id="ptitle">Empieza por el Módulo 0</b>
+    <div class="pbar"><i id="pfill"></i></div>
+    <div class="presume"><span id="pcount">0 de 8 módulos completados</span><span>~17k palabras</span></div>
+  </div>
+  <div class="alert">
+    <span class="dot"></span>
+    <div><span class="l">🆕 Centro de alertas</span>
+    <p><strong>Junio 2026:</strong> circula la estafa de la voz clonada con IA («tu hijo tuvo un accidente»). Cómo detectarla y cortarla, en el <strong>Módulo 5</strong> y el <strong>Módulo 9</strong>.</p></div>
+  </div>
+  <div class="seclabel">Bloque 0 · Empezar aquí</div>
+<div class="grid"><button class="tile" data-go="m0">
+    <span class="tnum">M0</span>
+    <span class="tdone" data-done-flag="m0">✓</span>
+    <h3>Bienvenida y cómo usar el manual</h3>
+    <p>6 secciones</p>
+    <span class="tmeta">6 secciones · ~1200 palabras</span>
+  </button></div>
+<div class="seclabel">Bloque 1 · Mentalidad y método</div>
+<div class="grid"><button class="tile" data-go="m3">
+    <span class="tnum">M3</span>
+    <span class="tdone" data-done-flag="m3">✓</span>
+    <h3>Investigar antes de confiar</h3>
+    <p>Al terminar este módulo vas a tener el hábito que resume todo el manual: verificar ANTES de…</p>
+    <span class="tmeta">7 secciones · ~2100 palabras</span>
+  </button></div>
+<div class="seclabel">Bloque 2 · Estafas modernas ⭐</div>
+<div class="grid star"><button class="tile" data-go="m4">
+    <span class="tnum">M4</span>
+    <span class="tdone" data-done-flag="m4">✓</span>
+    <h3>Anatomía de una estafa moderna</h3>
+    <p>Al terminar este módulo vas a poder hacer algo que muy poca gente sabe hacer: mirar cualquier…</p>
+    <span class="tmeta">7 secciones · ~2300 palabras</span>
+  </button>
+<button class="tile" data-go="m5">
+    <span class="tnum">M5</span>
+    <span class="tdone" data-done-flag="m5">✓</span>
+    <h3>Teléfono, WhatsApp y SMS</h3>
+    <p>Al terminar este módulo vas a saber reconocer en segundos las estafas más comunes que llegan…</p>
+    <span class="tmeta">7 secciones · ~2200 palabras</span>
+  </button>
+<button class="tile" data-go="m6">
+    <span class="tnum">M6</span>
+    <span class="tdone" data-done-flag="m6">✓</span>
+    <h3>Estafas románticas internacionales</h3>
+    <p>Al terminar este módulo vas a saber reconocer el guion exacto que usan los estafadores…</p>
+    <span class="tmeta">7 secciones · ~2400 palabras</span>
+  </button>
+<button class="tile" data-go="m7">
+    <span class="tnum">M7</span>
+    <span class="tdone" data-done-flag="m7">✓</span>
+    <h3>Robo de identidad</h3>
+    <p>Al terminar este módulo vas a saber exactamente cómo los criminales obtienen tus datos…</p>
+    <span class="tmeta">7 secciones · ~2200 palabras</span>
+  </button>
+<button class="tile" data-go="m8">
+    <span class="tnum">M8</span>
+    <span class="tdone" data-done-flag="m8">✓</span>
+    <h3>Fraude financiero y documentos falsos</h3>
+    <p>Al terminar este módulo vas a saber por qué pagar por Zelle es como entregar efectivo en la…</p>
+    <span class="tmeta">7 secciones · ~2300 palabras</span>
+  </button></div>
+<div class="seclabel">Bloque 3 · Herramientas modernas</div>
+<div class="grid"><button class="tile" data-go="m9">
+    <span class="tnum">M9</span>
+    <span class="tdone" data-done-flag="m9">✓</span>
+    <h3>Investigación con Inteligencia Artificial</h3>
+    <p>Cuando publiqué mi primer libro en 1996, verificar la identidad de una persona en otro país…</p>
+    <span class="tmeta">7 secciones · ~2200 palabras</span>
+  </button></div>
+  <div class="foot">
+    <div class="lg">Cyber Quest · Manual Digital Vivo · v1.0 MVP</div>
+    <p>Producto educativo y preventivo. No constituye asesoría legal.<br>Enseña únicamente métodos legales de investigación y verificación.</p>
+  </div>
+</div>
+
+
+<div class="view" id="view-m0">
+  <div class="mhead">
+    <span class="eyebrow">Bloque 0 · Empezar aquí · Manual Digital Vivo v1.0</span>
+    <h2>Bienvenida y cómo usar el manual</h2>
+    
+  </div>
+  
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">💡</span><h4>Bienvenido. Soy Luis Jiménez, y este manual existe por una razón</h4></div>
+    <div class="sec-b"><p>Llevo décadas en el oficio de investigador privado. Empecé cuando investigar significaba caminar: seguimientos a pie durante horas, archivos en papel, cámaras de rollo, llamadas desde teléfonos públicos y libretas llenas de matrículas anotadas a mano. Mi primer libro sobre este oficio lo publiqué en 1996, cuando internet era apenas una curiosidad. Hoy dirijo Cyber Quest Investigadores Privados y trabajo casos internacionales donde la evidencia vive en pantallas, servidores y redes sociales, y donde la inteligencia artificial es tanto una herramienta del investigador como un arma del estafador.</p>
+<p>Ese recorrido me dio una perspectiva que pocos tienen: he visto el delito evolucionar en tiempo real. Y le digo algo con total franqueza: las estafas cambiaron más en los últimos 5 años que en los 50 anteriores. Antes, un estafador necesitaba verlo a la cara, ganarse su confianza durante meses, falsificar un documento a mano. Hoy puede clonar la voz de su hijo en segundos, crear un perfil romántico perfecto con fotos generadas por IA, o vaciar su cuenta con un mensaje que parece venir de su propio banco. La tecnología democratizó el fraude, y la gente común quedó sin defensa.</p>
+<p>Por eso creé este manual. No para asustarlo: para equiparlo. Mi promesa es simple y la sostengo con toda mi trayectoria: <strong>aprenda a investigar y protegerse antes de ser víctima.</strong> Las técnicas que aquí comparto son las mismas que uso en casos reales, traducidas a un lenguaje que cualquier persona puede aplicar hoy mismo.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">📂</span><h4>Qué es un "manual vivo" (y por qué no es un libro)</h4></div>
+    <div class="sec-b"><p>Un libro se imprime y envejece. Este manual respira. Tres cosas lo hacen diferente:</p>
+<ul>
+<li><strong>Es modular.</strong> No tiene que leerlo de principio a fin como una novela. Cada módulo es una puerta independiente: usted entra por el botón que necesita hoy. ¿Recibió un mensaje sospechoso? Vaya directo al módulo de esa estafa. ¿Quiere verificar a alguien antes de una cita? Hay un módulo exacto para eso.</li>
+<li><strong>Se actualiza cada mes.</strong> Las estafas mutan constantemente, y un manual que no muta con ellas es papel muerto. Cada mes reviso y actualizo el contenido con las modalidades que están circulando <strong>ahora</strong>, no las de hace tres años. Cuando usted vuelva a entrar, encontrará material nuevo.</li>
+<li><strong>Es accionable.</strong> No le doy teoría suelta: cada módulo incluye plantillas descargables, checklists paso a paso y guiones concretos. Cosas que puede usar en los próximos diez minutos, no algún día.</li>
+</ul>
+<p>Usted no compró un texto. Compró una herramienta que mejora con el tiempo.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🚩</span><h4>Cómo navegar el manual</h4></div>
+    <div class="sec-b"><p>El contenido está organizado en bloques, pensados como un recorrido lógico:</p>
+<ol>
+<li><strong>Mentalidad y método del investigador.</strong> La base de todo: cómo piensa un investigador, cómo observa, cómo duda sin volverse paranoico y cómo documenta lo que encuentra.</li>
+<li><strong>Estafas modernas.</strong> La sección estrella del manual. Aquí desarmamos, una por una, las estafas que están vaciando cuentas hoy: fraudes románticos, suplantación bancaria, voces clonadas con IA, falsas inversiones, extorsiones digitales y más. Cada una con sus señales de alerta y su protocolo de defensa.</li>
+<li><strong>Herramientas modernas.</strong> El arsenal del investigador actual: inteligencia artificial, búsqueda en redes sociales, registros públicos y verificación de identidades, imágenes y datos.</li>
+<li><strong>Evidencia y casos legales.</strong> Cómo capturar, preservar y organizar pruebas para que sirvan de verdad ante un abogado o una autoridad, y no se conviertan en capturas de pantalla inútiles.</li>
+<li><strong>Conviértete en investigador.</strong> Para quienes quieren ir más allá de protegerse: el camino real hacia el oficio, con sus exigencias, su ética y sus oportunidades.</li>
+</ol>
+<p><strong>Mi recomendación de ruta:</strong> si llegó aquí por una emergencia —sospecha que usted o alguien cercano está dentro de una estafa activa— no pierda tiempo: <strong>salte directo al Bloque 2</strong>, busque la modalidad que le suena y siga el protocolo. Para eso está diseñado el formato modular. Si en cambio quiere formarse con calma y construir su "modo investigador" desde los cimientos, vaya en orden: el Bloque 1 le dará el método que multiplica el valor de todo lo demás.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⚖️</span><h4>La plantilla de los módulos: de información a acción</h4></div>
+    <div class="sec-b"><p>Todos los módulos de contenido (a partir del Módulo 1) siguen una misma estructura de 7 secciones fijas. Aprenderla le tomará un minuto y le ahorrará horas:</p>
+<ol>
+<li><strong>Qué vas a aprender</strong> — el objetivo del módulo en pocas líneas, para saber si es lo que necesita.</li>
+<li><strong>El caso real</strong> — una historia verdadera (con datos protegidos) que muestra el problema en acción.</li>
+<li><strong>Cómo funciona</strong> — la anatomía de la estafa o de la técnica, paso a paso, sin tecnicismos innecesarios.</li>
+<li><strong>Señales de alerta</strong> — la lista concreta de banderas rojas que debe reconocer a tiempo.</li>
+<li><strong>Protocolo de acción</strong> — qué hacer exactamente, en orden, si la situación ya lo alcanzó.</li>
+<li><strong>Herramientas y plantillas</strong> — los recursos descargables y checklists del módulo.</li>
+<li><strong>Nivel investigador</strong> — la capa avanzada: cómo un profesional llevaría el caso más lejos.</li>
+</ol>
+<p>¿Por qué esta estructura? Porque la información sola no protege a nadie. Lo que protege es saber <strong>reconocer</strong> (caso, anatomía, señales) y saber <strong>actuar</strong> (protocolo, herramientas). Esa plantilla convierte cada módulo en un sistema de defensa, no en un capítulo de lectura. Y como siempre es la misma, en una emergencia usted sabrá exactamente dónde buscar dentro de cualquier módulo.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🗂️</span><h4>Aviso legal y ético — léalo antes de continuar</h4></div>
+    <div class="sec-b"><p>Quiero ser absolutamente claro en esto, porque define el espíritu de todo el manual:</p>
+<ul>
+<li>Este manual es <strong>educativo, preventivo y de orientación general</strong>. No constituye asesoría legal y <strong>no sustituye a un abogado</strong>. Si su caso tiene implicaciones legales, consulte a un profesional del derecho en su país.</li>
+<li>Este manual <strong>no promueve ni enseña</strong> hackeo, acceso no autorizado a cuentas o dispositivos, acoso, vigilancia ilegal, suplantación de identidad ni ninguna otra actividad ilícita. Punto.</li>
+<li>Todo lo que aquí aprenderá se basa en <strong>fuentes y métodos legales</strong>: registros públicos, información abierta, observación, análisis, documentación rigurosa y sentido común. Es decir, el verdadero oficio del investigador.</li>
+<li>Nada en este manual es una invitación a violar la privacidad de otras personas. Investigar para protegerse es legítimo; espiar para controlar, no lo es.</li>
+</ul>
+<p>Y le pido que no lea esto como una limitación, porque no lo es. Es exactamente lo que separa a un <strong>investigador profesional</strong> de un <strong>aficionado peligroso</strong>. En mis décadas de oficio he visto casos sólidos derrumbarse porque alguien obtuvo una prueba de forma ilegal, y he visto a curiosos convertirse en acusados. El investigador que trabaja dentro de la ley no es más débil: es el único cuyos hallazgos valen algo ante un tribunal y cuya reputación sobrevive. Aquí formamos de esos.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⛔</span><h4>Tu modo investigador empieza ahora</h4></div>
+    <div class="sec-b"><p>Eso es todo lo que necesita saber para empezar. A partir de este momento, cada mensaje que reciba, cada perfil que vea y cada "oportunidad increíble" que le ofrezcan pasarán por un filtro nuevo: el suyo.</p>
+<p>Si quiere construir la base, avance al <strong>Módulo 1</strong> y empiece a entrenar la mentalidad del investigador. Si algo le está pasando ahora mismo, vaya sin culpa directo al <strong>Bloque 2</strong>: para eso lo escribí.</p>
+<p>Nos vemos adentro.</p>
+<p><strong>Luis Jiménez</strong></p>
+<p>Investigador Privado Internacional · Cyber Quest Investigadores Privados</p></div>
+  </section>
+  <div class="mfoot">
+    <button class="donebtn" data-done="m0">Marcar módulo como completado</button>
+    <button class="nextbtn" data-go="m3">Siguiente: M3 — Investigar antes de confiar →</button>
+    <button class="homebtn" data-go="home">⌂ Volver al inicio</button>
+  </div>
+</div>
+
+<div class="view" id="view-m3">
+  <div class="mhead">
+    <span class="eyebrow">Bloque 1 · Mentalidad y método · Origen: 🔄🆕 Mezcla · Manual Digital Vivo v1.0</span>
+    <h2>Investigar antes de confiar</h2>
+    <p class="sub"><em>Al terminar este módulo vas a tener el hábito que resume todo el manual: verificar ANTES de confiar, firmar, pagar, contratar o enamorarte. Y si quieres dedicarte a la investigación privada, aquí tienes algo más: este módulo es, literalmente, el servicio de verificación de antecedentes (background check) que un día le cobrarás a tus clientes.</em></p>
+  </div>
+  
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">💡</span><h4>1. Explicación clara</h4></div>
+    <div class="sec-b"><p>Llevo años viendo el mismo patrón: la gente investiga más antes de comprar un televisor de $400 que antes de entregarle las llaves de su casa a un desconocido. Lee cincuenta reseñas del televisor. Al inquilino, a la niñera, al "socio" o a la pareja de internet... les cree por la cara.</p>
+<p><strong>Investigar antes de confiar</strong> no es paranoia. Es el mismo principio que usa cualquier banco antes de prestarte dinero: verificar primero, confiar después. Y la buena noticia es que casi todo lo que un investigador profesional revisa en un background check básico está en fuentes <strong>públicas y legales</strong>: registros de cortes, licencias estatales, registros mercantiles, bases de datos de quejas de consumidores y la huella digital que cada persona deja en internet.</p>
+<p>Aquí va la regla de oro de este módulo, memorízala:</p>
+<blockquote>
+<p><strong>La confianza no se da por adelantado. Se otorga después de verificar. Quien se ofende porque verificas, te acaba de dar el primer dato de la investigación.</strong></p>
+</blockquote>
+<p>Para la audiencia (A) —la persona común—: este hábito te protege de estafas, robos, fraudes románticos y malas contrataciones. Para la audiencia (B) —el futuro investigador—: este es tu primer servicio facturable. Un background check pre-empleo, pre-renta o pre-sociedad se cobra entre $75 y $500 según la profundidad. Domina este módulo y ya tienes un producto que vender.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">📂</span><h4>2. Ejemplos reales</h4></div>
+    <div class="sec-b"><p><strong>La niñera de Orlando.</strong> Una madre en Orlando estaba a punto de contratar a una cuidadora "con diez años de experiencia y referencias excelentes". Antes de firmar, buscó el nombre en el registro de cortes del condado (en Florida, casi todos tienen búsqueda en línea gratuita). Apareció un caso reciente de negligencia infantil. Las "referencias" eran dos números de teléfono que contestaba la misma voz. Veinte minutos de verificación evitaron poner a un bebé en riesgo.</p>
+<p><strong>El novio que no existía.</strong> Un hombre de Miami llevaba tres meses hablando con una "ingeniera petrolera" que conoció en una app. Fotos espectaculares, historia coherente, y de pronto: una emergencia médica y la petición de $2,000. Una búsqueda inversa de las fotos mostró que pertenecían a una modelo de Europa del Este con miles de imágenes públicas. La "ingeniera" era un perfil fabricado. Costo de la verificación: cero. Costo de no hacerla: $2,000... para empezar.</p>
+<p><strong>El contratista fantasma.</strong> Una familia en Texas pagó $8,000 de adelanto a un "contratista con 15 años en el negocio" para remodelar la cocina. Nunca volvió. Después descubrieron lo que pudieron ver antes en cinco minutos: no tenía licencia registrada en el estado, su "empresa" no existía en el registro mercantil, y en el Better Business Bureau acumulaba quejas con el mismo guion: cobrar adelanto y desaparecer.</p>
+<p><strong>El socio con historial.</strong> Un emprendedor hispano en Florida iba a firmar sociedad al 50% con un conocido "exitoso". Antes de firmar, revisó Sunbiz (el registro mercantil de Florida, sunbiz.org): el hombre había abierto y disuelto seis empresas en ocho años, y en las cortes del condado tenía dos demandas de exsocios por fraude. La sociedad nunca se firmó. Esa búsqueda gratuita valió más que cualquier abogado después del desastre.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🚩</span><h4>3. Señales de alerta</h4></div>
+    <div class="sec-b"><p>Estas banderas rojas aplican a cualquier persona que estés verificando:</p>
+<ul>
+<li><strong>Prisa.</strong> "Hay otra persona interesada", "firma hoy o pierdes la oportunidad". La urgencia artificial es la herramienta número uno del estafador.</li>
+<li><strong>Historia que no cuadra.</strong> Fechas que no coinciden, ciudades que cambian, trabajos que no se pueden comprobar.</li>
+<li><strong>Huella digital inexistente o demasiado nueva.</strong> Un adulto profesional sin ningún rastro en internet, o con perfiles creados hace tres meses, es una anomalía que exige explicación.</li>
+<li><strong>Fotos que parecen de catálogo.</strong> Pocas imágenes, demasiado perfectas, nunca disponible para videollamada.</li>
+<li><strong>Se ofende cuando pides documentos.</strong> Una persona honesta entiende la verificación. El que explota en indignación cuando pides licencia, ID o referencias, te está diciendo algo.</li>
+<li><strong>Pide pagos imposibles de rastrear:</strong> Zelle a nombre de otra persona, tarjetas de regalo, criptomonedas, efectivo por adelantado sin contrato.</li>
+<li><strong>Referencias circulares:</strong> todos los que lo recomiendan se conocen entre sí o no se pueden localizar de forma independiente.</li>
+<li><strong>Inconsistencia entre lo que dice y lo que los registros muestran.</strong> Esta es la madre de todas: si dice "nunca he tenido problemas legales" y la corte dice otra cosa, no necesitas más.</li>
+</ul></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⚖️</span><h4>4. Pasos de investigación legal</h4></div>
+    <div class="sec-b"><p>Antes del paso a paso, lo innegociable: <strong>todo lo que sigue usa fuentes públicas y legales.</strong> Nada de meterse a cuentas ajenas, espiar teléfonos, hacerse pasar por otra persona ni seguir a nadie. Eso no es investigar: es delito. El investigador profesional gana con método, no con trampas. Además, si vas a usar empresas de reportes para decisiones de empleo o renta en EE.UU., aplica la ley FCRA (necesitas consentimiento); las búsquedas que enseño aquí son de registro público y para tu propia protección.</p>
+<p><strong>La base universal (aplícala a todos):</strong></p>
+<ol>
+<li>Busca el nombre completo entre comillas en Google, junto con ciudad, teléfono y correo: <code>"Nombre Apellido" + ciudad</code>.</li>
+<li>Búsqueda inversa de teléfono (Google mismo, o servicios de búsqueda inversa) y de correo.</li>
+<li>Búsqueda inversa de imágenes (Google Imágenes, TinEye): sube la foto y mira dónde más aparece.</li>
+<li>Revisa redes sociales públicas: antigüedad del perfil, coherencia, amigos reales, fotos etiquetadas por terceros.</li>
+<li>Cortes del condado: la mayoría de los condados en EE.UU. tienen búsqueda pública en línea de casos civiles y criminales (busca "[condado] clerk of court case search").</li>
+</ol>
+<p><strong>Pareja o cita online:</strong> búsqueda inversa de TODAS sus fotos; verifica que el teléfono no sea VoIP recién creado; exige videollamada temprano (el estafador siempre tiene una excusa); revisa registros de matrimonio/divorcio del condado si la relación avanza; jamás envíes dinero a alguien que no has visto en persona. <strong>Cuándo decir NO:</strong> fotos que aparecen con otro nombre, negativa repetida a videollamada, cualquier petición de dinero.</p>
+<p><strong>Inquilino:</strong> verifica identidad con ID oficial; busca desalojos previos en las cortes del condado donde vivió; confirma empleo llamando al número oficial de la empresa (no al que él te dé); habla con el casero anterior, no solo el actual (el actual puede querer deshacerse de él). Para reportes de crédito formales, usa un servicio de tenant screening con consentimiento firmado (FCRA). <strong>NO:</strong> desalojos previos, ingresos inverificables, prisa por mudarse "mañana mismo" pagando en efectivo.</p>
+<p><strong>Niñera o cuidadora:</strong> búsqueda en cortes criminales del condado y del estado; registro público de ofensores sexuales (en EE.UU., nsopw.gov, gratuito); verifica certificaciones (CPR, etc.) con la entidad emisora; llama a referencias y haz preguntas específicas ("¿en qué fechas trabajó con usted?"). <strong>NO:</strong> cualquier antecedente de violencia o negligencia, referencias falsas, identidad que no cuadra con el ID.</p>
+<p><strong>Socio de negocio:</strong> registro mercantil del estado (en Florida, Sunbiz; cada estado tiene el suyo, normalmente bajo "Secretary of State business search"): cuántas empresas ha tenido, estado actual, quiénes son los oficiales; demandas civiles y bancarrotas en cortes del condado y federales; busca su nombre + "lawsuit", "fraud", "complaint". <strong>NO:</strong> cadena de empresas disueltas, demandas de exsocios, resistencia a poner todo por escrito.</p>
+<p><strong>Oferta de trabajo:</strong> verifica que la empresa exista en el registro mercantil; que el dominio del correo coincida con el sitio oficial (no Gmail); que la vacante esté en el sitio oficial; busca "[empresa] + scam". Regla absoluta: <strong>ningún empleo legítimo te pide dinero ni te envía un cheque para que reenvíes una parte.</strong> <strong>NO:</strong> pagos por adelantado, entrevistas solo por chat, cheques para "procesar pagos".</p>
+<p><strong>Contratista / handyman:</strong> verifica la licencia en el sitio estatal (en Florida, myfloridalicense.com); pide certificado de seguro y confirma con la aseguradora; revisa BBB (bbb.org) y reseñas en varias plataformas; busca demandas en la corte del condado. <strong>NO:</strong> sin licencia cuando el oficio la exige, pide más del 10-30% de adelanto, solo acepta efectivo, sin contrato escrito.</p>
+<p><strong>Vendedor online:</strong> antigüedad del perfil o dominio (whois para sitios web); búsqueda inversa de las fotos del producto; reseñas fuera de su propia página; método de pago con protección (tarjeta de crédito, PayPal Goods &amp; Services), nunca Zelle ni transferencia a un desconocido. <strong>NO:</strong> precio demasiado bueno, presión de tiempo, solo acepta pagos sin protección.</p>
+<p><strong>Para el futuro investigador:</strong> este flujo —base universal + módulo específico— es tu plantilla de servicio. Documenta cada fuente consultada y la fecha, entrega un informe ordenado, y deja claro al cliente que reportas hechos de registro público, no conclusiones legales.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🗂️</span><h4>5. Qué evidencia guardar</h4></div>
+    <div class="sec-b"><p>Lo que no documentas, no existe. Guarda:</p>
+<ul>
+<li><strong>Capturas de pantalla completas</strong> que incluyan la URL y la fecha visible (en Windows: Win+Shift+S; mejor aún, imprime la página a PDF, que conserva URL y fecha).</li>
+<li><strong>Perfiles y anuncios</strong>: guárdalos el primer día; los estafadores borran todo al sentirse descubiertos.</li>
+<li><strong>Conversaciones completas</strong> (no fragmentos): exporta chats, guarda correos con encabezados.</li>
+<li><strong>Resultados de registros públicos</strong>: número de caso, condado, fecha de consulta. Los casos se pueden citar; tu memoria no.</li>
+<li><strong>Recibos, contratos y comprobantes de pago.</strong></li>
+</ul>
+<p>Organiza todo en una carpeta por persona/caso: <code>Apellido_Nombre_Fecha</code>, con subcarpetas (fotos, registros, conversaciones). Haz respaldo en la nube. Si el caso termina en denuncia, esa carpeta es oro para la policía o tu abogado. Si eres investigador, esa carpeta ES tu producto entregable.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⛔</span><h4>6. Errores que evitar</h4></div>
+    <div class="sec-b"><ol>
+<li><strong>Verificar después de pagar o firmar.</strong> El orden lo es todo: la investigación previene; después solo lamenta.</li>
+<li><strong>Confiar en las referencias que te da el investigado.</strong> Él escoge a sus amigos. Busca fuentes que él no controla.</li>
+<li><strong>Confrontar antes de terminar de investigar.</strong> Si lo alertas a la mitad, borra evidencia y desaparece. Primero documenta, después decide.</li>
+<li><strong>Dejarse llevar por la simpatía.</strong> Los estafadores profesionales son encantadores por oficio; el encanto no es evidencia.</li>
+<li><strong>Buscar solo una vez y solo en Google.</strong> Una fuente no es verificación. Cruza al menos tres fuentes independientes.</li>
+<li><strong>Cruzar la línea legal:</strong> entrar a cuentas ajenas, instalar apps espía, hacerse pasar por otra persona. Conviertes a la víctima en acusado y contaminas todo.</li>
+<li><strong>Ignorar tu propia evidencia.</strong> El error más caro: encontrar la bandera roja y decir "seguro hay una explicación". Si los registros contradicen su historia, cree a los registros.</li>
+<li><strong>(Para el futuro investigador) Prometer lo que la ley no permite.</strong> Nunca ofrezcas "sacar mensajes del teléfono" de alguien. Eso destruye tu licencia y tu libertad.</li>
+</ol></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">✅</span><h4>7. Checklist accionable</h4></div>
+    <div class="sec-b"><p>Antes de confiar, firmar, pagar, contratar o enamorarte:</p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck0"><span class="box"></span><span class="cktxt">Busqué el nombre completo entre comillas en Google (+ ciudad, teléfono, correo)</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck1"><span class="box"></span><span class="cktxt">Hice búsqueda inversa de sus fotos (Google Imágenes / TinEye)</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck2"><span class="box"></span><span class="cktxt">Hice búsqueda inversa de su teléfono y correo</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck3"><span class="box"></span><span class="cktxt">Revisé sus redes sociales: antigüedad, coherencia, interacciones reales</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck4"><span class="box"></span><span class="cktxt">Consulté las cortes del condado (civil y criminal) donde vive o vivió</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck5"><span class="box"></span><span class="cktxt">Verifiqué licencias o certificaciones con la entidad estatal emisora</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck6"><span class="box"></span><span class="cktxt">Si hay empresa: la busqué en el registro mercantil del estado (Sunbiz o equivalente)</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck7"><span class="box"></span><span class="cktxt">Revisé BBB y reseñas en plataformas que la persona no controla</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck8"><span class="box"></span><span class="cktxt">Llamé a referencias por números que conseguí de forma independiente</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck9"><span class="box"></span><span class="cktxt">Confirmé identidad con ID oficial o videollamada en vivo</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck10"><span class="box"></span><span class="cktxt">El método de pago tiene protección (nunca tarjetas de regalo, cripto ni Zelle a desconocidos)</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck11"><span class="box"></span><span class="cktxt">Guardé capturas, PDFs y conversaciones en una carpeta organizada con fechas</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck12"><span class="box"></span><span class="cktxt">Crucé al menos 3 fuentes independientes antes de decidir</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m3-ck13"><span class="box"></span><span class="cktxt">Si encontré una bandera roja grave, dije NO sin negociar conmigo mismo</span></label></li>
+</ul>
+<hr>
+<p><strong>Siguiente parada: Bloque 2.</strong> Ya tienes la mentalidad y el método: dudar con sistema, verificar con fuentes legales y documentar todo. Ahora vamos a meternos en la cabeza del enemigo. En el <strong>Módulo 4 — Anatomía de una estafa moderna</strong> vas a desarmar, pieza por pieza, cómo se construye un fraude de hoy: el gancho, la historia, la presión y el cobro. Cuando entiendas el mecanismo, ninguna estafa volverá a parecerte original.</p></div>
+  </section>
+  <div class="mfoot">
+    <button class="donebtn" data-done="m3">Marcar módulo como completado</button>
+    <button class="nextbtn" data-go="m4">Siguiente: M4 — Anatomía de una estafa moderna →</button>
+    <button class="homebtn" data-go="home">⌂ Volver al inicio</button>
+  </div>
+</div>
+
+<div class="view" id="view-m4">
+  <div class="mhead">
+    <span class="eyebrow">Bloque 2 · Estafas modernas · Origen: 🆕 Nuevo · Manual Digital Vivo v1.0</span>
+    <h2>Anatomía de una estafa moderna</h2>
+    <p class="sub"><em>Al terminar este módulo vas a poder hacer algo que muy poca gente sabe hacer: mirar cualquier mensaje, llamada u "oportunidad" y desarmarla por dentro. Vas a reconocer las cinco palancas emocionales que usan todos los estafadores del mundo, vas a entender por qué caen personas inteligentes (y por qué tú no estás exento), y vas a tener un checklist que delata a cualquier estafa sin importar si llega por teléfono, WhatsApp, correo o en persona.</em></p>
+  </div>
+  
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">💡</span><h4>1. Explicación clara</h4></div>
+    <div class="sec-b"><p>Llevo décadas investigando fraudes, y te voy a decir algo que casi nadie acepta a la primera: <strong>las estafas modernas no atacan tu inteligencia, atacan tus emociones.</strong> Ese es el secreto completo de este oficio, y por eso este módulo es la columna vertebral del manual.</p>
+<p>Una estafa moderna no es un correo mal escrito de un "príncipe" lejano. Hoy es una operación profesional: hay guiones probados, centros de llamadas, perfiles falsos con fotos creíbles, páginas web clonadas y, cada vez más, voces e imágenes generadas con inteligencia artificial. Cambia el disfraz, pero la maquinaria de fondo es siempre la misma. Toda estafa, sin excepción, sigue cuatro fases:</p>
+<ol>
+<li><strong>Contacto:</strong> llegan a ti por un canal cotidiano (llamada, mensaje, red social, anuncio, incluso tocando tu puerta).</li>
+<li><strong>Gancho emocional:</strong> activan una emoción fuerte para apagar tu pensamiento crítico.</li>
+<li><strong>Aislamiento y presión:</strong> te piden secreto ("no le digas a nadie"), te meten prisa y controlan la conversación.</li>
+<li><strong>Extracción:</strong> te sacan dinero, datos personales o acceso a tus cuentas. Y si pagaste una vez, vuelven por más.</li>
+</ol>
+<p>Las cinco palancas emocionales que usan en la fase dos son estas. Apréndetelas como un investigador se aprende los rostros de los sospechosos:</p>
+<ul>
+<li><strong>Urgencia:</strong> "Tienes 30 minutos o pierdes la cuenta." La prisa es el enemigo número uno de la verificación.</li>
+<li><strong>Miedo:</strong> "Soy de inmigración / del IRS / de la policía. Hay una orden contra usted." El miedo paraliza y obedece.</li>
+<li><strong>Codicia:</strong> "Inversión garantizada, 20% mensual." La promesa de ganancia fácil nubla hasta al más educado.</li>
+<li><strong>Autoridad:</strong> uniformes, números oficiales falsificados, logos de bancos, lenguaje legal. Obedecemos a quien parece mandar.</li>
+<li><strong>Afecto:</strong> el romance en línea, el "nieto en problemas", el falso familiar accidentado. El cariño es la palanca más cruel y la más efectiva.</li>
+</ul>
+<p>¿Por qué caen personas inteligentes? Porque la inteligencia no protege contra una emoción bien activada. Un médico, un ingeniero o un empresario, bajo miedo o enamoramiento, razona igual de mal que cualquiera. Los estafadores lo saben: no buscan tontos, buscan <strong>personas en un momento vulnerable</strong> — recién llegadas al país, recién enviudadas, con un hijo lejos, con deudas, o simplemente apuradas un martes por la tarde. Si entiendes esto, dejas de preguntarte "¿cómo pudo caer?" y empiezas a preguntarte, como investigador, "¿qué emoción le activaron y por qué funcionó?".</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">📂</span><h4>2. Ejemplos reales</h4></div>
+    <div class="sec-b"><p>Estos casos son tipo: situaciones reales que veo repetirse una y otra vez, con los datos cambiados para proteger a las personas.</p>
+<p><strong>Caso 1 — El falso agente de inmigración (miedo + autoridad).</strong> Una clienta en Florida, inmigrante con su proceso migratorio en regla, recibió una llamada de un número que en pantalla aparecía como oficial. El hombre hablaba español formal, conocía su nombre completo y le dijo que había "una irregularidad" en su expediente: o pagaba $1,800 en tarjetas de regalo ese mismo día, o habría una orden de detención. Ella, aterrada, compró las tarjetas. La detuvo la cajera de la tienda, que ya conocía el patrón. Fíjate en la anatomía: autoridad falsa, miedo, urgencia y un método de pago que ninguna agencia del gobierno usa jamás.</p>
+<p><strong>Caso 2 — El romance de ocho meses (afecto + paciencia).</strong> Un señor mayor en Texas, viudo, conoció a una "ingeniera" en una red social. Ocho meses de mensajes diarios, fotos, promesas de visita. Nunca una videollamada con excusas creíbles: "mala señal en la plataforma petrolera". Cuando la confianza estaba madura, vino la emergencia: un equipo retenido en aduana, $12,000. Pagó dos veces antes de que su hija buscara ayuda. Una búsqueda inversa de las fotos mostró que pertenecían a una persona ajena a todo. La estafa romántica no tiene prisa: el estafador invierte meses porque el retorno lo vale.</p>
+<p><strong>Caso 3 — La inversión "garantizada" en cripto (codicia + prueba falsa).</strong> Un dueño de negocio en California fue invitado por un "contacto" de WhatsApp a una plataforma de inversión. Depositó $500 y a la semana su panel mostraba $700. Retiró $200 sin problema — ese retiro pequeño es parte del guion. Animado, metió $30,000. Cuando quiso retirar, le exigieron "impuestos" por adelantado. La plataforma era una pantalla pintada: los números del panel eran decoración. A esto se le conoce como "engorde del cerdo": te alimentan con ganancias falsas antes del corte final.</p>
+<p><strong>Caso 4 — El nieto en apuros, versión 2026 (afecto + urgencia + tecnología).</strong> Una abuela en Nueva Jersey recibió una llamada: la voz de su nieto, llorando, diciendo que tuvo un accidente y necesitaba dinero para la fianza. Era su voz — o eso parecía. Hoy bastan unos segundos de audio sacados de redes sociales para clonar una voz con IA. La señora estaba a punto de enviar $9,000 cuando hizo lo único que derrota a esta estafa: colgó y marcó al número de siempre de su nieto. El muchacho estaba en clase, sano y salvo.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🚩</span><h4>3. Señales de alerta</h4></div>
+    <div class="sec-b"><p>Estas banderas rojas son universales. No importa el formato de la estafa: si ves dos o más juntas, detente.</p>
+<ul>
+<li><strong>Urgencia artificial.</strong> "Es ahora o nunca", "tienes una hora". Nada legítimo se derrumba porque te tomes 24 horas para verificar. La prisa existe para que no pienses.</li>
+<li><strong>Contacto que tú no iniciaste.</strong> El banco, el gobierno o el premio te buscaron a ti, no al revés. Quien llega sin que lo llames carga la obligación de probar quién es.</li>
+<li><strong>Petición de secreto.</strong> "No le cuentes a tu familia", "no lo comentes con el banco". El secreto es el oxígeno del estafador; la luz lo mata.</li>
+<li><strong>Métodos de pago raros o irreversibles.</strong> Tarjetas de regalo, transferencias tipo Zelle o Western Union a desconocidos, criptomonedas, mensajería que recoge efectivo. Ningún organismo oficial cobra así. Nunca.</li>
+<li><strong>Emoción desproporcionada.</strong> Si el mensaje te dispara el corazón — pánico, euforia, ternura — antes de darte un solo dato verificable, eso es diseño, no casualidad.</li>
+<li><strong>Negativa a la verificación.</strong> No aceptan que cuelgues y llames al número oficial, no hacen videollamada, se molestan si preguntas. La persona honesta celebra que verifiques; el estafador lo sabotea.</li>
+<li><strong>Ganancias garantizadas.</strong> En el mundo real no existe rendimiento alto sin riesgo. "Garantizado" + "alto retorno" = fraude, en cualquier idioma.</li>
+<li><strong>Pequeñas inconsistencias.</strong> Dominio de correo que no es el oficial, español con giros extraños, el "agente" que no sabe datos que debería saber. Los detalles delatan; entrena el ojo.</li>
+</ul>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⚖️</span><h4>4. Pasos de investigación legal</h4></div>
+    <div class="sec-b"><p>Esto es lo que hago yo, y lo que puedes hacer tú, usando solo fuentes legales, observación y documentación. Nada de hackeos ni accesos indebidos: no los necesitas.</p>
+<ol>
+<li><strong>Detén el reloj.</strong> Tu primera acción es no actuar. Cuelga, no respondas, no hagas clic. La urgencia es de ellos, no tuya. Un investigador nunca trabaja al ritmo que le impone el sospechoso.</li>
+<li><strong>Verifica por un canal independiente.</strong> Si dicen ser tu banco, llama al número impreso en tu tarjeta. Si dicen ser un familiar, llámalo a su número de siempre o haz la pregunta que solo él sabría responder. Jamás verifiques usando el teléfono, enlace o correo que te dio la persona sospechosa.</li>
+<li><strong>Investiga la identidad con fuentes abiertas.</strong> Busca el nombre, el teléfono y el correo en Google entre comillas, junto a palabras como "estafa" o "scam". Haz búsqueda inversa de las fotos (Google Imágenes, TinEye). Revisa cuándo se creó el perfil o el sitio web: los dominios recién registrados y los perfiles de hace tres semanas con dos amigos hablan solos.</li>
+<li><strong>Verifica la empresa u organización.</strong> ¿Existe en los registros públicos de sociedades de su estado? ¿Tiene licencia si su actividad la requiere (inversiones, préstamos)? ¿Su dirección física es real o es un lote vacío en el mapa? Todo esto es público y gratuito.</li>
+<li><strong>Documenta mientras investigas.</strong> Captura de pantalla de todo antes de bloquear o reportar (el detalle en la sección siguiente). El estafador borra; tú preservas.</li>
+<li><strong>Reporta a las autoridades correspondientes.</strong> En EE. UU.: la FTC (reportefraude.ftc.gov, en español), el IC3 del FBI para fraudes por internet, tu banco si hubo movimientos, y la policía local para tener un número de reporte. Reportar no siempre recupera el dinero, pero crea el registro que protege a los siguientes.</li>
+<li><strong>Si ya hubo pago, actúa en horas, no en días.</strong> Llama de inmediato al banco o emisor de la tarjeta para intentar revertir o congelar, cambia contraseñas de las cuentas comprometidas y activa la verificación en dos pasos.</li>
+</ol>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🗂️</span><h4>5. Qué evidencia guardar</h4></div>
+    <div class="sec-b"><p>La evidencia mal guardada es evidencia perdida. Guarda esto, y guárdalo así:</p>
+<p><strong>Qué guardar:</strong></p>
+<ul>
+<li>Capturas de pantalla de <strong>conversaciones completas</strong>, no solo del mensaje feo final: el contexto prueba el engaño.</li>
+<li>Números de teléfono, direcciones de correo, nombres de usuario y enlaces <strong>exactos</strong> (cópialos como texto, no solo en imagen).</li>
+<li>Comprobantes de pago: recibos de transferencia, números de tarjetas de regalo y su recibo de compra, direcciones de billeteras cripto, confirmaciones del banco.</li>
+<li>Fotos y audios que te enviaron (descárgalos: los mensajes "que desaparecen" existen precisamente para borrar evidencia).</li>
+<li>Fechas y horas de cada contacto, en una línea de tiempo simple escrita por ti mientras la memoria está fresca.</li>
+</ul>
+<p><strong>Cómo guardarlo para que sirva:</strong></p>
+<ul>
+<li>Crea una carpeta única del caso (por ejemplo <code>Fraude_2026-06-09</code>) y mete ahí todo, con nombres de archivo que indiquen fecha y contenido.</li>
+<li>Haz respaldo en dos lugares: tu equipo y una nube o memoria USB. La evidencia única es evidencia frágil.</li>
+<li><strong>No edites nada.</strong> Ni recortes, ni filtros, ni "limpiar" la imagen. Una captura alterada pierde valor ante un banco o un tribunal.</li>
+<li>En las capturas, procura que se vea fecha, hora y el identificador del remitente, no solo el texto.</li>
+<li>Escribe tu relato de los hechos en un documento aparte, en orden cronológico, separando lo que viste de lo que supones. Esa disciplina — hechos por un lado, hipótesis por otro — es la marca de un buen investigador.</li>
+</ul>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⛔</span><h4>6. Errores que evitar</h4></div>
+    <div class="sec-b"><ul>
+<li><strong>Sentir vergüenza y callar.</strong> Es el error número uno. La vergüenza protege al estafador, no a ti. Caer no te hace tonto; te hace humano y, ahora, testigo valioso.</li>
+<li><strong>"Recuperar" el dinero pagando más.</strong> Los "impuestos para liberar tu retiro" y los "recuperadores de fondos" que te contactan después son la segunda fase de la misma estafa o una nueva montada sobre tu desesperación.</li>
+<li><strong>Confrontar al estafador.</strong> Insultarlo o amenazarlo solo logra que borre todo y desaparezca con tu evidencia. Silencio, documentación y reporte.</li>
+<li><strong>Verificar por el canal que ellos te dieron.</strong> Llamar "al supervisor" cuyo número te pasó el propio sospechoso es pedirle al lobo que confirme que no es lobo.</li>
+<li><strong>Borrar las conversaciones "para olvidar el mal rato".</strong> Entendible y fatal: sin evidencia no hay reporte sólido ni posibilidad de disputa bancaria.</li>
+<li><strong>Confiar en el identificador de llamadas o en una voz conocida.</strong> Ambos se falsifican hoy con facilidad. Verifica a la persona, no al aparato.</li>
+<li><strong>Creer que "a mí no me pasa".</strong> El exceso de confianza es, estadísticamente, un factor de riesgo. Los que se creen invulnerables verifican menos.</li>
+<li><strong>Dar datos "solo para confirmar".</strong> Tu fecha de nacimiento, número de seguro social o código de verificación que llega por SMS no se "confirma" a nadie que te llamó a ti. Ese código de seis dígitos es la llave de tu cuenta: quien te lo pide, te está robando.</li>
+</ul>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">✅</span><h4>7. Checklist accionable</h4></div>
+    <div class="sec-b"><p>Imprime esta lista o guárdala en tu teléfono. Pásala ante cualquier mensaje, llamada u oferta sospechosa:</p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck14"><span class="box"></span><span class="cktxt">¿Esta persona/empresa me contactó sin que yo la buscara?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck15"><span class="box"></span><span class="cktxt">¿Me están metiendo prisa o poniendo un plazo ("hoy mismo", "en una hora")?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck16"><span class="box"></span><span class="cktxt">¿Sentí una emoción fuerte (miedo, euforia, ternura, pánico) antes de tener un solo dato verificable?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck17"><span class="box"></span><span class="cktxt">¿Me pidieron guardar el secreto o no consultar con nadie?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck18"><span class="box"></span><span class="cktxt">¿El pago solicitado es por tarjetas de regalo, cripto, Zelle/transferencia a un desconocido o efectivo por mensajería?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck19"><span class="box"></span><span class="cktxt">¿Se niegan o ponen excusas a una videollamada o a que yo llame al número oficial?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck20"><span class="box"></span><span class="cktxt">¿Prometen ganancias "garantizadas" o premios que no busqué?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck21"><span class="box"></span><span class="cktxt">¿Busqué el nombre, teléfono y correo en Google junto a la palabra "estafa"?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck22"><span class="box"></span><span class="cktxt">¿Hice búsqueda inversa de las fotos del perfil?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck23"><span class="box"></span><span class="cktxt">¿Verifiqué por un canal independiente (número oficial, contacto directo de siempre)?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck24"><span class="box"></span><span class="cktxt">¿Capturé y respaldé toda la evidencia ANTES de bloquear o responder?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m4-ck25"><span class="box"></span><span class="cktxt">¿Lo consulté con una persona de confianza antes de mover un solo dólar?</span></label></li>
+</ul>
+<p><strong>Regla de oro:</strong> si marcaste "sí" en dos o más de las primeras siete, trátalo como estafa hasta que se demuestre lo contrario. La carga de la prueba es de ellos, nunca tuya.</p>
+<hr>
+<p>Ya conoces la maquinaria por dentro. En el <strong>Módulo 5 — Teléfono, WhatsApp y SMS</strong> vamos a aterrizar todo esto en el campo de batalla donde más ataques recibes cada día: tu propio teléfono. Ahí te enseño, paso a paso, a desarmar la llamada falsa, el mensaje del "banco" y el WhatsApp del falso familiar. Nos vemos en el siguiente módulo.</p></div>
+  </section>
+  <div class="mfoot">
+    <button class="donebtn" data-done="m4">Marcar módulo como completado</button>
+    <button class="nextbtn" data-go="m5">Siguiente: M5 — Teléfono, WhatsApp y SMS →</button>
+    <button class="homebtn" data-go="home">⌂ Volver al inicio</button>
+  </div>
+</div>
+
+<div class="view" id="view-m5">
+  <div class="mhead">
+    <span class="eyebrow">Bloque 2 · Estafas modernas · Origen: 🆕 Nuevo · Manual Digital Vivo v1.0</span>
+    <h2>Teléfono, WhatsApp y SMS</h2>
+    <p class="sub"><em>Al terminar este módulo vas a saber reconocer en segundos las estafas más comunes que llegan por llamada, WhatsApp y mensaje de texto, verificar quién te contacta realmente sin caer en la trampa, y cortar el ataque a tiempo — incluso si ya cometiste el error de dar un código. Y si estás aprendiendo el oficio de investigador, aquí está el método paso a paso que uso con mis clientes.</em></p>
+  </div>
+  
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">💡</span><h4>1. Explicación clara</h4></div>
+    <div class="sec-b"><p>Tu teléfono es la puerta principal de tu vida digital. Por ahí entran tu banco, tu WhatsApp, tu correo, tus fotos familiares. Y los estafadores lo saben: hoy el ataque más rentable del mundo no requiere hackear nada — basta con llamarte o escribirte y lograr que tú mismo abras la puerta.</p>
+<p>Te explico los términos sin tecnicismos, porque los vas a ver el resto del manual:</p>
+<ul>
+<li><strong>Vishing</strong>: la estafa por llamada de voz. Alguien se hace pasar por tu banco, por el IRS, por la policía o por un familiar en apuros.</li>
+<li><strong>Smishing</strong>: la estafa por mensaje de texto (SMS). Llega un enlace que parece de tu banco, del correo postal o de una empresa de paquetería, y al tocarlo te roba datos o te instala algo.</li>
+<li><strong>Spoofing de número</strong>: tecnología que permite que en tu pantalla aparezca un número falso. Sí, leíste bien: el estafador puede hacer que su llamada se muestre como si viniera del número real de tu banco. Por eso la regla de oro de este módulo es: <strong>el número que ves en pantalla no prueba nada</strong>.</li>
+<li><strong>Robo de códigos de verificación</strong>: el premio mayor. Ese código de 6 dígitos que te llega por SMS es la llave de tu WhatsApp, tu Gmail o tu cuenta bancaria. Quien te lo saca con engaños, entra como si fuera tú.</li>
+</ul>
+<p>¿Por qué te importa? Porque estas estafas no atacan computadoras: atacan emociones. Miedo ("tu hijo tuvo un accidente"), urgencia ("su cuenta será bloqueada en 30 minutos"), codicia ("ganaste un premio") o autoridad ("habla el agente Rodríguez del IRS"). El estafador necesita que reacciones antes de pensar. Todo el método de defensa que vas a aprender se reduce a una cosa: ganar tiempo y verificar por otro canal.</p>
+<p>Para el futuro investigador: este módulo te enseña a leer el guion del estafador. Cuando entiendes la estructura del ataque — gancho emocional, urgencia, canal de pago imposible de rastrear — puedes reconocer cualquier variante nueva, aunque nunca la hayas visto antes.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">📂</span><h4>2. Ejemplos reales</h4></div>
+    <div class="sec-b"><p><strong>Caso 1 — El código de WhatsApp.</strong> Una clienta en Medellín recibió un mensaje de su prima: "Hola, te mandé un código de 6 dígitos por error, ¿me lo pasas?". Era la cuenta de la prima, ya secuestrada por el estafador. Ella pasó el código… y perdió su propio WhatsApp en menos de un minuto. Con su cuenta, el delincuente pidió dinero prestado a 40 contactos suyos, incluidos sus padres. Tres familiares depositaron antes de que alguien sospechara.</p>
+<p><strong>Caso 2 — "Tu hijo tuvo un accidente".</strong> Un cliente en Cali recibió una llamada: una voz alterada, gritos de fondo, alguien que decía ser paramédico: "Su hijo está grave, necesitamos autorizar un procedimiento, deposite ya". El hombre estaba a punto de transferir cuando su esposa, con el otro teléfono, llamó directamente al hijo: estaba en clase, sin un rasguño. La llamada era un guion grabado que lanzan a miles de números esperando que alguno tenga un hijo y entre en pánico.</p>
+<p><strong>Caso 3 — El paquete retenido.</strong> Una señora mayor en Houston, inmigrante, recibió un SMS: "USPS: su paquete está retenido por falta de datos. Confirme aquí". El enlace llevaba a una página idéntica a la del correo postal que pedía dirección y tarjeta "para pagar $0.30 de reenvío". Esos 30 centavos eran el anzuelo: lo que valía era el número completo de su tarjeta, que usaron esa misma noche.</p>
+<p><strong>Caso 4 — El secuestro virtual.</strong> Un empresario en Ciudad de México recibió una llamada desde un número desconocido: una voz de mujer llorando que decía "papá, ayúdame", seguida de un hombre exigiendo rescate inmediato y prohibiéndole colgar. Le ordenaron mantenerse en línea para que no pudiera verificar. Su socio, presente, escribió por WhatsApp a la hija: respondió en dos minutos desde su oficina. No había secuestro. Solo teatro telefónico. Quien no logra verificar, paga.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🚩</span><h4>3. Señales de alerta</h4></div>
+    <div class="sec-b"><ul>
+<li><strong>Te piden un código de verificación.</strong> Ningún banco, ni Google, ni WhatsApp, ni un familiar legítimo te va a pedir jamás que les leas un código que llegó a tu teléfono. Ese código es solo para que TÚ lo escribas en TU pantalla. Pedírtelo = estafa, sin excepciones.</li>
+<li><strong>Urgencia extrema con plazo corto.</strong> "En 30 minutos", "ahora mismo", "no cuelgue". La prisa es la herramienta del estafador; la calma es la tuya.</li>
+<li><strong>Te prohíben colgar o consultar a alguien.</strong> El secreto y el aislamiento son banderas rojas gigantes. Quien es legítimo no teme que verifiques.</li>
+<li><strong>Carga emocional desproporcionada.</strong> Accidentes, detenciones, secuestros, premios millonarios. Emoción fuerte + decisión de dinero = detente.</li>
+<li><strong>Métodos de pago raros.</strong> Tarjetas de regalo, criptomonedas, transferencias a cuentas personales, Western Union a nombres desconocidos. Ninguna entidad seria cobra así.</li>
+<li><strong>Enlaces acortados o dominios extraños.</strong> "usps-paquetes-mx.info" no es USPS. Mira el dominio completo antes del primer "/". Si dudas, no toques el enlace.</li>
+<li><strong>Errores de redacción o tono impersonal.</strong> "Estimado cliente" en lugar de tu nombre, ortografía rara, mezcla de idiomas.</li>
+<li><strong>El número "coincide" con el oficial.</strong> Recuerda: el spoofing existe. Que la pantalla diga el número de tu banco no prueba que sea tu banco. Solo prueba que alguien quiere que lo creas.</li>
+<li><strong>Llamada de "autoridad" pidiendo pago telefónico.</strong> El IRS, la policía y los juzgados no cobran multas por teléfono ni amenazan con arresto inmediato. Nunca. Esa llamada en EE.UU. ha despojado a miles de inmigrantes que temen problemas migratorios — el miedo es el producto que venden.</li>
+</ul></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⚖️</span><h4>4. Pasos de investigación legal</h4></div>
+    <div class="sec-b"><p>Este es el método que aplico y que enseño. Todo es legal: observación, verificación con la fuente real y documentación.</p>
+<p><strong>Paso 1 — Congela. No respondas en caliente.</strong> Di "te devuelvo la llamada" y cuelga, o simplemente no contestes el mensaje. Ningún asunto legítimo se daña por 10 minutos de espera. Todos los fraudulentos sí.</p>
+<p><strong>Paso 2 — Verifica por el canal independiente.</strong> Esta es la jugada maestra: nunca verifiques usando el contacto que ellos te dieron. Si "llamó tu banco", llama tú al número impreso al reverso de tu tarjeta. Si "escribió tu hijo", llámalo a su número de siempre o a alguien que esté físicamente con él. Si "es un paquete", entra tú mismo al sitio oficial de la paquetería escribiendo la dirección a mano y rastrea con tu número de guía real.</p>
+<p><strong>Paso 3 — Investiga el número (fuentes legales).</strong> Busca el número entre comillas en Google: si es parte de una campaña de estafa, casi siempre hay reportes públicos. Revisa si la app de tu teléfono o tu operadora lo marca como "spam probable". Para el investigador: documenta fecha, hora, número exacto y guion usado — ese patrón te servirá para conectar casos.</p>
+<p><strong>Paso 4 — Analiza el enlace sin abrirlo.</strong> Mantén presionado el enlace (sin soltar sobre "abrir") para ver la URL completa, o léela en la vista previa. Compara el dominio con el oficial letra por letra. Ante la mínima duda, no lo abras: ve directo al sitio oficial por tu cuenta.</p>
+<p><strong>Paso 5 — Si ya diste un código, actúa en minutos, no en horas:</strong></p>
+<ul>
+<li><em>WhatsApp robado</em>: reinstala WhatsApp, ingresa tu número y pide el nuevo código por SMS. Al recuperar la cuenta, el estafador queda fuera. Luego activa la <strong>verificación en dos pasos</strong> (Ajustes → Cuenta → Verificación en dos pasos) y avisa a tus contactos que ignoren pedidos de dinero.</li>
+<li><em>Código de Gmail u otro correo</em>: entra de inmediato a la cuenta, cambia la contraseña, cierra todas las sesiones activas y revisa que no hayan agregado correos o teléfonos de recuperación ajenos.</li>
+<li><em>Código o datos bancarios</em>: llama al banco al número oficial AHORA, pide bloqueo de tarjeta/cuenta y reporta la operación. Los primeros 30 minutos deciden si el dinero se recupera o no.</li>
+</ul>
+<p><strong>Paso 6 — Reporta.</strong> En EE.UU.: FTC (reportfraud.ftc.gov) y, si hubo pérdida, la policía local. En Latinoamérica: la fiscalía o unidad de delitos informáticos de tu país y tu banco. En WhatsApp: abre el chat → Reportar contacto. Reportar no siempre recupera dinero, pero alimenta los sistemas que bloquean al estafador y crea el registro oficial que necesitarás para cualquier reclamo.</p>
+<p><strong>Paso 7 — Blinda antes del próximo intento.</strong> Activa verificación en dos pasos en WhatsApp, correo y banca; acuerda una <strong>palabra clave familiar</strong> (una palabra secreta que cualquier pariente debe decir en una emergencia real); y conversa este módulo con los mayores de tu casa — son el blanco favorito.</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🗂️</span><h4>5. Qué evidencia guardar</h4></div>
+    <div class="sec-b"><p>La evidencia mal guardada no sirve ni para el banco ni para la fiscalía. Guárdala así:</p>
+<ul>
+<li><strong>Capturas de pantalla completas</strong> del chat o SMS, donde se vea el número remitente, la fecha y la hora — no solo el mensaje recortado.</li>
+<li><strong>No borres la conversación original.</strong> La captura es respaldo; el chat en el teléfono es la evidencia primaria que un perito puede validar.</li>
+<li><strong>Registro de llamadas</strong>: captura de pantalla del historial mostrando número, fecha, hora y duración.</li>
+<li><strong>La URL exacta</strong> del enlace malicioso, copiada como texto (sin abrirla) en una nota.</li>
+<li><strong>Comprobantes de cualquier pago</strong>: transferencias, números de referencia, recibos de tarjetas de regalo con su código.</li>
+<li><strong>Una bitácora simple</strong>: en una nota o cuaderno escribe qué pasó, en qué orden, qué dijiste y qué dijeron. La memoria se deforma en 48 horas; el papel no.</li>
+<li><strong>Respaldo fuera del teléfono</strong>: envía las capturas a tu propio correo o a la nube. Si pierdes el aparato, no pierdes el caso.</li>
+<li><strong>Para el investigador</strong>: nombra los archivos con formato fecha-hora-fuente (ej. <code>2026-06-09_1430_SMS_paquete.jpg</code>). Una cronología limpia vale más que cien capturas sueltas.</li>
+</ul></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⛔</span><h4>6. Errores que evitar</h4></div>
+    <div class="sec-b"><ul>
+<li><strong>Devolver la llamada al mismo número que te llamó.</strong> Estás llamando al estafador. Verifica siempre por el canal que tú obtienes de forma independiente.</li>
+<li><strong>"Solo era una llamada, colgué y ya".</strong> Sin reporte y sin evidencia, el siguiente de la lista cae. Y si te vuelven a atacar, no tienes historial.</li>
+<li><strong>Pasar un código "porque era mi prima".</strong> La cuenta puede ser de tu prima; quien escribe, no. Llama por voz antes de pasar cualquier cosa.</li>
+<li><strong>Tocar el enlace "solo para ver".</strong> Algunas páginas roban datos o instalan software con la pura visita. Mirar no es gratis.</li>
+<li><strong>Pagar "para verificar si es cierto".</strong> Nunca pagues como método de verificación. Verificar es gratis; pagar es irreversible.</li>
+<li><strong>Seguir hablando para "investigar" al estafador.</strong> No eres tú quien debe jugarle al gato y al ratón; cada minuto en línea es información que él te saca a ti. Cuelga, documenta, reporta.</li>
+<li><strong>Avergonzarse y callar.</strong> Las víctimas que callan pierden dos veces: el dinero y la posibilidad de frenar el fraude. Caer en una estafa profesional no es tontería; es estadística.</li>
+<li><strong>Confiar porque "sabían mis datos".</strong> Que tengan tu nombre, tu banco o los últimos 4 dígitos de tu tarjeta no prueba legitimidad: esos datos circulan en filtraciones. La confianza se verifica, no se regala.</li>
+</ul></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">✅</span><h4>7. Checklist accionable</h4></div>
+    <div class="sec-b"><p><strong>Antes (blindaje, hazlo hoy):</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck26"><span class="box"></span><span class="cktxt">Activé la verificación en dos pasos en WhatsApp (Ajustes → Cuenta).</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck27"><span class="box"></span><span class="cktxt">Activé la verificación en dos pasos en mi correo y mi banca.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck28"><span class="box"></span><span class="cktxt">Acordé una palabra clave de emergencia con mi familia.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck29"><span class="box"></span><span class="cktxt">Hablé de estas estafas con los mayores y los jóvenes de mi casa.</span></label></li>
+</ul>
+<p><strong>Durante (cuando llegue la llamada o el mensaje):</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck30"><span class="box"></span><span class="cktxt">No di ningún código de verificación a nadie, por ningún motivo.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck31"><span class="box"></span><span class="cktxt">No toqué el enlace; revisé el dominio completo sin abrirlo.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck32"><span class="box"></span><span class="cktxt">Colgué o dejé de responder antes de decidir nada.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck33"><span class="box"></span><span class="cktxt">Verifiqué por un canal independiente (número oficial al reverso de la tarjeta, llamada directa al familiar, sitio oficial escrito a mano).</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck34"><span class="box"></span><span class="cktxt">Recordé que el número en pantalla puede ser falsificado.</span></label></li>
+</ul>
+<p><strong>Después (si hubo contacto o caída):</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck35"><span class="box"></span><span class="cktxt">Guardé capturas completas, registro de llamadas y la URL como texto.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck36"><span class="box"></span><span class="cktxt">Si di un código: recuperé la cuenta y cambié contraseñas de inmediato.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck37"><span class="box"></span><span class="cktxt">Si di datos bancarios: llamé al banco oficial y bloqueé la tarjeta.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck38"><span class="box"></span><span class="cktxt">Reporté a la autoridad correspondiente y a la plataforma.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m5-ck39"><span class="box"></span><span class="cktxt">Escribí mi bitácora del incidente con fechas y horas.</span></label></li>
+</ul>
+<hr>
+<p><em>El teléfono es el ataque masivo: lanzan miles de anzuelos y esperan. Pero hay otra estafa más paciente, que no busca tu pánico sino tu corazón, y que puede durar meses antes de pedir el primer centavo. En el <strong>Módulo 6 — Estafas románticas internacionales</strong> te enseño a detectarla antes de que duela.</em></p></div>
+  </section>
+  <div class="mfoot">
+    <button class="donebtn" data-done="m5">Marcar módulo como completado</button>
+    <button class="nextbtn" data-go="m6">Siguiente: M6 — Estafas románticas internacionales →</button>
+    <button class="homebtn" data-go="home">⌂ Volver al inicio</button>
+  </div>
+</div>
+
+<div class="view" id="view-m6">
+  <div class="mhead">
+    <span class="eyebrow">Bloque 2 · Estafas modernas · Origen: 🆕 Nuevo · Manual Digital Vivo v1.0</span>
+    <h2>Estafas románticas internacionales</h2>
+    <p class="sub"><em>Al terminar este módulo vas a saber reconocer el guion exacto que usan los estafadores románticos en apps de citas y redes sociales, verificar con métodos legales la identidad de cualquier persona que conociste en línea, y —si tú o alguien que quieres ya está dentro de una de estas trampas— salir con dignidad, con evidencia en mano y sin enviar un dólar más.</em></p>
+  </div>
+  
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">💡</span><h4>1. Explicación clara</h4></div>
+    <div class="sec-b"><p>Una estafa romántica internacional es un fraude donde alguien construye una relación sentimental falsa contigo —por meses si hace falta— con un solo objetivo: tu dinero. No es un ladrón apurado. Es un profesional paciente que trabaja con guiones probados, fotos robadas y, cada vez más, con equipos enteros operando desde otro país.</p>
+<p>¿Por qué te importa? Porque es uno de los fraudes que más dinero roba en el mundo, y porque no le pasa "a los tontos". Le pasa a médicos, a maestras, a ingenieros, a abuelas y a muchachos de 25 años. El estafador no ataca tu inteligencia: ataca tu soledad. Y la soledad no distingue títulos universitarios.</p>
+<p>Te lo digo con décadas en este oficio: la víctima de estafa romántica es la que más vergüenza siente y la que menos denuncia. Por eso este módulo tiene una regla de oro, tanto para ti como para el futuro investigador que me lee: <strong>aquí no se juzga a nadie. Cualquiera puede caer.</strong> Quien se enamoró no fue ingenuo; fue humano frente a un profesional del engaño.</p>
+<p>El guion casi siempre es el mismo, con variaciones:</p>
+<ol>
+<li><strong>El contacto:</strong> un perfil atractivo te escribe en una app de citas, en Facebook, en Instagram, o "por error" por WhatsApp.</li>
+<li><strong>El amor acelerado (love bombing):</strong> en días te dice que eres especial, que nunca sintió algo así. Te escribe de mañana, tarde y noche.</li>
+<li><strong>El personaje lejano:</strong> militar estadounidense en misión, ingeniero en una plataforma petrolera, médico de la ONU, viudo con una hija en internado. Siempre hay una razón "lógica" para no verse en persona.</li>
+<li><strong>El aislamiento:</strong> te pide pasar de la app a WhatsApp o Telegram, donde nadie modera. A veces te pide discreción: "lo nuestro es solo nuestro".</li>
+<li><strong>La emergencia:</strong> una aduana retuvo su equipaje, la hija enfermó, necesita pagar un permiso para salir de la misión y venir a verte. La primera cifra es pequeña. Nunca es la última.</li>
+<li><strong>La variante "pig butchering" (engorde del cerdo):</strong> en lugar de pedirte dinero directo, te "enseña" a invertir en criptomonedas en una plataforma falsa. Te deja ganar al principio, incluso retirar algo. Cuando inviertes fuerte —ahorros, retiro, préstamos— la plataforma se "congela" y todo desaparece. El nombre es cruel pero exacto: te engordan antes del sacrificio.</li>
+</ol>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">📂</span><h4>2. Ejemplos reales</h4></div>
+    <div class="sec-b"><p>Casos tipo, construidos sobre patrones que veo una y otra vez. Los nombres y detalles son ilustrativos.</p>
+<p><strong>La viuda de Miami y el "general".</strong> Una señora de 67 años, viuda reciente, acepta una solicitud de amistad de un apuesto general estadounidense destacado en Siria. En tres semanas él la llama "mi esposa". Al mes, necesita 800 dólares para "tarifas de comunicación satelital". Luego 5,000 para un permiso de salida. Luego 12,000 porque su "caja de ahorros" quedó retenida en una aduana y un "diplomático" la traerá a Miami. Cuando su hija me trajo el caso, la señora había enviado 38,000 dólares en giros y tarjetas de regalo. La foto del general era de un militar real cuya imagen circula en cientos de perfiles falsos.</p>
+<p><strong>El inmigrante en Houston y la "inversionista".</strong> Un hombre de 41 años, recién llegado, recibe un WhatsApp: "Hola Carlos, ¿llegamos a las 7?". Él responde que se equivocó de número. Ella se disculpa con simpatía, la charla sigue, y en semanas es su confidente: una joven asiática, exitosa, que invierte en criptomonedas. Le enseña a usar una plataforma con gráficas profesionales. Él mete 500 dólares y retira 650. Convencido, invierte 22,000 —parte prestada. Al intentar retirar, la plataforma le exige un "impuesto" del 20% por adelantado. Pig butchering de manual: hasta el "error" del primer mensaje era parte del guion.</p>
+<p><strong>El divorciado y la "doctora de la ONU".</strong> Un señor de 58 años en Bogotá conoce en una app a una doctora europea en misión humanitaria en África. Videollamadas cortas, "con mala señal", donde ella apenas se mueve y la voz no siempre cuadra con los labios: video robado y manipulado, hoy cada vez más fino gracias a herramientas de inteligencia artificial. La emergencia llegó al mes y medio: secuestraron sus suministros médicos y necesitaba 7,000 dólares. Él alcanzó a enviar 2,000 antes de que un sobrino sospechara y buscara ayuda.</p>
+<p><strong>La profesional joven que no denunció.</strong> Una contadora de 34 años —preparada, escéptica— mantuvo una relación en línea de siete meses con un "arquitecto turco". Perdió 15,000 dólares en una falsa inversión conjunta para "su futuro juntos". Nunca denunció: "¿Cómo explico que caí en esto, si yo audito fraudes?". Su caso es el más común de todos: el que nadie cuenta.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🚩</span><h4>3. Señales de alerta</h4></div>
+    <div class="sec-b"><p>Ninguna señal aislada condena a nadie; tres o más juntas, sí.</p>
+<ul>
+<li><strong>Amor exprés.</strong> Declaraciones intensas en días o pocas semanas. El amor real camina; el guion corre, porque al estafador el tiempo le cuesta dinero.</li>
+<li><strong>Perfil demasiado perfecto.</strong> Fotos de catálogo, profesión prestigiosa, viudez trágica, pocos amigos o seguidores, cuenta creada hace poco.</li>
+<li><strong>Trabaja lejos y "no puede" verse.</strong> Militar en misión, plataforma petrolera, barco, misión humanitaria. Lugares que justifican distancia, horarios raros y "mala señal".</li>
+<li><strong>Evita la videollamada espontánea</strong> o aparece en llamadas cortas, borrosas, sin interactuar con naturalidad. Ojo: con los deepfakes actuales, una videollamada ya no es garantía absoluta — es una prueba más, no la prueba final.</li>
+<li><strong>Te saca rápido de la plataforma</strong> hacia WhatsApp o Telegram, y te pide discreción sobre la relación.</li>
+<li><strong>Aparece una emergencia con dinero de por medio.</strong> La señal definitiva. Aduanas, hospitales, permisos, boletos, impuestos de retiro. No importa el cuento: el final es una transferencia.</li>
+<li><strong>Métodos de pago raros:</strong> criptomonedas, tarjetas de regalo, giros internacionales, transferencias a nombre de terceros ("mi asistente", "mi abogado"). Ningún militar cobra en tarjetas de Amazon.</li>
+<li><strong>Te enseña a "invertir"</strong> en una plataforma que él recomienda y que no aparece en las tiendas oficiales de aplicaciones ni en registros financieros.</li>
+<li><strong>Errores de coherencia:</strong> horarios que no cuadran con su supuesto país, modismos extraños, frases que parecen traducidas, historias que cambian en los detalles.</li>
+<li><strong>Te aísla:</strong> te sugiere no contarle "todavía" a tu familia, o se molesta cuando mencionas que un hijo o amigo hizo preguntas.</li>
+</ul>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⚖️</span><h4>4. Pasos de investigación legal</h4></div>
+    <div class="sec-b"><p>Todo lo que sigue es legal: fuentes abiertas, observación y sentido común. Nada de hackear, suplantar ni acceder a cuentas ajenas. Esto aplica igual si te verificas a tu propio pretendiente o si, como futuro investigador, recibes el caso de un cliente.</p>
+<p><strong>Paso 1 — Búsqueda inversa de imágenes.</strong> Guarda las fotos del perfil y súbelas a Google Imágenes (o Google Lens), TinEye y Yandex Images. Si la misma cara aparece con otros nombres, en perfiles distintos o pertenece a un modelo, influencer o militar real, ya tienes tu respuesta. Hazlo con varias fotos, no solo una.</p>
+<p><strong>Paso 2 — Verifica el nombre y los datos.</strong> Busca su nombre completo entre comillas, junto con su profesión y ciudad. Busca también frases textuales de sus mensajes románticos entre comillas: muchos guiones se copian y pegan, y otras víctimas los han publicado en foros de alertas. Revisa si su empresa existe, si su cargo es verosímil, si hay rastro profesional real (un ingeniero con 20 años de carrera deja huella pública).</p>
+<p><strong>Paso 3 — Audita el perfil.</strong> ¿Cuándo se creó la cuenta? ¿Cuántas fotos tiene y de qué fechas? ¿Sus amigos o seguidores son reales o cuentas vacías? ¿Alguien lo etiqueta en fotos cotidianas (cumpleaños, trabajo, familia)? Una vida real deja desorden; un perfil falso es una vitrina ordenada.</p>
+<p><strong>Paso 4 — Pide una videollamada espontánea.</strong> Tú propones el momento, sin aviso largo. Pídele algo imposible de pregrabar: que se toque la nariz, que muestre la ventana, que escriba tu nombre en un papel y lo muestre. Las negativas repetidas, con excusas siempre nuevas, son una respuesta en sí mismas. Y recuerda: aun una videollamada puede falsificarse, así que combínala con los pasos anteriores.</p>
+<p><strong>Paso 5 — Contrasta la historia.</strong> ¿Su horario de conexión coincide con el país donde dice estar? ¿El "campamento militar" que menciona existe? Las fuerzas armadas de EE. UU., por ejemplo, han publicado avisos oficiales: el personal en misión no necesita dinero de civiles para permisos, comida ni comunicaciones. Punto.</p>
+<p><strong>Paso 6 — Verifica la plataforma de inversión, si la hay.</strong> Búscala en los registros oficiales de tu país (reguladores financieros) y en listas públicas de alertas de fraude. Si solo se descarga desde un enlace que él te mandó, ya sabes lo que es.</p>
+<p><strong>Paso 7 — Para el futuro investigador:</strong> documenta cada paso con fecha y fuente, trabaja solo con información pública, jamás te hagas pasar por la víctima sin su consentimiento por escrito, y nunca contactes al estafador para "negociar". Tu producto final es un informe ordenado que la víctima pueda llevar a la policía, a su banco y, si aplica, a su abogado.</p>
+<p><strong>Paso 8 — La regla que resume todo:</strong> nunca envíes dinero, criptomonedas ni tarjetas de regalo a alguien que no has visto en persona. Sin excepciones. Esta sola regla desactiva el 100% de estas estafas.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🗂️</span><h4>5. Qué evidencia guardar</h4></div>
+    <div class="sec-b"><p>La evidencia es lo que convierte "me engañaron" en un caso. Guárdala aunque sientas vergüenza, aunque creas que no recuperarás nada: protege a la próxima víctima y a veces sí permite rastrear fondos.</p>
+<ul>
+<li><strong>Conversaciones completas:</strong> exporta los chats de WhatsApp/Telegram (función "exportar chat", con archivos adjuntos) y toma capturas de pantalla donde se vea el nombre, el número y la fecha. No borres nada, ni siquiera lo que te avergüence.</li>
+<li><strong>El perfil:</strong> capturas de pantalla del perfil completo (URL visible), fotos, biografía, lista de amigos si es pública. Hazlo pronto: estos perfiles se esfuman.</li>
+<li><strong>Datos de contacto:</strong> números de teléfono, correos, usuarios en cada plataforma, enlaces que te envió.</li>
+<li><strong>Transferencias:</strong> comprobantes de cada envío — recibos de giros, transferencias bancarias, números de tarjetas de regalo y fotos de las mismas, direcciones de billeteras de criptomonedas (esa cadena larga de letras y números: es rastreable para las autoridades), nombre y datos del receptor.</li>
+<li><strong>La plataforma falsa:</strong> capturas de la app o sitio de "inversión", tu historial de movimientos dentro de ella, el enlace de descarga.</li>
+<li><strong>Notas con fechas:</strong> una cronología simple en un documento: cuándo te contactó, qué te contó, cuándo pidió dinero, cuánto enviaste y cómo.</li>
+</ul>
+<p><strong>Cómo guardarla:</strong> crea una carpeta única (por ejemplo, <code>Caso_Romance_2026</code>), nombra los archivos con fecha (<code>2026-03-15_chat_whatsapp.pdf</code>), haz dos copias (computadora + nube o USB) y no edites los originales. Para el investigador: registra fecha de captura y fuente de cada archivo; una evidencia sin contexto vale poco ante una autoridad.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⛔</span><h4>6. Errores que evitar</h4></div>
+    <div class="sec-b"><ul>
+<li><strong>Confrontar sin evidencia.</strong> Si lo acusas a medias, el estafador llora, jura, te manda un video "probándolo" y refuerza el lazo. O desaparece borrando todo antes de que documentes. Primero guarda evidencia, después corta.</li>
+<li><strong>Enviar "una última" transferencia.</strong> El error más caro. "Solo necesito 2,000 más y por fin viajo a conocerte" es el anzuelo final. No existe la última transferencia: existe la siguiente. Quien ya pagó es el mejor cliente del estafador.</li>
+<li><strong>Pagar para "recuperar" lo perdido.</strong> Tras la estafa llegan los buitres: falsos "recuperadores de fondos" y falsos "hackers éticos" que por un adelanto prometen rescatar tu dinero. Es la segunda estafa, dirigida a las mismas víctimas. Ninguna recuperación legítima te pide criptomonedas por adelantado.</li>
+<li><strong>Borrar todo por vergüenza.</strong> Entiendo el impulso de quemarlo todo. No lo hagas: sin chats ni comprobantes no hay denuncia posible ni rastro que seguir.</li>
+<li><strong>Esconderlo de la familia.</strong> El silencio es el mejor aliado del estafador. Contárselo a una persona de confianza es, estadísticamente, lo que más estafas detiene a tiempo.</li>
+<li><strong>No denunciar.</strong> Denuncia ante la policía de tu país, tu banco (a veces puede revertir o congelar transferencias recientes), la plataforma donde te contactaron y, en EE. UU., el IC3 del FBI (ic3.gov) y la FTC. Aunque el dinero no vuelva, tu denuncia alimenta los expedientes que sí tumban estas redes.</li>
+<li><strong>Para el investigador: juzgar a la víctima o prometer recuperar el dinero.</strong> Tu primera frase debe ser "esto no fue su culpa" y tu honestidad profesional te prohíbe garantizar recuperaciones. Documenta, orienta, acompaña.</li>
+</ul>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">✅</span><h4>7. Checklist accionable</h4></div>
+    <div class="sec-b"><p><strong>Verificación antes de involucrarte (o al primer aviso de duda):</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck40"><span class="box"></span><span class="cktxt">Hice búsqueda inversa de al menos 3 fotos de su perfil (Google Lens, TinEye, Yandex)</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck41"><span class="box"></span><span class="cktxt">Busqué su nombre completo + profesión + ciudad entre comillas en Google</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck42"><span class="box"></span><span class="cktxt">Busqué frases textuales de sus mensajes románticos entre comillas</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck43"><span class="box"></span><span class="cktxt">Revisé la antigüedad del perfil, sus fotos, etiquetas y amigos reales</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck44"><span class="box"></span><span class="cktxt">Logré una videollamada espontánea con interacción natural (y sé que no es prueba absoluta)</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck45"><span class="box"></span><span class="cktxt">Su horario de conexión coincide con el país donde dice estar</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck46"><span class="box"></span><span class="cktxt">NO me ha pedido dinero, criptomonedas, tarjetas de regalo ni "inversiones"</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck47"><span class="box"></span><span class="cktxt">Le conté de esta relación a una persona de confianza</span></label></li>
+</ul>
+<p><strong>Si ya enviaste dinero o sospechas que estás dentro:</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck48"><span class="box"></span><span class="cktxt">Dejé de enviar dinero HOY — no existe la "última transferencia"</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck49"><span class="box"></span><span class="cktxt">No lo confronté todavía: primero estoy guardando toda la evidencia</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck50"><span class="box"></span><span class="cktxt">Exporté los chats completos y capturé el perfil con fecha y URL</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck51"><span class="box"></span><span class="cktxt">Reuní todos los comprobantes de pago y direcciones de billeteras cripto</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck52"><span class="box"></span><span class="cktxt">Avisé a mi banco para intentar frenar o revertir transferencias</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck53"><span class="box"></span><span class="cktxt">Denuncié ante la policía, la plataforma y (si aplica) ic3.gov / FTC</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck54"><span class="box"></span><span class="cktxt">Bloqueé al estafador en todos los canales después de documentar</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck55"><span class="box"></span><span class="cktxt">Rechacé a cualquier "recuperador de fondos" que pida pago por adelantado</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m6-ck56"><span class="box"></span><span class="cktxt">Hablé con alguien de confianza — esto no fue mi culpa, fui blanco de profesionales</span></label></li>
+</ul>
+<hr>
+<p><em>El estafador romántico te roba con tu propio corazón. El que viene ahora te roba con tu propio nombre: en el <strong>Módulo 7 — Robo de identidad</strong> vas a aprender cómo se apoderan de tus datos, qué hacen con ellos y cómo blindarte antes de que suceda.</em></p></div>
+  </section>
+  <div class="mfoot">
+    <button class="donebtn" data-done="m6">Marcar módulo como completado</button>
+    <button class="nextbtn" data-go="m7">Siguiente: M7 — Robo de identidad →</button>
+    <button class="homebtn" data-go="home">⌂ Volver al inicio</button>
+  </div>
+</div>
+
+<div class="view" id="view-m7">
+  <div class="mhead">
+    <span class="eyebrow">Bloque 2 · Estafas modernas · Origen: 🆕 Nuevo · Manual Digital Vivo v1.0</span>
+    <h2>Robo de identidad</h2>
+    <p class="sub"><em>Al terminar este módulo vas a saber exactamente cómo los criminales obtienen tus datos personales, qué hacen con ellos, cómo blindarte antes de que pase, y qué hacer —paso a paso y sin pánico— si tu identidad ya fue robada. Esto no es teoría: es el mismo protocolo que aplico con mis clientes.</em></p>
+  </div>
+  
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">💡</span><h4>1. Explicación clara</h4></div>
+    <div class="sec-b"><p>El robo de identidad es cuando alguien usa tus datos personales —tu nombre, tu número de Seguro Social (SSN), tu fecha de nacimiento, tus cuentas— para hacerse pasar por ti. No te roban la cartera: te roban <em>quién eres en los sistemas</em>. Y con eso abren tarjetas de crédito, piden préstamos, cobran tu reembolso de impuestos, reciben atención médica a tu nombre o cometen delitos que después aparecen en <em>tu</em> historial.</p>
+<p>¿Por qué te importa? Porque no necesitas ser rico ni famoso. Para el criminal, tu identidad vale dinero aunque tu cuenta de banco esté en cero: tu crédito limpio es la mercancía. Y hay un detalle que casi nadie te dice: <strong>el robo de identidad no duele el día que ocurre, duele meses después</strong>, cuando llega la carta de cobranza por una deuda que nunca hiciste.</p>
+<p>¿Cómo te roban los datos? Las cinco rutas más comunes que veo en mis casos:</p>
+<ol>
+<li><strong>Filtraciones masivas (data breaches).</strong> Una empresa donde tienes cuenta es hackeada y tus datos terminan a la venta en mercados clandestinos. Tú no hiciste nada mal; simplemente estabas en la lista.</li>
+<li><strong>Phishing.</strong> Correos, mensajes de texto o llamadas que se hacen pasar por tu banco, el IRS, Amazon o "soporte técnico" para que tú mismo entregues tus claves. Lo vimos en el módulo anterior: es la puerta de entrada favorita.</li>
+<li><strong>Documentos a la basura.</strong> Estados de cuenta, ofertas de crédito preaprobado, recetas médicas. Hay gente que se dedica a revisar basureros. Suena primitivo; sigue funcionando.</li>
+<li><strong>WiFi público sin protección.</strong> Te conectas en el aeropuerto o la cafetería, entras a tu banco, y alguien en la misma red intercepta lo que envías o te monta una red falsa con nombre parecido ("Cafe_WiFi_Gratis").</li>
+<li><strong>Apps y sitios falsos.</strong> Descargas una app de "cupones" o "rastrear paquetes" que en realidad cosecha tus datos, o llenas un formulario de "empleo" que pide tu SSN antes de cualquier entrevista. Ninguna oferta de trabajo legítima pide tu Seguro Social en el primer correo.</li>
+</ol>
+<p><strong>Para el futuro investigador:</strong> este módulo es de tus herramientas más rentables. Una buena parte de los casos que llegan a una agencia —fraudes, suplantaciones, disputas de crédito— empiezan con una identidad comprometida. Quien sabe reconstruir <em>cómo</em> se filtraron los datos, sabe por dónde empezar a investigar.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">📂</span><h4>2. Ejemplos reales</h4></div>
+    <div class="sec-b"><p><strong>Caso 1 — La señora de Hialeah y las tarjetas fantasma.</strong> Una clienta de 68 años me llamó porque le negaron el financiamiento de un carro. Su crédito, que siempre fue impecable, mostraba cuatro tarjetas abiertas en seis meses y $19,000 en deuda. Ella nunca había pedido nada. Rastreando las fechas, todo empezó dos meses después de que respondió un correo "del banco" pidiendo verificar su cuenta. Entregó su SSN y fecha de nacimiento sin saberlo. Tardamos casi un año en limpiar el reporte.</p>
+<p><strong>Caso 2 — El reembolso de impuestos que llegó primero.</strong> Un cliente en Orlando presentó sus impuestos en marzo y el IRS le rechazó la declaración: "ya existe una declaración con ese número de Seguro Social". Alguien había declarado en enero, con sus datos, y cobró el reembolso. Sus datos venían de una filtración de una clínica donde fue paciente. Tuvo que presentar el formulario de declaración jurada de robo de identidad ante el IRS y esperar meses.</p>
+<p><strong>Caso 3 — El inmigrante que "ya trabajaba" sin saberlo.</strong> Un trabajador recién llegado, con permiso laboral nuevo, descubrió al pedir su primer reporte de crédito que su número llevaba <em>años</em> siendo usado por otra persona para trabajar en otro estado. Esto es común con números de Seguro Social de inmigrantes y de niños: son identidades "limpias" que nadie revisa. El problema: los ingresos de ese desconocido aparecían como suyos ante el IRS.</p>
+<p><strong>Caso 4 — La cirugía que él nunca tuvo.</strong> Un dueño de negocio recibió una factura de hospital por $7,400 de un procedimiento en una ciudad donde jamás había estado. Fraude médico: alguien usó su identidad para recibir atención. Lo grave no es solo la deuda; es que el historial médico del impostor —tipo de sangre, alergias, diagnósticos— quedó mezclado con el suyo. Eso puede ser peligroso en una emergencia.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🚩</span><h4>3. Señales de alerta</h4></div>
+    <div class="sec-b"><p>Tu identidad probablemente ya está comprometida si notas alguna de estas señales:</p>
+<ul>
+<li><strong>Cartas de bancos o cobradores por cuentas que no abriste</strong>, o llamadas de cobranza por deudas que no reconoces.</li>
+<li><strong>Dejan de llegarte estados de cuenta o correo</strong> que antes llegaba puntual (señal de que alguien cambió tu dirección postal).</li>
+<li><strong>El IRS rechaza tu declaración</strong> porque "ya fue presentada", o te llega una carta sobre ingresos de un empleador que no conoces.</li>
+<li><strong>Cargos pequeños y raros en tus cuentas</strong> ($1, $3.99): los criminales prueban la tarjeta antes del golpe grande.</li>
+<li><strong>Te niegan crédito</strong> o tu puntaje cae de repente sin razón.</li>
+<li><strong>Facturas médicas o avisos de tu aseguradora</strong> por servicios que no recibiste.</li>
+<li><strong>Avisos de "intento de inicio de sesión"</strong> o códigos de verificación que tú no pediste.</li>
+<li><strong>Una empresa te notifica que tus datos estuvieron en una filtración.</strong> No la ignores: es tu aviso de que el reloj empezó a correr.</li>
+<li><strong>Tarjetas o documentos "de reemplazo" que tú no solicitaste</strong> llegan a tu casa — alguien está abriendo cosas a tu nombre.</li>
+</ul>
+<p>Una sola señal amerita revisión. Dos o más: activa el plan de respuesta de la sección siguiente, hoy.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⚖️</span><h4>4. Pasos de investigación legal</h4></div>
+    <div class="sec-b"><h5>Fase A — Protección preventiva (hazlo aunque "no te haya pasado nada")</h5>
+<ol>
+<li><strong>Congela tu crédito en los tres burós (EE.UU.).</strong> Es gratis, es legal y es lo más efectivo que existe: con el crédito congelado, nadie puede abrir cuentas nuevas a tu nombre, ni siquiera tú, hasta que lo descongeles con tu PIN. Hazlo en los tres, uno por uno: <strong>Equifax</strong> (equifax.com), <strong>Experian</strong> (experian.com) y <strong>TransUnion</strong> (transunion.com). Guarda los PIN en lugar seguro. Descongelar toma minutos cuando tú sí necesites crédito.</li>
+<li><strong>Revisa tu reporte de crédito gratis</strong> en AnnualCreditReport.com (el único sitio oficial). Busca cuentas, direcciones y consultas que no reconozcas.</li>
+<li><strong>Activa alertas de fraude y notificaciones bancarias.</strong> Pide a tu banco avisos por cada transacción. Una alerta de fraude en un buró obliga a verificar tu identidad antes de abrir crédito.</li>
+<li><strong>Contraseñas únicas y 2FA.</strong> Una contraseña distinta por cuenta (usa un gestor de contraseñas) y verificación en dos pasos en correo, banco y redes. Tu correo principal es la llave maestra: protégelo primero.</li>
+<li><strong>Higiene de documentos.</strong> Tritura todo papel con datos personales antes de tirarlo. No cargues tu tarjeta de Seguro Social en la cartera. No des tu SSN solo porque un formulario lo pide: pregunta si es obligatorio.</li>
+<li><strong>WiFi público:</strong> nada de bancos ni compras. Usa tus datos móviles o espera a llegar a casa.</li>
+</ol>
+<blockquote>
+<p><strong>Nota para Latinoamérica:</strong> el congelamiento de crédito como tal es figura de EE.UU., pero casi todos los países tienen su buró (Buró de Crédito en México, DataCrédito en Colombia, Veraz en Argentina, Equifax/Sentinel en Perú) donde puedes pedir tu reporte y disputar cuentas falsas. La higiene de documentos, contraseñas y 2FA aplica igual en todas partes.</p>
+</blockquote>
+<h5>Fase B — Plan de respuesta si ya ocurrió</h5>
+<ol>
+<li><strong>IdentityTheft.gov (EE.UU.).</strong> Es tu primer paso. Reporta ahí lo ocurrido: el sitio de la FTC genera tu <strong>reporte oficial de robo de identidad</strong> y un plan de recuperación personalizado. Ese reporte es tu documento maestro para todo lo demás.</li>
+<li><strong>Llama a bancos y emisores afectados.</strong> Cierra o bloquea las cuentas comprometidas, disputa los cargos por escrito y pide confirmación por escrito de cada disputa.</li>
+<li><strong>Congela el crédito en los tres burós</strong> (si no lo habías hecho) y coloca una alerta de fraude extendida usando tu reporte de la FTC.</li>
+<li><strong>Reporte policial.</strong> Acude a tu departamento local con tu reporte de IdentityTheft.gov, tu identificación y la evidencia. Muchos bancos y burós lo piden para disputas grandes.</li>
+<li><strong>Si fue fraude de impuestos:</strong> presenta el Formulario 14039 del IRS (declaración jurada de robo de identidad) y solicita un IP PIN para tus declaraciones futuras.</li>
+<li><strong>Si fue fraude médico:</strong> pide copia de los registros a la clínica u hospital y solicita por escrito la corrección de tu expediente.</li>
+<li><strong>Da seguimiento mensual</strong> a tus reportes de crédito durante al menos un año. Los criminales reciclan identidades: lo que limpias hoy puede reaparecer en seis meses.</li>
+</ol>
+<p><strong>Para el investigador:</strong> tu trabajo aquí es de reconstrucción legal: línea de tiempo (¿cuándo aparece la primera cuenta falsa?), origen probable de la filtración (¿qué pasó 30-90 días antes?), y documentación impecable para que el cliente la presente ante bancos, burós y policía. Solo fuentes públicas y legales, registros del propio cliente y solicitudes formales. Nunca accedas a cuentas ajenas ni "investigues" al impostor por vías que no resistirían un tribunal.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🗂️</span><h4>5. Qué evidencia guardar</h4></div>
+    <div class="sec-b"><p>Regla de oro: <strong>en el robo de identidad, el papel manda.</strong> Guarda:</p>
+<ul>
+<li><strong>Toda carta física</strong> de bancos, cobradores, el IRS o burós: con su sobre (el matasellos prueba fechas).</li>
+<li><strong>Estados de cuenta</strong> de los meses afectados, con los cargos fraudulentos marcados.</li>
+<li><strong>Tu reporte de IdentityTheft.gov</strong> y el número de reporte policial.</li>
+<li><strong>Reportes de crédito</strong> de los tres burós, con fecha, antes y después de las disputas.</li>
+<li><strong>Capturas de pantalla</strong> de correos de phishing, mensajes sospechosos, alertas de inicio de sesión y avisos de filtración (con fecha y hora visibles).</li>
+<li><strong>Registro de llamadas:</strong> fecha, hora, nombre del representante, número de caso y qué se acordó. Un cuaderno dedicado o una nota digital, pero uno solo.</li>
+<li><strong>Copias de cada disputa enviada</strong> y su confirmación de recibido (envía las importantes por correo certificado).</li>
+</ul>
+<p>Cómo guardarlo: una carpeta física y una digital con la misma estructura, organizada por fecha. Escanea o fotografía cada documento el día que llega. Nada se tira hasta dos años después de cerrado el caso.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⛔</span><h4>6. Errores que evitar</h4></div>
+    <div class="sec-b"><ul>
+<li><strong>Esperar "a ver si se arregla solo".</strong> Cada semana de retraso multiplica el daño y debilita tus disputas.</li>
+<li><strong>Solo cancelar la tarjeta y ya.</strong> Si tienen tu SSN, mañana abren otra cuenta. El problema es la identidad, no el plástico.</li>
+<li><strong>Disputar todo por teléfono sin dejar rastro escrito.</strong> Sin papel, no pasó.</li>
+<li><strong>Pagar una deuda fraudulenta "para quitarse el problema".</strong> Pagar puede interpretarse como reconocer la deuda. Disputa, no pagues.</li>
+<li><strong>Congelar un solo buró.</strong> Son tres empresas distintas; congela los tres o dejaste dos puertas abiertas.</li>
+<li><strong>Caer en la segunda estafa:</strong> "empresas de recuperación" que llaman ofreciendo limpiar tu identidad por una tarifa. Muchas son los mismos criminales con tus datos en la mano. Todo lo oficial (FTC, burós, reporte policial) es gratuito o de costo mínimo.</li>
+<li><strong>Reutilizar la misma contraseña</strong> después del incidente. Si entraron una vez, esa clave ya está quemada.</li>
+<li><strong>No revisar la identidad de tus hijos o de tus padres mayores.</strong> Son los blancos favoritos porque nadie mira sus reportes.</li>
+</ul>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">✅</span><h4>7. Checklist accionable</h4></div>
+    <div class="sec-b"><p><strong>Prevención (hazlo esta semana):</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck57"><span class="box"></span><span class="cktxt">Congelé mi crédito en Equifax, Experian y TransUnion (y guardé los tres PIN).</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck58"><span class="box"></span><span class="cktxt">Pedí mi reporte gratuito en AnnualCreditReport.com y lo revisé línea por línea.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck59"><span class="box"></span><span class="cktxt">Activé 2FA en mi correo principal, banco y redes sociales.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck60"><span class="box"></span><span class="cktxt">Instalé un gestor de contraseñas y eliminé contraseñas repetidas.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck61"><span class="box"></span><span class="cktxt">Activé alertas de transacción en mis cuentas bancarias.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck62"><span class="box"></span><span class="cktxt">Compré o conseguí una trituradora; ya no tiro papeles con datos a la basura.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck63"><span class="box"></span><span class="cktxt">Saqué la tarjeta de Seguro Social de mi cartera.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck64"><span class="box"></span><span class="cktxt">Revisé el crédito de mis hijos menores y/o padres mayores.</span></label></li>
+</ul>
+<p><strong>Respuesta (si ya ocurrió):</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck65"><span class="box"></span><span class="cktxt">Reporté en IdentityTheft.gov y guardé mi plan de recuperación.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck66"><span class="box"></span><span class="cktxt">Llamé a cada banco afectado y disputé los cargos por escrito.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck67"><span class="box"></span><span class="cktxt">Presenté reporte policial y anoté el número de caso.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck68"><span class="box"></span><span class="cktxt">Congelé los tres burós y coloqué alerta de fraude extendida.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck69"><span class="box"></span><span class="cktxt">(Si aplica) Presenté el Formulario 14039 ante el IRS y pedí mi IP PIN.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck70"><span class="box"></span><span class="cktxt">Abrí mi carpeta de evidencia (física + digital) y mi registro de llamadas.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m7-ck71"><span class="box"></span><span class="cktxt">Agendé revisión mensual de mis reportes por los próximos 12 meses.</span></label></li>
+</ul>
+<hr>
+<p><em>Ya sabes cómo te roban quién eres y cómo recuperarlo. En el <strong>Módulo 8 — Fraude financiero y documentos falsos</strong> vamos un paso más adentro: qué hacen los criminales con esas identidades —cheques, contratos y papeles falsificados— y cómo un buen ojo entrenado los detecta antes de firmar.</em></p></div>
+  </section>
+  <div class="mfoot">
+    <button class="donebtn" data-done="m7">Marcar módulo como completado</button>
+    <button class="nextbtn" data-go="m8">Siguiente: M8 — Fraude financiero y documentos falsos →</button>
+    <button class="homebtn" data-go="home">⌂ Volver al inicio</button>
+  </div>
+</div>
+
+<div class="view" id="view-m8">
+  <div class="mhead">
+    <span class="eyebrow">Bloque 2 · Estafas modernas · Origen: 🆕 Nuevo · Manual Digital Vivo v1.0</span>
+    <h2>Fraude financiero y documentos falsos</h2>
+    <p class="sub"><em>Al terminar este módulo vas a saber por qué pagar por Zelle es como entregar efectivo en la calle, cómo detectar una factura falsa antes de pagarla, qué revisar en un contrato antes de firmarlo, y cómo reconocer la nueva generación de engaños: voces clonadas y videos fabricados con inteligencia artificial. En una frase: vas a aprender a verificar antes de pagar o firmar. Esa pausa de cinco minutos separa a las víctimas de los que se salvaron.</em></p>
+  </div>
+  
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">💡</span><h4>1. Explicación clara</h4></div>
+    <div class="sec-b"><p>El fraude financiero es cualquier engaño diseñado para que entregues dinero, firmes algo en contra de tus intereses o aceptes un documento que no es lo que parece. El arma del estafador moderno no es la fuerza: es tu confianza y tu prisa.</p>
+<p>Este módulo cierra el Bloque 2 porque reúne todo lo anterior en un solo campo de batalla: tu dinero y tu firma. Aquí entran:</p>
+<ul>
+<li><strong>Pagos instantáneos (Zelle, transferencias, apps de pago).</strong> Grábate esto: <strong>Zelle es como efectivo</strong>. El dinero sale de inmediato y casi nunca regresa. No es como una tarjeta de crédito, donde puedes disputar el cargo. Los estafadores lo saben, y por eso siempre piden pago por esos medios.</li>
+<li><strong>Facturas y cobros falsos a negocios.</strong> El criminal se hace pasar por un proveedor real. Un día llega un correo: "Cambiamos de banco, paga a esta nueva cuenta". Mismo logo, mismo tono, misma firma. A esto se le llama <em>compromiso de correo empresarial</em> (BEC), pero la idea es simple: <strong>alguien se disfrazó de tu proveedor por correo</strong>.</li>
+<li><strong>Cheques falsos y sobrepagos.</strong> Te pagan de más y te piden devolver "la diferencia". El banco te deja usar el dinero en días... pero el cheque puede rebotar semanas después. Cuando rebota, lo que devolviste salió de tu bolsillo.</li>
+<li><strong>Contratos y documentos adulterados.</strong> Escrituras con páginas cambiadas, contratos con cláusulas insertadas a último minuto, poderes notariales falsos. Si firmas sin leer, firmas lo que el otro quiso.</li>
+<li><strong>Inversiones milagro y pirámides.</strong> Rendimientos "garantizados" muy por encima del mercado y presión para reclutar. Toda pirámide paga a los de arriba con el dinero de los de abajo, hasta que se acaba el dinero de abajo.</li>
+<li><strong>La nueva era: deepfakes e IA.</strong> Hoy se clona una voz con segundos de audio sacado de redes, y se fabrica un video de un famoso "recomendando" una inversión. El engaño ya no solo llega por escrito: llega con la voz de tu hijo.</li>
+</ul>
+<p>¿Por qué te importa? Porque estas estafas no atacan a "gente ingenua": atacan a dueños de negocio ocupados, a abuelos cariñosos, a compradores entusiasmados. Atacan el momento en que bajas la guardia.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">📂</span><h4>2. Ejemplos reales</h4></div>
+    <div class="sec-b"><p><strong>El proveedor que "cambió de banco".</strong> Un comerciante en Tampa llevaba años comprándole empaques al mismo proveedor. Un viernes recibió un correo con el membrete de siempre: "Actualizamos nuestra cuenta bancaria, envíe el próximo pago aquí". Pagó $18,000 por transferencia. El lunes, el proveedor real llamó preguntando por su pago. El correo venía de un dominio casi idéntico: una letra cambiada. Los criminales habían leído meses de correos y sabían exactamente cuánto debía y cuándo pagaba.</p>
+<p><strong>La voz del nieto.</strong> Una señora en San Antonio recibió una llamada un domingo en la noche. Era la voz de su nieto —su voz, su manera de hablar, hasta su risa nerviosa— diciendo que había tenido un accidente, que estaba detenido y que necesitaba $4,000 urgentes por Zelle, "y por favor abuela, no le digas a mis papás". Era una voz clonada con IA a partir de los videos que el muchacho subía a redes. La señora se salvó por un detalle: la familia tenía una palabra clave acordada para emergencias, y la voz del teléfono no la supo.</p>
+<p><strong>El cheque del inquilino fantasma.</strong> Una arrendadora en Orlando recibió un cheque de $3,500 como depósito de un futuro inquilino que "se mudaba desde otro estado". El depósito acordado era de $2,000. El inquilino, muy amable, pidió devolver los $1,500 de diferencia por una app de pago, "para los de la mudanza". El banco acreditó el cheque en dos días; ella devolvió el dinero al tercero. A las dos semanas el cheque rebotó por falso. Perdió $1,500 y nunca existió ningún inquilino.</p>
+<p><strong>La inversión que el famoso "recomendó".</strong> Un joven profesionista vio en redes un video de un empresario conocidísimo explicando una plataforma de criptomonedas con rendimientos del 15% mensual. El video era un deepfake: cara y voz fabricadas. La plataforma mostró ganancias en pantalla durante semanas (números pintados, no dinero real) y le permitió retirar $200 para ganarse su confianza. Cuando invirtió $12,000, la cuenta "se congeló por impuestos" y le pidieron más dinero para liberarla. Clásico: <strong>cuando te piden pagar para recuperar tu dinero, ya te lo robaron</strong>.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🚩</span><h4>3. Señales de alerta</h4></div>
+    <div class="sec-b"><ul>
+<li><strong>Urgencia + secreto.</strong> "Paga hoy mismo" y "no le comentes a nadie" en la misma conversación es casi una confesión. Los procesos legítimos resisten una pausa de 24 horas; los fraudes, no.</li>
+<li><strong>Cambio de cuenta bancaria avisado solo por correo o mensaje.</strong> Ningún proveedor serio cambia de banco sin que puedas confirmarlo al número de siempre.</li>
+<li><strong>Pago exigido por Zelle, transferencia, cripto o tarjetas de regalo.</strong> Son irreversibles, por eso las piden. Ningún gobierno, banco o empresa seria cobra con tarjetas de regalo. Ninguno.</li>
+<li><strong>Sobrepago de cualquier tipo.</strong> Nadie honesto te paga de más y te pide devolver la diferencia. Es el guion del cheque falso, palabra por palabra.</li>
+<li><strong>Dominios "casi" correctos.</strong> <code>proveedor-sa.com</code> en lugar de <code>proveedorsa.com</code>. Una letra de diferencia es toda la estafa.</li>
+<li><strong>Rendimientos garantizados superiores al mercado.</strong> Si alguien tuviera una inversión segura del 15% mensual, no la regalaría por WhatsApp. Las inversiones reales tienen riesgo y lo dicen.</li>
+<li><strong>Te pagan por reclutar, no por vender.</strong> Si el negocio gana más metiendo gente que vendiendo un producto real, es una pirámide con disfraz.</li>
+<li><strong>Llamadas con emoción extrema que evitan conversación libre.</strong> Las voces clonadas repiten el guion, meten ruido de fondo y cortan rápido. Haz una pregunta personal inesperada y observa.</li>
+<li><strong>Documentos con prisa.</strong> "Firma rápido, es puro trámite". Cláusulas en letra distinta, páginas sin numerar, espacios en blanco "que se llenan después".</li>
+</ul>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⚖️</span><h4>4. Pasos de investigación legal</h4></div>
+    <div class="sec-b"><p>Todo lo que sigue es legal, gratuito o de bajo costo, y está al alcance de cualquiera. Es lo que haría un investigador antes de soltar un dólar o una firma.</p>
+<ol>
+<li><strong>Verifica por un canal independiente.</strong> La regla madre. Si te llega un cambio de cuenta, un cobro o una emergencia, <strong>no respondas por el mismo canal por donde llegó</strong>. Llama al número que ya tenías guardado del proveedor, del banco o del familiar. Nunca al número que viene en el mensaje sospechoso.</li>
+<li><strong>Confirma que la empresa existe.</strong> Búscala en el registro mercantil oficial de su estado (en EE. UU., la división de corporaciones de cada estado, como Sunbiz en Florida; en Latinoamérica, los registros públicos de comercio). Revisa años de existencia, dirección y representantes. Una "empresa" creada hace tres semanas que promete rendimientos garantizados se delata sola.</li>
+<li><strong>Verifica licencias de inversión.</strong> En EE. UU., cualquier asesor o producto legítimo se consulta gratis en BrokerCheck de FINRA y en los registros de la SEC. Si no aparece, no inviertas. Punto.</li>
+<li><strong>Investiga el dominio del correo.</strong> Lee la dirección completa, letra por letra. Haz una consulta WHOIS gratuita: si el dominio fue creado hace días, ya tienes tu respuesta.</li>
+<li><strong>Para cheques: confirma con el banco emisor, no con el tuyo.</strong> Que tu banco "acredite" el cheque no significa que sea bueno. Busca tú mismo el teléfono oficial del banco emisor y pregunta si la cuenta existe y tiene fondos. Nunca devuelvas "diferencias" hasta que el cheque haya sido cobrado en firme, no solo "disponible".</li>
+<li><strong>Antes de firmar un documento:</strong> léelo completo (sí, completo), cuenta y numera las páginas, verifica que no haya espacios en blanco, compara nombres y números contra identificaciones y registros oficiales, y si involucra propiedad, confirma en el registro público quién es el dueño real. Si el monto es importante, una hora con un abogado o notario cuesta muchísimo menos que la estafa.</li>
+<li><strong>Contra voces clonadas: cuelga y devuelve la llamada.</strong> Llama tú al número real de tu familiar. Acuerda desde hoy una <strong>palabra clave familiar</strong> para emergencias, y haz a quien llama una pregunta que solo la persona real sabría responder.</li>
+<li><strong>Busca el nombre + la palabra "estafa".</strong> Busca en internet la empresa, plataforma u "oportunidad" junto a <em>scam</em>, <em>estafa</em>, <em>fraude</em>. Los estafadores queman nombres rápido y las víctimas anteriores dejan rastro.</li>
+</ol>
+<p>Para el futuro investigador: ninguno de estos pasos requiere acceso privilegiado. El 80% del trabajo de verificación es <strong>fuentes públicas + un teléfono + paciencia</strong>. Tu valor profesional está en hacerlo con método y documentarlo bien.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🗂️</span><h4>5. Qué evidencia guardar</h4></div>
+    <div class="sec-b"><p>Si sospechas fraude —o ya fuiste víctima— la evidencia es tu única moneda ante el banco, la policía y los tribunales. Guarda:</p>
+<ul>
+<li><strong>Correos completos, con encabezados.</strong> No solo capturas: usa "mostrar original" o "ver encabezados" y guárdalo como archivo. Ahí está la ruta técnica del mensaje.</li>
+<li><strong>Comprobantes de pago:</strong> recibos de transferencia, capturas de Zelle o apps con fecha, hora, monto y destinatario visibles.</li>
+<li><strong>El cheque físico</strong> (o copia por ambos lados) y el comprobante de depósito.</li>
+<li><strong>Contratos y documentos en su versión exacta:</strong> escanea cada página, antes y después de firmar. Si hubo versiones distintas, guarda todas.</li>
+<li><strong>Mensajes de texto y WhatsApp:</strong> exporta la conversación completa. No borres nada, ni siquiera lo vergonzoso.</li>
+<li><strong>Llamadas:</strong> anota de inmediato fecha, hora, número y resumen. Sobre grabar llamadas: las leyes varían por estado o país (algunos exigen consentimiento de ambas partes); infórmate antes de grabar. Una bitácora escrita al momento siempre es legal y vale mucho.</li>
+<li><strong>Datos de la cuenta destino:</strong> titular, banco y número que te dieron para pagar. Es la pista principal para el banco y las autoridades.</li>
+</ul>
+<p><strong>Cómo guardarlo:</strong> una carpeta por caso con subcarpetas (correos, pagos, documentos, mensajes), archivos nombrados con fecha (<code>2026-06-09_factura_falsa.pdf</code>), respaldo en la nube y jamás edites los originales. Si actúas en las primeras horas, llama a tu banco para intentar revertir o congelar la transferencia, y reporta: en EE. UU., al IC3 del FBI (ic3.gov) y a la FTC (reportfraud.ftc.gov); en tu país, a la fiscalía o policía cibernética.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⛔</span><h4>6. Errores que evitar</h4></div>
+    <div class="sec-b"><ul>
+<li><strong>Pagar con Zelle o transferencia a desconocidos "porque es más rápido".</strong> La rapidez es justo lo que el estafador necesita. Para extraños, usa medios con protección al comprador.</li>
+<li><strong>Creer que "dinero disponible" significa cheque bueno.</strong> Disponibilidad no es cobro definitivo. Ese error sostiene toda la estafa del sobrepago.</li>
+<li><strong>Verificar con los datos que te dio el sospechoso.</strong> Si llamas al teléfono del correo falso, te contesta el estafador. Busca los datos por tu cuenta.</li>
+<li><strong>Firmar sin leer, o leer "por encima".</strong> Nadie que te apura a firmar está cuidando tus intereses.</li>
+<li><strong>Quedarse callado por vergüenza.</strong> El silencio de las víctimas es el mejor empleado del estafador. Reportar rápido puede congelar fondos y protege al siguiente.</li>
+<li><strong>Creer que "a mí no me pasa porque sé de tecnología".</strong> Las víctimas de BEC incluyen contadores, gerentes y abogados. El fraude no ataca tu inteligencia: ataca tu rutina.</li>
+<li><strong>Enviar más dinero para "recuperar" el dinero atrapado.</strong> Dinero que persigue dinero perdido, se pierde también.</li>
+<li><strong>Confiar en una voz o un video como prueba de identidad.</strong> En 2026, ver y oír ya no es creer. Verifica por otro canal, siempre.</li>
+</ul>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">✅</span><h4>7. Checklist accionable</h4></div>
+    <div class="sec-b"><p><strong>Antes de pagar cualquier monto importante:</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck72"><span class="box"></span><span class="cktxt">¿El pago me lo exigen por Zelle, transferencia, cripto o tarjetas de regalo? → Detente: es bandera roja mayor.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck73"><span class="box"></span><span class="cktxt">¿Verifiqué el cambio de cuenta o el cobro llamando al número que YO ya tenía (no al del mensaje)?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck74"><span class="box"></span><span class="cktxt">¿Leí la dirección de correo del remitente letra por letra?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck75"><span class="box"></span><span class="cktxt">¿Busqué la empresa en el registro mercantil oficial de su estado o país?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck76"><span class="box"></span><span class="cktxt">Si es inversión: ¿verifiqué al asesor/plataforma en FINRA BrokerCheck o el regulador de mi país?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck77"><span class="box"></span><span class="cktxt">¿Busqué en internet el nombre + "estafa" / "scam"?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck78"><span class="box"></span><span class="cktxt">¿Dejé pasar 24 horas y lo consulté con alguien de confianza?</span></label></li>
+</ul>
+<p><strong>Antes de firmar cualquier documento:</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck79"><span class="box"></span><span class="cktxt">¿Leí el documento completo, incluyendo la letra pequeña?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck80"><span class="box"></span><span class="cktxt">¿Conté y numeré las páginas, y confirmé que no hay espacios en blanco?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck81"><span class="box"></span><span class="cktxt">¿Verifiqué identidades y propiedad en registros públicos?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck82"><span class="box"></span><span class="cktxt">Si el monto es grande: ¿lo revisó un abogado o notario?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck83"><span class="box"></span><span class="cktxt">¿Guardé copia exacta de lo que voy a firmar?</span></label></li>
+</ul>
+<p><strong>Protección familiar contra voz clonada:</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck84"><span class="box"></span><span class="cktxt">¿Acordamos una palabra clave familiar para emergencias?</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck85"><span class="box"></span><span class="cktxt">¿Todos en casa saben que ante una llamada de emergencia se cuelga y se devuelve la llamada al número real?</span></label></li>
+</ul>
+<p><strong>Si ya pagaste y sospechas fraude:</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck86"><span class="box"></span><span class="cktxt">Llamé a mi banco de inmediato para intentar revertir o congelar.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck87"><span class="box"></span><span class="cktxt">Guardé toda la evidencia sin editar (correos con encabezados, comprobantes, chats).</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m8-ck88"><span class="box"></span><span class="cktxt">Reporté a IC3/FTC o a la autoridad de mi país.</span></label></li>
+</ul>
+<hr>
+<p>Con esto cerramos el Bloque 2. Ya conoces el repertorio completo del estafador moderno: del mensaje de texto a la voz clonada de tu propio nieto. En el <strong>Bloque 3</strong> cambiamos de silla: dejamos de defendernos y empezamos a investigar. El <strong>Módulo 9 — Investigación con Inteligencia Artificial</strong> te enseña a usar las mismas herramientas de IA que usan los criminales, pero del lado correcto: para verificar, encontrar y documentar más rápido que nunca. Nos vemos del otro lado de la lupa.</p>
+<blockquote>
+<p>📥 <strong>Este bloque se actualiza cada mes con las estafas que están circulando ahora.</strong> Tu compra incluye esas actualizaciones: cuando aparezca una variante nueva, la vas a encontrar aquí antes de que toque tu puerta.</p>
+</blockquote></div>
+  </section>
+  <div class="mfoot">
+    <button class="donebtn" data-done="m8">Marcar módulo como completado</button>
+    <button class="nextbtn" data-go="m9">Siguiente: M9 — Investigación con Inteligencia Artificial →</button>
+    <button class="homebtn" data-go="home">⌂ Volver al inicio</button>
+  </div>
+</div>
+
+<div class="view" id="view-m9">
+  <div class="mhead">
+    <span class="eyebrow">Bloque 3 · Herramientas modernas · Origen: 🆕 Nuevo · Manual Digital Vivo v1.0</span>
+    <h2>Investigación con Inteligencia Artificial</h2>
+    <p class="sub"><em>Cuando publiqué mi primer libro en 1996, verificar la identidad de una persona en otro país tomaba semanas, contactos y dinero. Hoy, con un teléfono y herramientas gratuitas de inteligencia artificial, una persona común tiene más poder de verificación que una agencia entera de aquella época. En este módulo aprenderás a usar la IA como tu asistente de investigación: para analizar mensajes sospechosos, desenmascarar fotos robadas, detectar voces clonadas y videos falsos. Y también conocerás la otra cara: cómo los estafadores usan exactamente la misma tecnología contra ti.</em></p>
+  </div>
+  
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">💡</span><h4>1. Explicación clara</h4></div>
+    <div class="sec-b"><p>La inteligencia artificial que nos interesa aquí viene en dos formas principales:</p>
+<ul>
+<li><strong>Asistentes de IA conversacionales</strong> (ChatGPT, Claude, Gemini): programas con los que conversas escribiendo, como si chatearas con una persona. Les pegas un texto y les pides que lo analicen, lo resuman o lo expliquen. Todos tienen versión gratuita.</li>
+<li><strong>Herramientas de búsqueda inversa de imágenes</strong> (Google Lens, TinEye): les das una foto y te dicen en qué otros lugares de internet aparece esa misma foto. Si la "viuda canadiense" que te escribe usa la foto de un actor turco, estas herramientas lo revelan en segundos.</li>
+</ul>
+<p>¿Por qué te importa? Porque la mayoría de las estafas modernas dependen de que <strong>no verifiques nada</strong>. El estafador cuenta con que leas el mensaje con prisa, te emociones o te asustes, y actúes. La IA te da una segunda opinión instantánea, gratuita y sin vergüenza: puedes preguntarle a las 3 de la mañana si ese mensaje "del banco" huele a fraude, sin molestar a nadie.</p>
+<p>Para el futuro investigador privado, la IA es un multiplicador: lo que antes requería un equipo (transcribir, resumir, comparar documentos, redactar informes preliminares) hoy lo hace un asistente en minutos. Pero atención a la <strong>regla de oro de este módulo: la IA orienta, no prueba.</strong> Es una brújula, no un mapa firmado por notario. Toda conclusión que te dé una IA se verifica después con fuentes primarias: el sitio oficial, el registro público, la llamada directa al número oficial.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">📂</span><h4>2. Ejemplos reales</h4></div>
+    <div class="sec-b"><p><strong>Caso 1 — El "premio" que la IA desarmó en treinta segundos.</strong> Una señora de 68 años recibió un mensaje: había "ganado" un sorteo de una cadena de supermercados, solo debía pagar $35 de "gastos de envío". Su nieto copió el mensaje completo, lo pegó en un asistente de IA gratuito y escribió: <em>"Dime si este mensaje tiene patrones de estafa"</em>. La respuesta enumeró cinco señales: urgencia artificial ("válido solo hoy"), pedido de pago para recibir un premio, enlace acortado que ocultaba el destino, errores de redacción y un remitente que no correspondía a la empresa. La señora no pagó. Verificaron después en la página oficial del supermercado: no existía tal sorteo. La IA orientó; la fuente primaria confirmó.</p>
+<p><strong>Caso 2 — La foto del "ingeniero viudo".</strong> Una mujer llevaba tres semanas chateando con un supuesto ingeniero estadounidense viudo que trabajaba "en una plataforma petrolera". Antes de enviarle dinero para "una emergencia médica", una amiga le sugirió guardar la foto de perfil y subirla a Google Lens. Resultado: la misma foto aparecía en el perfil real de un médico europeo con otro nombre, y en tres páginas que documentaban perfiles falsos. La foto era robada. Costo de la verificación: cero. Tiempo: dos minutos.</p>
+<p><strong>Caso 3 — El contrato que nadie quería leer.</strong> Un joven iba a firmar un contrato de "inversión garantizada" de nueve páginas. Le pegó el texto a un asistente de IA y pidió: <em>"Resume este contrato en lenguaje simple y dime qué cláusulas me perjudican"</em>. La IA señaló una cláusula donde el firmante renunciaba a reclamar y otra donde las "ganancias garantizadas" quedaban "sujetas a disponibilidad". Con ese resumen, consultó a un abogado ya con preguntas concretas. No firmó.</p>
+<p><strong>Caso 4 — La voz del "hijo secuestrado".</strong> Un padre recibió una llamada: la voz de su hijo, llorando, pidiendo dinero urgente. La voz era idéntica… porque era un clon hecho con IA a partir de videos públicos del muchacho. El padre, que había leído sobre el tema, hizo lo correcto: pidió a la voz que dijera el apodo de la abuela. Silencio, evasivas, presión. Colgó y llamó al número real de su hijo, que estaba tranquilamente en clase. Treinta segundos de verificación contra un susto diseñado para vaciar una cuenta.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🚩</span><h4>3. Señales de alerta: cómo reconocer contenido generado por IA</h4></div>
+    <div class="sec-b"><p><strong>Texto generado por IA (el mensaje del estafador):</strong></p>
+<ul>
+<li>Redacción demasiado pulida pero genérica: saludos perfectos, cero detalles personales reales.</li>
+<li>Frases que suenan traducidas o "infladas": mucho adorno, poca sustancia concreta.</li>
+<li>Respuestas que esquivan preguntas directas o repiten lo mismo con otras palabras.</li>
+<li>Coherencia extraña: hoy dice que es viudo con una hija, la semana pasada dijo dos hijos. La IA del estafador no siempre recuerda sus propias mentiras.</li>
+</ul>
+<p><strong>Fotos generadas por IA:</strong></p>
+<ul>
+<li><strong>Manos y dedos:</strong> dedos de más o de menos, manos fusionadas, anillos que se derriten en la piel. Sigue siendo el punto débil clásico.</li>
+<li><strong>Fondos:</strong> letreros con letras sin sentido, objetos que se funden entre sí, ventanas con reflejos imposibles.</li>
+<li><strong>Simetrías:</strong> aretes distintos en cada oreja, ojos con brillos que no coinciden, lentes torcidos que la piel "absorbe".</li>
+<li><strong>Texturas:</strong> piel demasiado lisa, como de porcelana; cabello que se convierte en humo en los bordes; dientes que parecen una sola pieza.</li>
+</ul>
+<p><strong>Videos deepfake:</strong></p>
+<ul>
+<li>Parpadeo raro: muy poco, demasiado, o en momentos antinaturales.</li>
+<li>Bordes del rostro que tiemblan o se difuminan cuando la persona gira la cabeza.</li>
+<li>Sincronía labial imperfecta: la boca va una fracción de segundo desfasada del audio.</li>
+<li>Iluminación del rostro que no coincide con la del ambiente.</li>
+</ul>
+<p><strong>Voces clonadas:</strong></p>
+<ul>
+<li>Suenan bien en frases cortas, pero pierden naturalidad en conversación larga: pausas raras, respiración ausente, emoción "plana".</li>
+<li>Prueba definitiva: <strong>pide que repita una frase inesperada</strong> ("dime qué cenamos en Navidad") o usa una <strong>palabra clave familiar</strong> acordada de antemano. El clon no sabe lo que tu familiar sabe.</li>
+</ul>
+<p>Importante: estas señales mejoran cada año del lado del estafador. Por eso ninguna señal aislada es veredicto: se suman, y luego se verifica por otro canal.</p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⚖️</span><h4>4. Pasos de investigación legal</h4></div>
+    <div class="sec-b"><p>Este método usa solo herramientas gratuitas y fuentes públicas. Nada de hackear, espiar ni acceder a cuentas ajenas: eso es delito y además innecesario.</p>
+<p><strong>Paso 1 — Analiza el mensaje sospechoso con un asistente de IA.</strong></p>
+<p>Abre ChatGPT, Claude o Gemini (versión gratuita). Pega el mensaje completo (quita antes datos personales tuyos como tu número de cuenta) y usa este prompt:</p>
+<blockquote>
+<p><em>"Analiza este mensaje y dime si tiene patrones típicos de estafa: urgencia, premios, amenazas, enlaces sospechosos, suplantación de empresas. Explícame cada señal que encuentres."</em></p>
+</blockquote>
+<p><strong>Paso 2 — Verifica las fotos con búsqueda inversa.</strong></p>
+<p>Guarda la foto de perfil (captura de pantalla sirve). Súbela a <strong>Google Lens</strong> (lens.google.com o el ícono de cámara en Google Imágenes) y a <strong>TinEye</strong> (tineye.com). Pregúntate: ¿aparece con otro nombre? ¿En sitios de otro país? ¿En catálogos de fotos de archivo?</p>
+<p><strong>Paso 3 — Revisa documentos antes de firmar o pagar.</strong></p>
+<p>Pega el contrato, la "carta del banco" o el comprobante y pide:</p>
+<blockquote>
+<p><em>"Resume este documento en lenguaje simple. Lista las obligaciones que asumo, las cláusulas que me perjudican y cualquier cosa inusual o contradictoria."</em></p>
+</blockquote>
+<p><strong>Paso 4 — Redacta tu respuesta o reclamo con ayuda de la IA.</strong></p>
+<p>Si ya fuiste víctima o quieres disputar un cargo:</p>
+<blockquote>
+<p><em>"Redacta una carta formal de disputa dirigida a mi banco por un cargo no reconocido de [monto] del [fecha]. Tono firme y respetuoso, solicitando investigación y reverso del cargo, citando mi derecho como consumidor a reclamar."</em></p>
+</blockquote>
+<p>Revisa y ajusta lo que la IA escriba: tú firmas, tú respondes por el contenido.</p>
+<p><strong>Paso 5 — Somete fotos y videos sospechosos al análisis visual.</strong></p>
+<p>Aplica la lista de señales de la sección 3: amplía la imagen, revisa manos, fondos, orejas, texturas. Puedes describirle la imagen a la IA o subirla y preguntar: <em>"¿Qué elementos de esta imagen sugieren que fue generada por IA?"</em> (sube solo imágenes que recibiste tú, no fotos privadas de terceros).</p>
+<p><strong>Paso 6 — Para voces: verifica por canal alterno.</strong></p>
+<p>Ante cualquier llamada urgente de un "familiar": cuelga y llama tú al número que ya tienes guardado. Acuerda hoy mismo una palabra clave familiar.</p>
+<p><strong>Paso 7 — Confirma con fuentes primarias.</strong></p>
+<p>La IA te dio una hipótesis. Confírmala donde vive la verdad: sitio web oficial escrito por ti en el navegador (no el enlace del mensaje), teléfono oficial al reverso de tu tarjeta, registros públicos de empresas, página oficial del organismo de protección al consumidor de tu país. <strong>Sin este paso, no tienes conclusión: tienes una sospecha bien fundada.</strong></p>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">🗂️</span><h4>5. Qué evidencia guardar</h4></div>
+    <div class="sec-b"><p>Si el caso puede terminar en denuncia, reclamo bancario o demanda, guarda desde el primer momento:</p>
+<ul>
+<li><strong>El mensaje original completo</strong>: captura de pantalla que incluya remitente, fecha, hora y el mensaje entero. No borres el chat original: la captura apoya, el original prueba.</li>
+<li><strong>El análisis de la IA</strong>: captura de pantalla de la conversación donde la IA señaló los patrones de estafa, con fecha visible. No es prueba pericial, pero documenta tu diligencia y tu línea de tiempo.</li>
+<li><strong>Los resultados de búsqueda inversa</strong>: captura de la página de Google Lens o TinEye mostrando la foto en otros perfiles, incluyendo las direcciones web (URL) visibles.</li>
+<li><strong>Los archivos originales</strong>: la foto o el audio tal como los recibiste, sin editar ni recortar. Los archivos originales conservan <strong>metadatos</strong> (datos ocultos sobre fecha, dispositivo y, a veces, software de creación) que un perito puede examinar. Una captura de pantalla los destruye; por eso guarda ambos.</li>
+<li><strong>Organización</strong>: una carpeta por caso, con subcarpetas ("01_Mensajes", "02_Fotos", "03_Analisis_IA", "04_Verificaciones") y archivos nombrados con fecha: <code>2026-06-09_perfil_falso_lens.png</code>. Haz copia en la nube o en una memoria externa.</li>
+</ul>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">⛔</span><h4>6. Errores que evitar</h4></div>
+    <div class="sec-b"><ol>
+<li><strong>Confiar ciegamente en la IA.</strong> Los asistentes se equivocan e inventan datos con total seguridad (a esto se le llama "alucinación"). Si la IA dice "esta empresa no existe", verifícalo tú en el registro mercantil. Si dice "este mensaje es seguro", mantén la guardia: también hay falsos negativos.</li>
+<li><strong>Subir datos privados de terceros.</strong> No pegues en una IA el historial médico de tu cuñado ni fotos íntimas de nadie. Lo que subes puede quedar almacenado en servidores ajenos. Analiza lo que te enviaron a ti; anonimiza nombres y números cuando puedas.</li>
+<li><strong>Usar la IA como única prueba.</strong> "ChatGPT dijo que era estafa" no sostiene una denuncia ni un reclamo. La IA orienta tu investigación; las pruebas son los mensajes, las capturas, los registros oficiales, los movimientos bancarios.</li>
+<li><strong>Confrontar al estafador con tus hallazgos.</strong> Si le dices "ya sé que tu foto es robada", borrará todo y desaparecerá con la evidencia. Documenta en silencio, corta el contacto y denuncia.</li>
+<li><strong>Creer que "a mí la IA no me engaña".</strong> El exceso de confianza es la puerta favorita del fraude. Los deepfakes de 2026 no son los de 2023; asume que algunos pasarán tu filtro visual y verifica siempre por un segundo canal.</li>
+<li><strong>Usar la IA para cruzar la línea legal.</strong> Nada de pedirle cómo acceder a cuentas ajenas, rastrear personas sin consentimiento o suplantar identidades "para probar". El investigador serio trabaja solo con fuentes legales y públicas. Lo demás convierte al investigador en investigado.</li>
+</ol>
+<hr></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="sec-ic">✅</span><h4>7. Checklist accionable</h4></div>
+    <div class="sec-b"><p><strong>Antes de responder a cualquier mensaje sospechoso:</strong></p>
+<ul class="cklist">
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck89"><span class="box"></span><span class="cktxt">Pegué el mensaje en un asistente de IA y pedí análisis de patrones de estafa.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck90"><span class="box"></span><span class="cktxt">Hice búsqueda inversa de la foto de perfil en Google Lens y TinEye.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck91"><span class="box"></span><span class="cktxt">Revisé manos, fondos, simetrías y texturas de las fotos recibidas.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck92"><span class="box"></span><span class="cktxt">En videos: observé parpadeo, bordes del rostro y sincronía labial.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck93"><span class="box"></span><span class="cktxt">Ante una voz urgente: pedí una frase inesperada o la palabra clave familiar.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck94"><span class="box"></span><span class="cktxt">Colgué y verifiqué por el canal oficial (número guardado, sitio oficial escrito por mí).</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck95"><span class="box"></span><span class="cktxt">Pedí a la IA un resumen en lenguaje simple antes de firmar cualquier documento.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck96"><span class="box"></span><span class="cktxt">Confirmé toda conclusión de la IA con al menos una fuente primaria.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck97"><span class="box"></span><span class="cktxt">Guardé capturas del mensaje, del análisis de IA y de la búsqueda inversa.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck98"><span class="box"></span><span class="cktxt">Conservé los archivos originales sin editar (por los metadatos).</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck99"><span class="box"></span><span class="cktxt">No subí datos privados de terceros a ninguna herramienta de IA.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck100"><span class="box"></span><span class="cktxt">No confronté al sospechoso; documenté en silencio y denuncié por la vía oficial.</span></label></li>
+<li class="ck"><label><input type="checkbox" data-ck="m9-ck101"><span class="box"></span><span class="cktxt">Acordé hoy una palabra clave con mi familia para emergencias telefónicas.</span></label></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>📡 Manual vivo:</strong> las herramientas de IA cambian cada pocos meses, y los métodos de los estafadores también. Este módulo se actualizará con cada nueva herramienta relevante de IA, cada nueva técnica de detección y cada nuevo patrón de fraude que documentemos en Cyber Quest. Tu compra incluye esas actualizaciones: revisa siempre la versión más reciente antes de aplicar el método.</p>
+</blockquote>
+<p><em>— Luis Jiménez, Investigador Privado Internacional · Cyber Quest Investigadores Privados</em></p></div>
+  </section>
+  <div class="mfoot">
+    <button class="donebtn" data-done="m9">Marcar módulo como completado</button>
+    
+    <button class="homebtn" data-go="home">⌂ Volver al inicio</button>
+  </div>
+</div>
+
+</div>
+<script>
+const $$ = s => document.querySelectorAll(s);
+function show(id){
+  $$('.view').forEach(v => v.classList.remove('active'));
+  const v = document.getElementById('view-' + id);
+  if (v) v.classList.add('active');
+  document.body.classList.toggle('inner', id !== 'home');
+  window.scrollTo(0, 0);
+  if (id === 'home') paint();
+}
+document.addEventListener('click', e => {
+  const go = e.target.closest('[data-go]');
+  if (go) { show(go.dataset.go); return; }
+  const done = e.target.closest('[data-done]');
+  if (done) {
+    const k = 'mv-done-' + done.dataset.done;
+    const on = localStorage.getItem(k) === '1';
+    localStorage.setItem(k, on ? '0' : '1');
+    done.classList.toggle('on', !on);
+    done.textContent = !on ? '✓ Módulo completado' : 'Marcar módulo como completado';
+  }
+});
+document.addEventListener('change', e => {
+  if (e.target.matches('[data-ck]')) localStorage.setItem('mv-ck-' + e.target.dataset.ck, e.target.checked ? '1' : '0');
+});
+function paint(){
+  let doneCount = 0, firstPending = null;
+  const mods = [{"id":"m0","t":"M0 — Bienvenida y cómo usar el manual"},{"id":"m3","t":"M3 — Investigar antes de confiar"},{"id":"m4","t":"M4 — Anatomía de una estafa moderna"},{"id":"m5","t":"M5 — Teléfono, WhatsApp y SMS"},{"id":"m6","t":"M6 — Estafas románticas internacionales"},{"id":"m7","t":"M7 — Robo de identidad"},{"id":"m8","t":"M8 — Fraude financiero y documentos falsos"},{"id":"m9","t":"M9 — Investigación con Inteligencia Artificial"}];
+  mods.forEach(m => {
+    const on = localStorage.getItem('mv-done-' + m.id) === '1';
+    if (on) doneCount++; else if (!firstPending) firstPending = m;
+    const flag = document.querySelector('[data-done-flag="' + m.id + '"]');
+    if (flag) flag.classList.toggle('on', on);
+    const btn = document.querySelector('[data-done="' + m.id + '"]');
+    if (btn) { btn.classList.toggle('on', on); btn.textContent = on ? '✓ Módulo completado' : 'Marcar módulo como completado'; }
+  });
+  document.getElementById('pfill').style.width = (doneCount / mods.length * 100) + '%';
+  document.getElementById('pcount').textContent = doneCount + ' de ' + mods.length + ' módulos completados';
+  document.getElementById('ptitle').textContent = doneCount === mods.length
+    ? '¡Manual completado! Espera la próxima actualización'
+    : (doneCount ? 'Continúa: ' + firstPending.t : 'Empieza por el Módulo 0');
+}
+$$('[data-ck]').forEach(c => { c.checked = localStorage.getItem('mv-ck-' + c.dataset.ck) === '1'; });
+paint();
+</script>
+</body>
+</html>

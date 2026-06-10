@@ -28,6 +28,8 @@ h1{font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-0.02em;text-a
 .card .go{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-weight:700;font-size:14px;color:var(--ink)}
 .card .go svg{width:16px;height:16px;transition:.18s}
 .card:hover .go svg{transform:translateX(4px)}
+.card.featured{grid-column:1/-1;border:1.5px solid var(--ink);position:relative;overflow:hidden}
+.card.featured .badge{position:absolute;top:0;right:0;background:var(--ink);color:#fff;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-bottom-left-radius:10px}
 .foot{margin-top:36px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9C9486}
 .demo{margin-top:8px;font-size:11px;color:#9C9486}
 </style>
@@ -41,6 +43,13 @@ h1{font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-0.02em;text-a
   <h1>Técnicas y Secretos del Investigador Privado</h1>
   <p class="tag">Manual Digital Vivo. Aprenda a investigar y protegerse antes de ser víctima.</p>
   <div class="cards">
+    <a class="card featured" href="app.html">
+      <span class="badge">Nuevo · MVP completo</span>
+      <div class="k">El manual real</div>
+      <h2>Manual Digital Vivo — App</h2>
+      <p>Los 8 módulos del MVP completos (~17.000 palabras): mentalidad del investigador, las 5 estafas modernas, investigación con IA. Con checklists interactivos y progreso guardado en tu dispositivo.</p>
+      <span class="go">Abrir el manual <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
     <a class="card" href="Pagina_1_Venta_Pre_Pago.html">
       <div class="k">Antes de pagar</div>
       <h2>Página de venta</h2>
